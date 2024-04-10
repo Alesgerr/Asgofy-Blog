@@ -77,11 +77,6 @@ function MyApp({ Component, pageProps }) {
           }}
         />
         <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953220018369928"
-          crossOrigin="anonymous"
-        ></Script>
-        <Script
           type="text/javascript"
           charset="UTF-8"
           src="//cdn.cookie-script.com/s/5a9abd4a4750bb73cf85b012a01ea82c.js"

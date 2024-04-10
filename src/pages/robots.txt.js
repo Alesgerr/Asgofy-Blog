@@ -5,7 +5,7 @@ const generateRobotsTxt = () => {
   const disallow = ["/dashboard"]; // Örnek olarak, /admin ve /secret-page sayfalarını engelliyoruz.
   // Sitemap URL'si
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const sitemap = "https://asgoshop.com/sitemap.xml";
+  const sitemap = `${baseUrl}/sitemap.xml`;
   return `
     User-agent: *
     Disallow: ${disallow.join("\n    Disallow: ")}

@@ -71,11 +71,6 @@ const page = () => {
           name="twitter:image"
           content="https://www.blogadi.com/twitter-card-image.jpg"
         /> */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953220018369928"
-          crossOrigin="anonymous"
-        ></Script>
       </Head>
       {/* <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
         <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">

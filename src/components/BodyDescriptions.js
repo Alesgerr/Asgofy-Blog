@@ -10,13 +10,13 @@ const BodyDescription = ({ body, title }) => {
   console.log(body);
   return (
     <div>
-      <Head>
+      {/* <Head>
         <Script
           async
           custom-element="amp-ad"
           src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"
         ></Script>
-      </Head>
+      </Head> */}
       <amp-ad
         width="100vw"
         height="320"

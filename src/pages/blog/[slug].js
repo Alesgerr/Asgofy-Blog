@@ -56,11 +56,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
         <meta name="twitter:description" content={post?.metaDescription} />
         <meta name="twitter:image" content={postImage} />
 
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953220018369928"
-          crossOrigin="anonymous"
-        ></Script>
+       
       </Head>
       <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
         {/* <!-- Blog Article --> */}
@@ -268,11 +264,6 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                     {post?.title}
                   </h1>
                   <p className="text-md font-normal">{post?.description}</p>
-                  <Script
-                    async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953220018369928"
-                    crossOrigin="anonymous"
-                  ></Script>
                   <BodyDescription body={post?.body} title={post?.title} />
                 </div>
               </div>

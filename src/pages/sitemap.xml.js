@@ -6,13 +6,14 @@ const Sitemap = () => {};
 
 export const getServerSideProps = async ({ res }) => {
   const blogPosts = await getPosts(); // Tüm blog yazılarını alın
-  console.log(blogPosts, 'post');
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
   // Site haritası XML içeriğini oluşturun
   const generateSitemap = () => {
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
-          <loc>https://asgoshop.com/</loc>
+          <loc>${baseUrl}</loc>
           <changefreq>daily</changefreq>
           <priority>1.0</priority>
         </url>`;
@@ -26,7 +27,7 @@ export const getServerSideProps = async ({ res }) => {
 
        sitemap += `
         <url>
-          <loc>https://asgoshop.com/blog/${post?.slug}</loc>
+          <loc>${baseUrl}/blog/${post?.slug}</loc>
           <lastmod>${lastmod}</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.8</priority>
