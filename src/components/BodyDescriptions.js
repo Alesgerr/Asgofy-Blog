@@ -7,27 +7,8 @@ import Script from "next/script";
 const BodyDescription = ({ body, title }) => {
   // Önceki başlık kontrolü için bir değişken tanımlayalım
   let previousHeading = "";
-  console.log(body);
   return (
     <div>
-      {/* <Head>
-        <Script
-          async
-          custom-element="amp-ad"
-          src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"
-        ></Script>
-      </Head> */}
-      <amp-ad
-        width="100vw"
-        height="320"
-        type="adsense"
-        data-ad-client="ca-pub-6953220018369928"
-        data-ad-slot="2917516147"
-        data-auto-format="rspv"
-        data-full-width=""
-      >
-        <div overflow=""></div>
-      </amp-ad>
       {body?.map((block, index) => {
         let key = `${block._type}-${index}`;
 

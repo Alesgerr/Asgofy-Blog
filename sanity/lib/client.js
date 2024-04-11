@@ -1,7 +1,6 @@
 import { createClient, groq } from "next-sanity";
 
 import { apiVersion, dataset, projectId, token, useCdn } from "../env";
-import axios, { Axios } from "axios";
 export const client = createClient({
   apiVersion,
   dataset,
@@ -326,7 +325,6 @@ const fetchComments = async (postId) => {
       imageUrl: comment.user.imageUrl, // Kullanıcı profili resmi URL'si
     }));
 
-    console.log("Comments:", comments);
     return comments;
   } catch (error) {
     console.error("Error fetching comments:", error);

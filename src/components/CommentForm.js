@@ -49,7 +49,6 @@ const CommentForm = ({ postId }) => {
     const newCommentId = await createComment(postId, newCommentData);
 
     if (newCommentId) {
-      console.log("Comment submitted successfully with ID:", newCommentId);
       // Yorumları güncelle
       const updatedComments = [
         ...comments,
