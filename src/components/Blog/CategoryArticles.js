@@ -117,7 +117,7 @@ export default function CategoryArticles() {
                 <>
                   <Skeleton
                     className="dark:bg-zinc-900"
-                    width={430}
+                    width={400}
                     style={{
                       minWidth: "200px",
                       maxWidth: "calc(100% - 10px)",
