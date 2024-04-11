@@ -55,8 +55,6 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
         <meta name="twitter:title" content={post?.title || post?.metaTitle} />
         <meta name="twitter:description" content={post?.metaDescription} />
         <meta name="twitter:image" content={postImage} />
-
-       
       </Head>
       <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
         {/* <!-- Blog Article --> */}
@@ -249,6 +247,9 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                 </div>
                 {/* <!-- Content --> */}
                 <div className="space-y-5 md:space-y-8">
+                  <h1 className="text-lg mt-5 sm:text-3xl font-extrabold">
+                    {post?.title}
+                  </h1>
                   <div className="flex justify-center">
                     <Image
                       src={post?.postImage}
@@ -260,16 +261,14 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                       className="rounded-md h-[250px] sm:h-[350px] object-cover"
                     />
                   </div>
-                  <h1 className="text-lg sm:text-3xl font-extrabold">
-                    {post?.title}
-                  </h1>
+
                   <p className="text-md font-normal">{post?.description}</p>
                   <BodyDescription body={post?.body} title={post?.title} />
                 </div>
               </div>
-                <div>
-                  <CommentForm postId={post && post?._id}/>
-                </div>
+              <div>
+                <CommentForm postId={post && post?._id} />
+              </div>
               {/* <!-- End Content --> */}
             </div>
             <div className="lg:w-3/12 md:order-1">
