@@ -1,5 +1,5 @@
 // auth.js
-import firebase from "firebase/app";
+import firebase, { getApp, getApps } from "firebase/app";
 import "firebase/auth";
 import "firebase/analytics"; // Firebase Analytics'ı içe aktarın
 // import firebaseConfig from "./firebaseConfig"; // Firebase yapılandırma bilgilerini içeren dosya
@@ -22,8 +22,16 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from "@firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+} from "@firebase/firestore";
 import toast from "react-hot-toast";
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -33,7 +41,12 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-const app = initializeApp(firebaseConfig);
+let app
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApp(); // Zaten mevcut olan uygulamayı al
+}
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);

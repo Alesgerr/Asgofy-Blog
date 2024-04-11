@@ -1,9 +1,9 @@
 // export const firebaseConfig = {
-//   apiKey: "AIzaSyCI9EFjF_X7uH4HRwInHPAEykn2C5Vyjbk",
-//   authDomain: "asgorise-blog.firebaseapp.com",
-//   projectId: "asgorise-blog",
-//   storageBucket: "asgorise-blog.appspot.com",
-//   messagingSenderId: "987122141608",
-//   appId: "1:987122141608:web:78a6d745136045768e759d",
-//   measurementId: "G-QSD551S181",
+//   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+//   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+//   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+//   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+//   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+//   // measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 // };
