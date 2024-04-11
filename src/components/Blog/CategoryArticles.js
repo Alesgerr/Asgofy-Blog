@@ -46,8 +46,8 @@ export default function CategoryArticles() {
   }, [tags]);
   return (
     <>
-      <div className="px-5 max-w-7xl py-10 md:px-14 lg:py-14 mx-auto flex justify-between flex-wrap">
-        <div className="w-full lg:max-w-[73%] pb-2">
+      <div className="px-5 max-w-7xl py-10 md:px-14 lg:py-14 overflow-hidden mx-auto flex justify-between flex-wrap">
+        <div className="w-full lg:max-w-[73%] pb-2 ">
           <div className="popular_categories rounded-md md:p-3">
             {processedCategories && (
               <h2 class="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
@@ -117,10 +117,10 @@ export default function CategoryArticles() {
                 <>
                   <Skeleton
                     className="dark:bg-zinc-900"
-                    width={400}
+                    width={310}
                     style={{
                       minWidth: "200px",
-                      maxWidth: "calc(100% - 10px)",
+                      maxWidth: "calc(100% - 50px)",
                     }}
                     height={450}
                   />
