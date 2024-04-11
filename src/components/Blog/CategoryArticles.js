@@ -120,7 +120,7 @@ export default function CategoryArticles() {
                     width={310}
                     style={{
                       minWidth: "200px",
-                      maxWidth: "calc(100% - 50px)",
+                      maxWidth: "calc(100% - 30px)",
                     }}
                     height={450}
                   />
