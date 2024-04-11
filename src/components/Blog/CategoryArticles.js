@@ -66,7 +66,7 @@ export default function CategoryArticles() {
                       <Image
                         className="size-full absolute top-0 start-0 object-cover"
                         src={cat?.categoryImage}
-                        width={300}
+                        width={100}
                         height={100}
                         priority
                         quality={50}
@@ -120,7 +120,7 @@ export default function CategoryArticles() {
                     width={310}
                     style={{
                       minWidth: "200px",
-                      maxWidth: "calc(100% - 30px)",
+                      maxWidth: "calc(100% - 10px)",
                     }}
                     height={450}
                   />

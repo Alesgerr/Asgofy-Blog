@@ -54,7 +54,7 @@ const ContactPage = () => {
                 Our friendly team is here to help.
               </p>
               <p class="mt-2 text-blue-500 dark:text-blue-400">
-                asgorise@gmail.com
+                Asgofy@gmail.com
               </p>
             </div>
 

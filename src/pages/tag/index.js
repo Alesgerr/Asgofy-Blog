@@ -14,7 +14,7 @@ const TagsPage = ({ tags }) => {
           content="All tags on the blog. Here are the number of posts and descriptions for each tag."
         />
         {/* Open Graph meta etiketleri */}
-        <meta property="og:title" content="Asgorise - All Tags" />
+        <meta property="og:title" content="Asgofy - All Tags" />
         <meta
           property="og:description"
           content="All tags on the blog. Here are the number of posts and descriptions for each tag."
@@ -22,7 +22,7 @@ const TagsPage = ({ tags }) => {
         <meta property="og:type" content="website" />
         {/* Twitter Cards meta etiketleri */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Asgorise - All Tags" />
+        <meta name="twitter:title" content="Asgofy - All Tags" />
         <meta
           name="twitter:description"
           content="All tags on the blog. Here are the number of posts and descriptions for each tag."

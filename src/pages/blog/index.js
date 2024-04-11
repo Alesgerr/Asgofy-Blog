@@ -52,20 +52,20 @@ const page = () => {
   return (
     <div className="mx-auto max-w-7xl items-center px-5 md:px-14">
       <Head>
-        <title>All Blog Posts - Asgorise</title>
+        <title>All Blog Posts - Asgofy</title>
         <meta name="description" content="All posts on the blog." />
         {/* Open Graph meta etiketleri */}
-        <meta property="og:title" content="All Blog Posts - Asgorise" />
+        <meta property="og:title" content="All Blog Posts - Asgofy" />
         <meta property="og:description" content="All posts on the blog." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.asgoshop.com/blog" />
+        <meta property="og:url" content="https://asgofy.com/blog" />
         {/* <meta
           property="og:image"
-          content="https://www.asgoshop.com/og-image.jpg"
+          content="https://www.Asgofy.com/og-image.jpg"
         /> */}
         {/* Twitter Cards meta etiketleri */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="All Blog Posts - Asgorise" />
+        <meta name="twitter:title" content="All Blog Posts - Asgofy" />
         <meta name="twitter:description" content="All posts on the blog." />
         {/* <meta
           name="twitter:image"

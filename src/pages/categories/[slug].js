@@ -45,11 +45,6 @@ const CategoryDetailPage = () => {
       <Head>
         <title>{slug} - Asgofy</title>
         {/* <meta name="description" content={combinedDescription} /> */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953220018369928"
-          crossorigin="anonymous"
-        ></Script>
       </Head>
       <section>
         <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-14">

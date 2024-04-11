@@ -3,7 +3,7 @@ import React from "react";
 
 const AboutPage = () => {
    const handleEmailClick = () => {
-     window.location.href = "mailto:asgorise@gmail.com";
+     window.location.href = "mailto:asgofy@gmail.com";
    };
   return (
     <>

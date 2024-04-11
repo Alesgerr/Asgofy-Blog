@@ -16,7 +16,28 @@ export const getServerSideProps = async ({ res }) => {
           <loc>${baseUrl}</loc>
           <changefreq>daily</changefreq>
           <priority>1.0</priority>
-        </url>`;
+        </url>
+        <url>
+          <loc>${baseUrl}/blog</loc>
+          <changefreq>daily</changefreq>
+          <priority>1.0</priority>
+        </url>
+         <url>
+          <loc>${baseUrl}/about</loc>
+          <changefreq>weekly</changefreq>
+          <priority>0.7</priority>
+        </url>
+        <url>
+          <loc>${baseUrl}/contact</loc>
+          <changefreq>weekly</changefreq>
+          <priority>0.7</priority>
+        </url>
+        <url>
+          <loc>${baseUrl}/categories</loc>
+          <changefreq>weekly</changefreq>
+          <priority>0.7</priority>
+        </url>
+        `;
 
     // Tüm blog yazıları için URL'leri ekleyin
     blogPosts.forEach((post) => {

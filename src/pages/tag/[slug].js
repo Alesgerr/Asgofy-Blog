@@ -33,7 +33,7 @@ const TagProductsPage = () => {
   return (
     <div className="py-5 px-5 md:px-5 max-w-7xl mx-auto">
       <Head>
-        <title>{slug} - Asgorise</title>
+        <title>{slug} - Asgofy</title>
         <meta name="description" content={`Posts about ${slug} tag in blog.`} />
         {/* <meta property="og:title" content={`${slug} - Asgorise`} />
         <meta
