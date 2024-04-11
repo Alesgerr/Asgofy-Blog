@@ -257,7 +257,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                       height={500}
                       priority
                       quality={70}
-                      className="rounded-md h-[400px] object-cover"
+                      className="rounded-md h-[250px] sm:h-[350px] object-cover"
                     />
                   </div>
                   <h1 className="text-lg sm:text-3xl font-extrabold">

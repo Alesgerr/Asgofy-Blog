@@ -69,8 +69,8 @@ const LatestBlogPosts = () => {
               />
             </div>
           ) : (
-            <h2 className="text-2xl font-bold mb-6">
-              The latest and greatest news
+            <h2 class="text-3xl font-bold text-gray-900 leading-[3.25rem] mb-5">
+              Our latest <span class=" text-indigo-600">blogs</span>
             </h2>
           )}
           {loading ? (
@@ -154,8 +154,10 @@ const LatestBlogPosts = () => {
                               {post?.timeAgo}
                             </p>
                           </div>
-                          <Link href={`/categories/${post?.categories[0]?.slug.current}/`}>
-                            <h3 className="mb-2 text-purple-700 font-bold">
+                          <Link
+                            href={`/categories/${post?.categories[0]?.slug.current}/`}
+                          >
+                            <h3 className="mb-2 text-indigo-600 font-bold">
                               {post?.categories[0]?.title}
                             </h3>
                           </Link>
@@ -177,11 +179,6 @@ const LatestBlogPosts = () => {
           )}
         </div>
       </div>
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953220018369928"
-        crossOrigin="anonymous"
-      ></script>
       {/* <section class="py-10">
        <h1 class="mb-12 text-center font-sans text-5xl font-bold">Our Blog</h1>
        <div class="mx-auto grid max-w-screen-lg justify-center px-4 sm:grid-cols-2 sm:gap-4 sm:px-8 md:grid-cols-3">

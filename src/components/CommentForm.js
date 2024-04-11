@@ -87,46 +87,43 @@ const CommentForm = ({ postId }) => {
     const rate = comment.rating; // Tek bir yorumun rating değerini alın
     for (let i = 0; i < 5; i++) {
       const starColor = i < rate ? "#ffc107" : "#c7c7c7"; // Rating değerine göre yıldız rengini belirleyin
-      stars.push(<FaStar key={i} color={starColor} size={20} />);
+      stars.push(<FaStar key={i} color={starColor} size={13} />);
     }
     return stars;
   };
 
-  const formatDate = (date) => {
-    const currentDate = new Date();
-    const commentDate = new Date(date);
+const formatDate = (date) => {
+  const currentDate = new Date();
+  const commentDate = new Date(date);
 
-    const diffTime = Math.abs(currentDate - commentDate);
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const diffYears = Math.floor(diffDays / 365);
+  const diffTime = Math.abs(currentDate - commentDate);
+  const diffSeconds = Math.floor(diffTime / 1000);
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  const diffHours = Math.floor(diffMinutes / 60);
+  const diffDays = Math.floor(diffHours / 24);
+  const diffMonths = Math.floor(diffDays / 30);
+  const diffYears = Math.floor(diffDays / 365);
 
-    if (diffYears > 1) {
-      return `${diffYears} years ago`;
-    } else if (diffDays > 30) {
-      const diffMonths = Math.floor(diffDays / 30);
-      return `${diffMonths} months ago`;
-    } else if (
-      diffDays === 1 &&
-      currentDate.getDate() - commentDate.getDate() === 1
-    ) {
-      return "Yesterday";
-    } else if (diffDays === 0) {
-      const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
-      if (diffHours > 1) {
-        return `${diffHours} hours ago`;
-      } else {
-        const diffMinutes = Math.floor(diffTime / (1000 * 60));
-        return `${diffMinutes} minutes ago`;
-      }
-    } else {
-      return `${diffDays} days ago`;
-    }
-  };
+  if (diffYears > 1) {
+    return `${diffYears} years ago`;
+  } else if (diffMonths > 1) {
+    return `${diffMonths} months ago`;
+  } else if (diffDays > 1) {
+    return `${diffDays} days ago`;
+  } else if (diffHours > 1) {
+    return `${diffHours} hours ago`;
+  } else if (diffMinutes > 1) {
+    return `${diffMinutes} minutes ago`;
+  } else {
+    return `${diffSeconds} seconds ago`;
+  }
+};
+
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="md:px-7 w-full rounded-md dark:bg-zinc-900 dark:border-none p-4 shadow-md border">
-        <p class="text-xl mb-3 font-semibold text-blue-900 dark:text-white transition-all">
+    <div className="max-w-7xl mx-auto flex justify-center items-center min-h-screen">
+      <div className="md:px-5 w-full rounded-md dark:bg-zinc-950 dark:border-none p-4 shadow-md border">
+        <p class="text-xl mb-3 font-semibold text-indigo-700 dark:text-white transition-all">
           Reviews
         </p>
 
@@ -197,14 +194,14 @@ const CommentForm = ({ postId }) => {
                   />
                   <p className="font-bold">{comment?.user?.fullName}</p>
                   {loadingStates[comment._id] ? (
-                    <CircularProgress size={24} />
+                    <CircularProgress className="mx-5" size={24} />
                   ) : (
                     currentUser &&
                     currentUser?.uid === comment?.user?.id && (
                       <IconButton
                         onClick={() => handleDeleteComment(comment._id)}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon className="dark:text-red-600"/>
                       </IconButton>
                     )
                   )}
@@ -214,7 +211,7 @@ const CommentForm = ({ postId }) => {
                   {renderRatingStars(comment)}
                 </p>
                 <p className="text-sm text-gray-500">
-                  Date: {formatDate(comment.date)}
+                  {formatDate(comment.date)}
                 </p>
               </li>
             ))

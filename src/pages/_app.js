@@ -48,6 +48,11 @@ function MyApp({ Component, pageProps }) {
           name="keywords"
           content="blog, article, post, guide, tip, update, content"
         /> */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
       </Head>
 
       {/* <!-- End Google Tag Manager (noscript) --> */}
