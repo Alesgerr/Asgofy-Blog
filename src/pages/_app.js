@@ -15,30 +15,13 @@ import PageLoader from "@/components/PageLoader";
 
 // import { Toaster } from "react-hot-toast";
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = `https://www.googletagmanager.com/gtag/js?id=G-Q4NP0KLP3F`;
-    script.async = true;
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "G-Q4NP0KLP3F");
-
-    return () => {
-      // Cleanup if needed
-    };
-  }, []);
   return (
     <>
       <Head>
-        <title>Asgorise - Latest Blog Posts and Articles</title>
+        <title>Asgofy - Latest Blog Posts and Articles</title>
         <meta
           name="description"
-          content="Asgorise offers guides, tips and updates on the latest blog posts and articles."
+          content="Asgofy offers guides, tips and updates on the latest blog posts and articles."
         />
 
         <link rel="icon" href="/favicon.ico" />
@@ -52,47 +35,23 @@ function MyApp({ Component, pageProps }) {
         <link rel="manifest" href="/manifest.json" />
         <meta
           property="og:title"
-          content="Asgorise - Latest Blog Posts and Articles"
+          content="Asgofy - Latest Blog Posts and Articles"
         />
         <meta
           property="og:description"
-          content="Asgorise offers guides, tips and updates on the latest blog posts and articles."
+          content="Asgofy offers guides, tips and updates on the latest blog posts and articles."
         />
 
         <meta property="og:image" content="/logo_lightmode.svg" />
-        <meta property="og:url" content="https://asgoshop.com/" />
+        <meta property="og:url" content="https://asgofy.com/" />
         {/* <meta
           name="keywords"
           content="blog, article, post, guide, tip, update, content"
         /> */}
-        <Script
-          dangerouslySetInnerHTML={{
-            __html: `
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-N7RMCHQB');
-      `,
-          }}
-        />
-        <Script
-          type="text/javascript"
-          charset="UTF-8"
-          src="//cdn.cookie-script.com/s/5a9abd4a4750bb73cf85b012a01ea82c.js"
-        ></Script>
       </Head>
       {/* <!-- Google Tag Manager (noscript) --> */}
 
       {/* <!-- End Google Tag Manager (noscript) --> */}
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-N7RMCHQB"
-          height="0"
-          width="0"
-          style={{ display: "none", visibility: "hidden" }}
-        />
-      </noscript>
       <PostProvider>
         <AuthContextProvider>
           <ThemeProvider enableSystem={true} attribute="class">

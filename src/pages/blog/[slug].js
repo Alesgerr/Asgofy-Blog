@@ -23,6 +23,7 @@ import { urlForImage } from "../../../sanity/lib/image";
 import Script from "next/script";
 import React from "react";
 import ShareGroup from "@/components/ShareGroup";
+import CommentForm from "@/components/CommentForm";
 
 export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
   if (!post) {
@@ -33,7 +34,6 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   const postUrl = `${baseUrl}/blog/${post?.slug}`;
   const postImage = post?.postImage;
-
   return (
     <>
       <Head>
@@ -267,7 +267,9 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                   <BodyDescription body={post?.body} title={post?.title} />
                 </div>
               </div>
-
+                <div>
+                  <CommentForm postId={post && post?._id}/>
+                </div>
               {/* <!-- End Content --> */}
             </div>
             <div className="lg:w-3/12 md:order-1">

@@ -8,7 +8,7 @@ const AboutPage = () => {
   return (
     <>
       <Head>
-        <title>About Page - Asgorise</title>
+        <title>About Page - Asgofy</title>
         <meta
           name="description"
           content="Learn more about Alesger Asgerov, a developer and UX specialist."

@@ -18,7 +18,7 @@ const CategoryPage = () => {
   return (
     <div className="max-w-7xl mx-auto py-5 px-5 md:px-14">
       <Head>
-        <title>Blog Categories</title>
+        <title>Blog Categories - Asgofy</title>
         <meta name="description" content="Explore our blog categories" />
       </Head>
       <h1 className="text-2xl font-bold mb-8">Blog Categories</h1>

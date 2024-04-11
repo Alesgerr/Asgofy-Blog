@@ -61,21 +61,22 @@ export const Footer = () => {
             >
               Contact
             </Link>
+            <Link
+              href="/privacy-policy"
+              className="inline-block py-1.5 pr-6 font-normal text-[#636262] transition hover:text-[#276EF1] sm:py-2 sm:pr-6 lg:pr-12"
+            >
+              Privacy Policy
+            </Link>
           </div>
           <div className="max-[991px]:flex-none m-auto">
             <p className="text-[#636262] max-[479px]:text-sm text-center">
               {" "}
-              © Copyright Asgorise {new Date().getFullYear()}. All rights
+              © Copyright Asgofy {new Date().getFullYear()}. All rights
               reserved.{" "}
             </p>
           </div>
         </div>
       </div>
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953220018369928"
-        crossOrigin="anonymous"
-      ></script>
     </footer>
   );
 };

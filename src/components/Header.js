@@ -112,12 +112,10 @@ const Header = () => {
                 height={50}
                 alt=""
               /> */}
-              <span className="text-2xl font-bold text-purple-700">
-                Asgorise
-              </span>
+              <span className="text-2xl font-bold text-purple-700">Asgofy</span>
             </Link>
             <a href="/" className="text-2xl font-extrabold">
-              <span className="sr-only">Asgorise</span>
+              <span className="sr-only">Asgofy</span>
               {/* <Image
                 src="/wings.png"
                 loading="lazy"
@@ -128,7 +126,7 @@ const Header = () => {
               /> */}
             </a>
             <a href="/" className="text-2xl font-extrabold hidden dark:block">
-              <span className="sr-only">Asgorise</span>
+              <span className="sr-only">Asgofy</span>
               {/* <Image
                 src="/logo_darkmode.svg"
                 loading="lazy"

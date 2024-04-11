@@ -1,11 +1,12 @@
 import { createClient, groq } from "next-sanity";
 
-import { apiVersion, dataset, projectId, useCdn } from "../env";
+import { apiVersion, dataset, projectId, token, useCdn } from "../env";
 import axios, { Axios } from "axios";
 export const client = createClient({
   apiVersion,
   dataset,
   projectId,
+  token,
   useCdn,
 });
 export async function getPosts() {
@@ -24,6 +25,13 @@ export async function getPosts() {
           publishedAt,
           lastModifiedDate,
           body,
+          "reviews": *[_type == "review" && references(^._id)] {
+            user->{
+              name,
+            },
+            comment,
+            rating
+          },
         }
       `
     );
@@ -73,7 +81,13 @@ export async function getPostById(slug) {
           lastModifiedDate,
           metaTitle,
           metaDescription,
-        
+         "reviews": *[_type == "review" && references(^._id)] {
+            user->{
+              name,
+            },
+            comment,
+            rating
+          },
           body
         }
       `,
@@ -258,3 +272,65 @@ export async function getRelatedPostByCategory(categoryId) {
     return null;
   }
 }
+export const createComment = async (postId, commentData) => {
+  try {
+    const result = await client.create({
+      _type: "postComment", // Koleksiyon türü
+      post: {
+        _type: "reference",
+        _ref: postId, // Hangi ürüne ait olduğunu belirtmek için ürün referansı
+      },
+      ...commentData, // Yorum verileri
+    });
+    console.log("Comment created:", result);
+    return result._id; // Oluşturulan yorumun kimliğini döndürür
+  } catch (error) {
+    console.error("Error creating comment:", error);
+    return null;
+  }
+};
+export const deleteComment = async (commentId) => {
+  try {
+    await client.delete(commentId);
+    console.log("Comment deleted successfully.");
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    throw new Error("Error deleting comment");
+  }
+};
+const fetchComments = async (postId) => {
+  try {
+    const commentsWithUser = await client.fetch(
+      `
+      *[_type == "postComment" && post._ref == $postId] {
+        _id,
+        user {
+          fullName,
+          imageUrl,
+          id,
+        },
+        text,
+        rating,
+        date
+      }
+    `,
+      { postId }
+    );
+
+    const comments = commentsWithUser.map((comment) => ({
+      _id: comment._id,
+      user: comment.user,
+      text: comment.text,
+      rating: comment.rating,
+      date: comment.date,
+      imageUrl: comment.user.imageUrl, // Kullanıcı profili resmi URL'si
+    }));
+
+    console.log("Comments:", comments);
+    return comments;
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    return [];
+  }
+};
+export default fetchComments;

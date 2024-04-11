@@ -7,7 +7,7 @@ const ContactPage = () => {
   return (
     <>
       <Head>
-        <title>Contact Page</title>
+        <title>Contact Page - Asgofy</title>
       </Head>
       <div>
         <ContactForm />

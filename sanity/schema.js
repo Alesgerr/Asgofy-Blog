@@ -5,7 +5,8 @@ import { author } from "./schemaTypes/author";
 import { metaTags } from "./schemaTypes/metaTags";
 import tags from "./schemaTypes/tags";
 import user from "./schemaTypes/user";
+import postComment from "./schemaTypes/postComment";
 
 export const schema = {
-  types: [post, tags, author, user, metaTags, category, blockContent],
+  types: [post, tags, author, user, metaTags, category,postComment , blockContent],
 };

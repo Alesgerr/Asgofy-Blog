@@ -22,7 +22,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { addDoc, collection, getFirestore } from "@firebase/firestore";
+import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from "@firebase/firestore";
 import toast from "react-hot-toast";
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -142,4 +142,5 @@ export const reAuth = async (password) => {
     toast.error(error.message);
   }
 };
+
 export default app;

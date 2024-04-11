@@ -43,7 +43,7 @@ const CategoryDetailPage = () => {
   return (
     <div>
       <Head>
-        <title>{slug} - Asgorise</title>
+        <title>{slug} - Asgofy</title>
         {/* <meta name="description" content={combinedDescription} /> */}
         <Script
           async
