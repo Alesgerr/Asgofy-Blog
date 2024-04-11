@@ -62,6 +62,12 @@ export const Footer = () => {
               Contact
             </Link>
             <Link
+              href="/cookie-policy"
+              className="inline-block py-1.5 pr-6 font-normal text-[#636262] transition hover:text-[#276EF1] sm:py-2 sm:pr-6 lg:pr-12"
+            >
+              Cookie Policy
+            </Link>
+            <Link
               href="/privacy-policy"
               className="inline-block py-1.5 pr-6 font-normal text-[#636262] transition hover:text-[#276EF1] sm:py-2 sm:pr-6 lg:pr-12"
             >

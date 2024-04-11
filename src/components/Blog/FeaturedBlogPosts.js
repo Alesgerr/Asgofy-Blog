@@ -207,7 +207,7 @@ const FeaturedBlogPosts = () => {
                             priority
                           />
                         </div>
-                        <h3 class="text-xl text-gray-900 font-medium leading-8 mb-4 group-hover:text-indigo-600">
+                        <h3 class="text-xl text-gray-900 dark:text-white font-medium leading-8 mb-4 group-hover:text-indigo-600">
                           {post?.title}
                         </h3>
                         <p class="text-gray-500 leading-6 transition-all duration-500 mb-8">
