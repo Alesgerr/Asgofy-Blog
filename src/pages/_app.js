@@ -49,7 +49,6 @@ function MyApp({ Component, pageProps }) {
           content="blog, article, post, guide, tip, update, content"
         /> */}
       </Head>
-      {/* <!-- Google Tag Manager (noscript) --> */}
 
       {/* <!-- End Google Tag Manager (noscript) --> */}
       <PostProvider>

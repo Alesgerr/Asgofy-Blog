@@ -260,7 +260,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                       className="rounded-md h-[400px] object-cover"
                     />
                   </div>
-                  <h1 className="text-md sm:text-2xl font-extrabold">
+                  <h1 className="text-lg sm:text-3xl font-extrabold">
                     {post?.title}
                   </h1>
                   <p className="text-md font-normal">{post?.description}</p>
