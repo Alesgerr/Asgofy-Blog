@@ -69,7 +69,7 @@ const LatestBlogPosts = () => {
               />
             </div>
           ) : (
-            <h2 class="text-3xl font-bold text-gray-900 leading-[3.25rem] mb-5">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
               Our latest <span class=" text-indigo-600">blogs</span>
             </h2>
           )}

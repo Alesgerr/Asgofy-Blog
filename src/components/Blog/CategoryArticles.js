@@ -50,7 +50,7 @@ export default function CategoryArticles() {
         <div className="w-full lg:max-w-[73%] pb-2">
           <div className="popular_categories rounded-md md:p-3">
             {processedCategories && (
-              <h2 class="text-3xl font-bold text-gray-900 leading-[3.25rem] mb-5">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
                 Our popular <span class=" text-indigo-600">categories</span>
               </h2>
             )}
@@ -117,10 +117,10 @@ export default function CategoryArticles() {
                 <>
                   <Skeleton
                     className="dark:bg-zinc-900"
-                    width={400}
+                    width={430}
                     style={{
                       minWidth: "200px",
-                      maxWidth: "calc(100% - 32px)",
+                      maxWidth: "calc(100% - 10px)",
                     }}
                     height={450}
                   />
@@ -198,7 +198,7 @@ export default function CategoryArticles() {
         <div className="w-full lg:w-3/12 hidden lg:block">
           <div className="popular_tags rounded-md p-3">
             {processedTags && (
-              <h2 class="text-3xl font-bold text-gray-900 leading-[3.25rem] mb-5">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
                 Popular <span class=" text-indigo-600">tags</span>
               </h2>
             )}

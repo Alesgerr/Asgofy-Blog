@@ -122,12 +122,12 @@ const FeaturedBlogPosts = () => {
   }, []);
   return (
     <>
-      <section class="py-24 ">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section class="py-24">
+        <div class="mx-auto max-w-7xl px-5 md:px-14">
           <div class="flex justify-center flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between gap-8">
             <div class="w-full flex justify-between flex-col lg:w-2/5">
               <div class="block lg:text-left text-center">
-                <h2 class="text-3xl font-bold text-gray-900 leading-[3.25rem] mb-5">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
                   Our featured <span class=" text-indigo-600">blogs</span>
                 </h2>
                 <p class="text-gray-500 mb-10  max-lg:max-w-xl max-lg:mx-auto">
@@ -137,7 +137,7 @@ const FeaturedBlogPosts = () => {
                 </p>
                 <Link
                   href="/blog"
-                  class="cursor-pointer border border-gray-300 shadow-sm rounded-full py-3.5 px-7 w-52 lg:mx-0 mx-auto flex justify-center text-gray-900 font-semibold transition-all duration-300 hover:bg-gray-100"
+                  class="cursor-pointer border border-gray-300 dark:bg-white shadow-sm rounded-full py-3.5 px-7 w-52 lg:mx-0 mx-auto flex justify-center text-gray-900 font-semibold transition-all duration-300 hover:bg-gray-100"
                 >
                   View All
                 </Link>
@@ -215,9 +215,7 @@ const FeaturedBlogPosts = () => {
                             ? post?.description?.slice(0, 100) + "..."
                             : post?.description}
                         </p>
-                        <div
-                          class="cursor-pointer flex items-center gap-2 text-lg text-indigo-700 font-semibold"
-                        >
+                        <div class="cursor-pointer flex items-center gap-2 text-lg text-indigo-700 font-semibold">
                           Read more
                           <svg
                             width="15"
