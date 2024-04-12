@@ -60,7 +60,6 @@ function MyApp({ Component, pageProps }) {
         ></script>
       </Head>
 
-      {/* <!-- End Google Tag Manager (noscript) --> */}
       <PostProvider>
         <AuthContextProvider>
           <ThemeProvider enableSystem={true} attribute="class">
