@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <link rel="manifest" href="/site.webmanifest.json" />
+        <link rel="manifest" href="/site.webmanifest" />
         <meta
           property="og:title"
           content="Asgofy - Latest Blog Posts and Articles"
