@@ -44,8 +44,6 @@ export const getServerSideProps = async ({ res }) => {
        const lastmod = formatISO(new Date(post?.lastModifiedDate), {
          representation: "date",
        });
-      console.log(lastmod,'salam');
-
        sitemap += `
         <url>
           <loc>${baseUrl}/blog/${post?.slug}</loc>

@@ -43,7 +43,7 @@ const BodyDescription = ({ body, title }) => {
                     }
                   })}
                 </h2> */}
-                <h2 className="font-bold text-xl flex">
+                <h2 className="font-semibold text-xl flex">
                   {block?.children?.map((item) => {
                     if (
                       block?.markDefs?.find((mark) => mark._type === "link")
@@ -54,12 +54,12 @@ const BodyDescription = ({ body, title }) => {
                       const link = linkMark.href;
                       return (
                         <a key={`${key}-${index}`} href={link}>
-                            <span className="font-extrabold underline">{item.text}</span>
+                            <span className="font-bold underline">{item.text}</span>
                         </a>
                       );
                     } else {
                       return (
-                        <span className="font-extrabold text-xl flex">
+                        <span className="font-bold text-xl flex">
                           {item.text}
                         </span>
                       );
@@ -80,7 +80,7 @@ const BodyDescription = ({ body, title }) => {
           else if (block.style === "h3") {
             return (
               <div key={key} className="my-5">
-                <h3 className="font-bold text-md mb-2">
+                <h3 className="font-semibold text-md mb-2">
                   {block.children[0].text}
                 </h3>
               </div>

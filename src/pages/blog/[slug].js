@@ -90,7 +90,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                           {/* <!-- Tooltip --> */}
                           <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
                             <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
-                              <span className="font-semibold text-purple-700 ">
+                              <span className="font-semibold text-indigo-600 ">
                                 {post?.author.name}
                               </span>
 
@@ -247,7 +247,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                 </div>
                 {/* <!-- Content --> */}
                 <div className="space-y-5 md:space-y-8">
-                  <h1 className="text-lg mt-5 sm:text-3xl font-extrabold">
+                  <h1 className="text-lg mt-5 sm:text-3xl font-bold">
                     {post?.title}
                   </h1>
                   <div className="flex justify-center">
@@ -280,7 +280,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                     <Link
                       href={`/categories/${category?.slug?.current}`}
                       key={category._id}
-                      className="flex justify-between leading-4 my-4 items-center hover:text-purple-700"
+                      className="flex justify-between leading-4 my-4 items-center hover:text-indigo-600"
                     >
                       <span className="mr-2">{category?.title}</span>
                       <LiaArrowRightSolid />
@@ -298,7 +298,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                       <Link
                         href={`/tag/${item?.slug?.current}`}
                         key={item._id}
-                        className="px-1 py-1 text-sm border border-gray-200 rounded-md transition hover:text-purple-700"
+                        className="px-1 py-1 text-sm border border-gray-200 rounded-md transition hover:text-indigo-600"
                       >
                         {item?.tag}
                       </Link>
@@ -320,7 +320,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                                 height={150}
                                 priority
                                 quality={50}
-                                className="rounded-md h-[80px] object-cover"
+                                className="rounded-md h-[70px] max-w-[100px] object-cover"
                               />
                             </div>
                             <div className="body-box p-2">
@@ -330,7 +330,7 @@ export default function BlogDetailsPage({ post, currentUrl, relatedProducts }) {
                                   : post?.title}
                               </h2>
                               <div className="flex flex-wrap items-center">
-                                <span className="mr-1 text-xs">
+                                <span className="mr-1">
                                   <CiClock1 />
                                 </span>
                                 <span className="text-sm md:text-[13px]">

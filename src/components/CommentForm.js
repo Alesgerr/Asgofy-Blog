@@ -7,7 +7,7 @@ import fetchComments, {
 import useAuth from "@/custom-hook/useAuth";
 import { CircularProgress, IconButton } from "@mui/material";
 import { Delete as DeleteIcon } from "@mui/icons-material";
-import Link from 'next/link'
+import Link from "next/link";
 const CommentForm = ({ postId }) => {
   const [loadingStates, setLoadingStates] = useState({});
   const [comment, setComment] = useState("");
@@ -92,33 +92,32 @@ const CommentForm = ({ postId }) => {
     return stars;
   };
 
-const formatDate = (date) => {
-  const currentDate = new Date();
-  const commentDate = new Date(date);
+  const formatDate = (date) => {
+    const currentDate = new Date();
+    const commentDate = new Date(date);
 
-  const diffTime = Math.abs(currentDate - commentDate);
-  const diffSeconds = Math.floor(diffTime / 1000);
-  const diffMinutes = Math.floor(diffSeconds / 60);
-  const diffHours = Math.floor(diffMinutes / 60);
-  const diffDays = Math.floor(diffHours / 24);
-  const diffMonths = Math.floor(diffDays / 30);
-  const diffYears = Math.floor(diffDays / 365);
+    const diffTime = Math.abs(currentDate - commentDate);
+    const diffSeconds = Math.floor(diffTime / 1000);
+    const diffMinutes = Math.floor(diffTime / (1000 * 60));
+    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const diffMonths = Math.floor(diffDays / 30);
+    const diffYears = Math.floor(diffDays / 365);
 
-  if (diffYears > 1) {
-    return `${diffYears} years ago`;
-  } else if (diffMonths > 1) {
-    return `${diffMonths} months ago`;
-  } else if (diffDays > 1) {
-    return `${diffDays} days ago`;
-  } else if (diffHours > 1) {
-    return `${diffHours} hours ago`;
-  } else if (diffMinutes > 1) {
-    return `${diffMinutes} minutes ago`;
-  } else {
-    return `${diffSeconds} seconds ago`;
-  }
-};
-
+    if (diffYears >= 1) {
+      return `${diffYears} years ago`;
+    } else if (diffMonths >= 1) {
+      return `${diffMonths} months ago`;
+    } else if (diffDays >= 1) {
+      return `${diffDays} days ago`;
+    } else if (diffHours >= 1) {
+      return `${diffHours} hours ago`;
+    } else if (diffMinutes >= 1) {
+      return `${diffMinutes} minutes ago`;
+    } else {
+      return `${diffSeconds} seconds ago`;
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center min-h-screen">
@@ -179,20 +178,24 @@ const formatDate = (date) => {
             </span>
           </p>
         )}
-        <h2 className="text-lg font-bold mb-4">Comments</h2>
+        <h2 className="text-lg font-bold mb-4">
+          Comments ({comments?.length})
+        </h2>
         <ul>
           {comments?.length === 0 ? (
             <li className="text-sm text-gray-500 mb-4">No comments yet</li>
           ) : (
             comments?.map((comment, index) => (
               <li key={index} className="mb-4">
-                <div className="flex items-center mb-2">
-                  <img
-                    src={comment?.user?.imageUrl}
-                    alt="Profile"
-                    className="w-10 h-10 rounded-full mr-2"
-                  />
-                  <p className="font-bold">{comment?.user?.fullName}</p>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center">
+                    <img
+                      src={comment?.user?.imageUrl}
+                      alt="Profile"
+                      className="w-10 h-10 rounded-full mr-2"
+                    />
+                    <p className="font-bold">{comment?.user?.fullName}</p>
+                  </div>
                   {loadingStates[comment._id] ? (
                     <CircularProgress className="mx-5" size={24} />
                   ) : (
@@ -201,7 +204,7 @@ const formatDate = (date) => {
                       <IconButton
                         onClick={() => handleDeleteComment(comment._id)}
                       >
-                        <DeleteIcon className="dark:text-red-600"/>
+                        <DeleteIcon className="dark:text-red-600" />
                       </IconButton>
                     )
                   )}

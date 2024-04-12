@@ -1,7 +1,4 @@
-// TagProductsPage.js
-"use client";
-import React, { useEffect, useState } from "react";
-import { calculateTimeAgo } from "@/components/calculateTimeAgo";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
@@ -9,45 +6,14 @@ import { useRouter } from "next/router";
 import { urlForImage } from "../../../sanity/lib/image";
 import { getProductsByTag } from "../../../sanity/lib/client";
 
-const TagProductsPage = () => {
+const TagProductsPage = ({ products, slug }) => {
   const router = useRouter();
-  const { slug } = router.query;
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const products = await getProductsByTag(slug);
-        const processedData = products?.map((product) => ({
-          ...product,
-          imageUrl: urlForImage(product.mainImage.asset._ref), // Burada resmin referansını kullanarak URL oluşturuyoruz
-          timeAgo: calculateTimeAgo(product.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
-        }));
-        setProducts(processedData);
-      } catch (error) {
-        console.error("Error fetching products by tag:", error);
-      }
-    };
 
-    fetchProducts();
-  }, [slug]);
   return (
     <div className="py-5 px-5 md:px-5 max-w-7xl mx-auto">
       <Head>
         <title>{slug} - Asgofy</title>
         <meta name="description" content={`Posts about ${slug} tag in blog.`} />
-        {/* <meta property="og:title" content={`${slug} - Asgorise`} />
-        <meta
-          property="og:description"
-          content={`Posts about ${slug} tag in blog.`}
-        />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={`https://www.asgoshop.com/tags/${slug}`}
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${slug} - Asgorise`} />
-        <meta name="twitter:description" content={`Posts about ${slug}`} /> */}
       </Head>
       <h1 className="text-lg font-extrabold mx-auto w-full flex justify-center">
         #{slug}
@@ -61,9 +27,6 @@ const TagProductsPage = () => {
             <div className="order-1 sm:ml-6 xl:ml-0">
               <Link href={`/blog/${item?.slug?.current}`}>
                 <h3 className="mb-1 text-slate-900 font-bold dark:text-slate-200">
-                  <span className="mb-1 block text-sm leading-6 text-indigo-500">
-                    {/* {item?.categories.ti} */}
-                  </span>
                   {item?.title}
                 </h3>
                 <div className="prose prose-slate prose-sm text-slate-600 dark:prose-dark">
@@ -98,7 +61,7 @@ const TagProductsPage = () => {
               </Link>
             </div>
             <Image
-              src={item?.imageUrl}
+              src={urlForImage(item?.mainImage?.asset?._ref)}
               alt={item?.title}
               className="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full"
               width={500}
@@ -111,5 +74,25 @@ const TagProductsPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const { slug } = context.query;
+  let products = [];
+  try {
+    products = await getProductsByTag(slug);
+    products = products?.map((product) => ({
+      ...product,
+    }));
+  } catch (error) {
+    console.error("Error fetching products by tag:", error);
+  }
+
+  return {
+    props: {
+      products,
+      slug,
+    },
+  };
+}
 
 export default TagProductsPage;

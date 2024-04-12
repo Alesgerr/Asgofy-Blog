@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/site.webmanifest.json" />
         <meta
           property="og:title"
           content="Asgofy - Latest Blog Posts and Articles"
@@ -59,7 +59,6 @@ function MyApp({ Component, pageProps }) {
           src="//cdn.cookie-script.com/s/ab640e8d39ee02e1f1b3f60cf55c81dc.js"
         ></script>
       </Head>
-
       <PostProvider>
         <AuthContextProvider>
           <ThemeProvider enableSystem={true} attribute="class">

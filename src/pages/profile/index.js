@@ -5,8 +5,6 @@ import Login from "./sign-in";
 import { auth, login, storage } from "@/utils/firebase/auth";
 import { useRouter } from "next/navigation";
 import "../../assets/Profile.css";
-// import Button from "@mui/joy/Button";
-// import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
@@ -326,7 +324,7 @@ const page = () => {
                                 placeholder="Enter new username"
                                 className="p-2 w-full outline-none rounded-md px-5 py-3 dark:bg-zinc-900 text-black dark:text-white"
                               />
-                              <div className="d-flex justify-between py-5">
+                              <div className="flex justify-between py-5">
                                 <Button
                                   className="p-2 bg-white rounded-md dark:bg-black text-black dark:text-white"
                                   onClick={handleChangeUsername}

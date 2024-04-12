@@ -59,18 +59,10 @@ const page = () => {
         <meta property="og:description" content="All posts on the blog." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://asgofy.com/blog" />
-        {/* <meta
-          property="og:image"
-          content="https://www.Asgofy.com/og-image.jpg"
-        /> */}
         {/* Twitter Cards meta etiketleri */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="All Blog Posts - Asgofy" />
         <meta name="twitter:description" content="All posts on the blog." />
-        {/* <meta
-          name="twitter:image"
-          content="https://www.blogadi.com/twitter-card-image.jpg"
-        /> */}
       </Head>
       {/* <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
         <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
