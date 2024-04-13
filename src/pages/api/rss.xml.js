@@ -1,4 +1,4 @@
-import { formatISO } from "date-fns";
+import { formatRFC3339 } from "date-fns";
 import { getPosts } from "../../../sanity/lib/client";
 
 export default async function handler(req, res) {
@@ -22,17 +22,15 @@ function generateRssFeed(posts) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   // RSS feed XML içeriğini oluştur
   let feed = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My Blog Feed</title>
     <link>${baseUrl}</link>
-    <description>Recent posts from my blog</description>`;
+    <description>Recent posts from my blog</description>
+    <atom:link href="https://asgofy.com/api/rss.xml" rel="self" type="application/rss+xml"/>`;
 
-  // Her bir blog gönderisi için RSS feed öğesi oluştur
   posts.forEach((post) => {
-    const pubMod = formatISO(new Date(post?.publishedAt), {
-      representation: "date",
-    });
+    const pubMod = formatRFC3339(new Date(post?.publishedAt));
     const title = escapeXml(post?.title);
     const description = escapeXml(post?.description);
     feed += `
@@ -41,6 +39,7 @@ function generateRssFeed(posts) {
       <link>${baseUrl}/blog/${post?.slug}</link>
       <description>${description}</description>
       <pubDate>${pubMod}</pubDate>
+      <guid>${baseUrl}/blog/${post?.slug}</guid>
     </item>`;
   });
 
