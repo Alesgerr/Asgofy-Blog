@@ -5,7 +5,7 @@ import Script from "next/script";
 
 class MyDocument extends Document {
   render() {
-    let GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+    const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
     return (
       <Html lang="en">
         <Head>
