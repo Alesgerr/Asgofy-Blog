@@ -1,4 +1,4 @@
-import { formatRFC3339 } from "date-fns";
+import { format } from "date-fns";
 import { getPosts } from "../../../sanity/lib/client";
 
 export default async function handler(req, res) {
@@ -30,7 +30,8 @@ function generateRssFeed(posts) {
     <atom:link href="https://asgofy.com/api/rss.xml" rel="self" type="application/rss+xml"/>`;
 
   posts.forEach((post) => {
-    const pubMod = formatRFC3339(new Date(post?.publishedAt));
+    const pubDate = new Date(post?.publishedAt);
+    const formattedPubDate = format(pubDate, "EEE, dd MMM yyyy HH:mm:ss xx");
     const title = escapeXml(post?.title);
     const description = escapeXml(post?.description);
     feed += `
@@ -38,7 +39,7 @@ function generateRssFeed(posts) {
       <title>${title}</title>
       <link>${baseUrl}/blog/${post?.slug}</link>
       <description>${description}</description>
-      <pubDate>${pubMod}</pubDate>
+      <pubDate>${formattedPubDate}</pubDate>
       <guid>${baseUrl}/blog/${post?.slug}</guid>
     </item>`;
   });
