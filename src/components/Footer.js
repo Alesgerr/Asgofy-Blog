@@ -126,8 +126,8 @@ export const Footer = () => {
               Links
             </h4>
             <ul className="space-y-4">
-              {navigation?.map((item) => (
-                <li>
+              {navigation?.map((item, i) => (
+                <li key={i}>
                   <Link
                     href={item?.path}
                     className="dark:text-gray-300 dark:hover:text-white text-sm"

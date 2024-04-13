@@ -22,11 +22,11 @@ const PrivacyPolicy = () => {
         </p>
         <p className="mb-4">
           Links to third-party sites may lead to this web is beyond the control
-          of the site. When you follow these links, the relevant the site's own
+          of the site. When you follow these links, the relevant the site{"'"}s own
           privacy policies will apply.
         </p>
         <p className="mb-4">
-          This website uses cookies. Cookies are used to save visitors'
+          This website uses cookies. Cookies are used to save visitors{"'"}
           preferences and to is used to monitor the performance of the website.
           Accept the use of cookies You can adjust your browser settings to
           allow or refuse.

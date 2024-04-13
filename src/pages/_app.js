@@ -52,13 +52,18 @@ function MyApp({ Component, pageProps }) {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
         />
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+          async
+          defer
+        ></script>
         <script
           type="text/javascript"
           charset="UTF-8"
           src="//cdn.cookie-script.com/s/ab640e8d39ee02e1f1b3f60cf55c81dc.js"
+          async
+          defer
         ></script>
-       
       </Head>
       <PostProvider>
         <AuthContextProvider>

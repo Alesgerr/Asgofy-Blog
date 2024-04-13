@@ -11,7 +11,7 @@ const Error = () => {
           Uh-oh!
         </p>
 
-        <p class="mt-4 text-gray-500">We can't find that page.</p>
+        <p class="mt-4 text-gray-500">We can{"'"}t find that page.</p>
 
         <Link
           href="/"

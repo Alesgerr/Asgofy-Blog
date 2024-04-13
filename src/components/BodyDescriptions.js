@@ -54,14 +54,18 @@ const BodyDescription = ({ body, title }) => {
                       const link = linkMark.href;
                       return (
                         <a key={`${key}-${index}`} href={link}>
-                            <span className="font-bold underline">{item.text}</span>
+                          <span className="font-bold underline">
+                            {item.text}
+                          </span>
                         </a>
                       );
                     } else {
                       return (
-                        <span className="font-bold text-xl flex">
-                          {item.text}
-                        </span>
+                        <>
+                          <span className="font-bold text-xl flex">
+                            {item?.text}
+                          </span>
+                        </>
                       );
                     }
                   })}
@@ -101,8 +105,7 @@ const BodyDescription = ({ body, title }) => {
                 }
               });
             }
-          }
-          else if(block.style === "h4"){
+          } else if (block.style === "h4") {
             return (
               <div key={key} className="my-5">
                 <h3 className="font-semibold text-md mb-2">

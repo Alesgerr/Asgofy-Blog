@@ -13,7 +13,8 @@ import {
   FormControl,
   TextField,
 } from "@mui/material";
-const page = () => {
+
+const BlogPage = () => {
   const { latestProducts, categories, loading } = usePostContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -153,4 +154,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default BlogPage;

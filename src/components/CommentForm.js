@@ -8,6 +8,7 @@ import useAuth from "@/custom-hook/useAuth";
 import { CircularProgress, IconButton } from "@mui/material";
 import { Delete as DeleteIcon } from "@mui/icons-material";
 import Link from "next/link";
+import Image from "next/image"
 const CommentForm = ({ postId }) => {
   const [loadingStates, setLoadingStates] = useState({});
   const [comment, setComment] = useState("");
@@ -189,9 +190,12 @@ const CommentForm = ({ postId }) => {
               <li key={index} className="mb-4">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
-                    <img
+                    <Image
                       src={comment?.user?.imageUrl}
                       alt="Profile"
+                      width={36}
+                      height={36}
+                      priority
                       className="w-10 h-10 rounded-full mr-2"
                     />
                     <p className="font-bold">{comment?.user?.fullName}</p>

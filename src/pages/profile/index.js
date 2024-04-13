@@ -33,7 +33,7 @@ import {
   Radio,
 } from "@nextui-org/react";
 import toast from "react-hot-toast";
-const page = () => {
+const ProfilePage = () => {
   const {
     currentUser,
     uploadProfilePhoto,
@@ -401,7 +401,7 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProfilePage;
 
 const LoadingCard = () => (
   <>
