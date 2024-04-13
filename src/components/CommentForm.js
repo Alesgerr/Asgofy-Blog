@@ -123,7 +123,7 @@ const CommentForm = ({ postId }) => {
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center min-h-screen">
       <div className="md:px-5 w-full rounded-md dark:bg-zinc-950 dark:border-none p-4 shadow-md border">
-        <p class="text-xl mb-3 font-semibold text-indigo-700 dark:text-white transition-all">
+        <p className="text-xl mb-3 font-semibold text-indigo-700 dark:text-white transition-all">
           Reviews
         </p>
 

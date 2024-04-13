@@ -65,8 +65,8 @@ const LatestBlogPosts = ({ latestProducts, isLoading }) => {
               />
             </div>
           ) : (
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
-              Our latest <span class=" text-indigo-600">blogs</span>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+              Our latest <span className=" text-indigo-600">blogs</span>
             </h2>
           )}
           {isLoading ? (
@@ -139,6 +139,9 @@ const LatestBlogPosts = ({ latestProducts, isLoading }) => {
                             height={100}
                             priority={true}
                           />
+                        </Link>
+
+                        <Link href={`/blog/${post?.slug}`}>
                           <div className="flex items-center mb-2">
                             <span className="text-gray-500 text-sm">
                               <PostPublishedDate
@@ -150,22 +153,25 @@ const LatestBlogPosts = ({ latestProducts, isLoading }) => {
                               {post?.timeAgo}
                             </p>
                           </div>
-                          <Link
-                            href={`/categories/${post?.categories[0]?.slug.current}/`}
-                          >
-                            <h3 className="mb-2 text-indigo-600 font-bold">
-                              {post?.categories[0]?.title}
-                            </h3>
-                          </Link>
+                        </Link>
+                        <Link
+                          href={`/categories/${post?.categories[0]?.slug.current}/`}
+                        >
+                          <h3 className="mb-2 text-indigo-600 font-bold">
+                            {post?.categories[0]?.title}
+                          </h3>
+                        </Link>
+                        <Link href={`/blog/${post?.slug}`}>
                           <h2 className="text-sm md:text-base font-semibold dark:text-white mb-2">
                             {post?.title.length > 50
                               ? post?.title.slice(0, 60) + "..."
                               : post?.title}
                           </h2>
-                          {/* <div className="text-purple-700 font-semibold hover:underline">
+                        </Link>
+
+                        {/* <div className="text-purple-700 font-semibold hover:underline">
                             Read More
                           </div> */}
-                        </Link>
                       </div>
                     </div>
                   )}

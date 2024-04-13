@@ -43,8 +43,8 @@ const BodyDescription = ({ body, title }) => {
                     }
                   })}
                 </h2> */}
-                <h2 className="font-semibold text-xl flex">
-                  {block?.children?.map((item) => {
+                {/* <h2 className="font-semibold text-xl flex">
+                  {block?.children?.map((item, index) => {
                     if (
                       block?.markDefs?.find((mark) => mark._type === "link")
                     ) {
@@ -53,7 +53,7 @@ const BodyDescription = ({ body, title }) => {
                       );
                       const link = linkMark.href;
                       return (
-                        <a key={`${key}-${index}`} href={link}>
+                        <a key={index} href={link}>
                           <span className="font-bold underline">
                             {item.text}
                           </span>
@@ -62,12 +62,29 @@ const BodyDescription = ({ body, title }) => {
                     } else {
                       return (
                         <>
-                          <span className="font-bold text-xl flex">
+                          <span key={index} className="font-bold text-xl flex">
                             {item?.text}
                           </span>
                         </>
                       );
                     }
+                  })}
+                </h2> */}
+                <h2 className="font-semibold text-xl flex">
+                  {block?.children?.map((item, index) => {
+                    const linkMark = block?.markDefs?.find(
+                      (mark) => mark._type === "link"
+                    );
+                    const link = linkMark ? linkMark.href : null;
+                    return link ? (
+                      <a key={index} href={link}>
+                        <span className="font-bold underline">{item.text}</span>
+                      </a>
+                    ) : (
+                      <span key={index} className="font-bold text-xl flex">
+                        {item.text}
+                      </span>
+                    );
                   })}
                 </h2>
               </div>
