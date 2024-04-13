@@ -19,6 +19,7 @@ const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
+  console.log(latestProducts);
   useEffect(() => {
     // selectedCategory, searchTerm veya latestProducts değiştiğinde filtreleme işlemini yeniden yap
     setFilteredPosts(
@@ -64,13 +65,19 @@ const BlogPage = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="All Blog Posts - Asgofy" />
         <meta name="twitter:description" content="All posts on the blog." />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS Feed"
+          href="https://asgofy.com/api/rss.xml"
+        />
       </Head>
       {/* <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
         <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
           Insights
         </h2>
         <p class="mt-1 text-gray-600 dark:text-gray-400">
-          Stay in the know with insights from industry experts.
+          Stay in the know with insights from industry experts.https://asgofy.com/blog
         </p>
       </div> */}
       <div>
@@ -79,13 +86,13 @@ const BlogPage = () => {
           {/* Kategori seçimi buraya gelebilir */}
           <div className="md:mb-6 mb-3 md:order-2 w-full md:w-72">
             <FormControl className="w-full dark:bg-zinc-900 rounded-md">
-              <InputLabel id="category-select-label">Category</InputLabel>
+              <InputLabel id="category-select-label" className="-top-[2px]">Category</InputLabel>
               <Select
                 labelId="category-select-label"
                 id="category-select"
                 value={selectedCategory}
                 onChange={handleCategoryChange}
-                className="min-w-[200px"
+                className="min-w-[200px] max-h-[45px]"
               >
                 <MenuItem value="">All</MenuItem>
                 {categories?.map((category) => (

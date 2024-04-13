@@ -5,7 +5,7 @@ export default function RssRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/api/rss");
+    router.push("/api/rss.xml");
   }, [router]);
 
   return null;
