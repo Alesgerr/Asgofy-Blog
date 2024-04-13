@@ -4,14 +4,12 @@ import Head from "next/head";
 import React from "react";
 
 const ContactPage = () => {
-   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
   return (
     <>
       <Head>
         <title>Contact Page - Asgofy</title>
       </Head>
       <div>
-        <span>{GTM_ID}</span>
         <ContactForm />
       </div>
       {/* <section class="bg-white dark:bg-gray-900">
