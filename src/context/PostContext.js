@@ -22,8 +22,8 @@ export const PostProvider = ({ children }) => {
       const res = await getFeaturedProducts();
       const processedData = res.map((product) => ({
         ...product,
-        imageUrl: urlForImage(product.mainImage.asset._ref), // Resim URL'lerini oluştur
-        timeAgo: calculateTimeAgo(product.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
+        imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Resim URL'lerini oluştur
+        timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
       }));
       setLoading(false);
       setFeaturedProducts(processedData);
@@ -38,8 +38,8 @@ export const PostProvider = ({ children }) => {
       const res = await getPosts();
       const processedData = res.map((product) => ({
         ...product,
-        imageUrl: urlForImage(product.mainImage.asset._ref), // Burada resmin referansını kullanarak URL oluşturuyoruz
-        timeAgo: calculateTimeAgo(product.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
+        imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Burada resmin referansını kullanarak URL oluşturuyoruz
+        timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
       }));
       setLatestProducts(processedData);
       setLoading(false);

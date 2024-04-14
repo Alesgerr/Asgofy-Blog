@@ -28,6 +28,12 @@ export const post = {
       type: "blockContent",
     },
     {
+      name: "table",
+      title: "Table",
+      type: "array",
+      of: [{ type: "reference", to: {type: "table"} }], // Tablo şemasına referans verin
+    },
+    {
       name: "author",
       title: "Author",
       type: "reference",

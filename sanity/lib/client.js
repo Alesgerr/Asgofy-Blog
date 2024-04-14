@@ -80,6 +80,13 @@ export async function getPostById(slug) {
           lastModifiedDate,
           metaTitle,
           metaDescription,
+            table[]->{
+              mainTitle,
+              subtitles[]{
+                subtitle,
+                product->{title, slug} // Product alanını referans olarak alırken, hangi alanları almak istediğinizi belirtin
+              }
+            },
          "reviews": *[_type == "review" && references(^._id)] {
             user->{
               name,

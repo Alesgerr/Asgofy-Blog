@@ -29,7 +29,6 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
   // if (!post) {
   //   return <LoadingCard />;
   // }
-  
   // const { metaTitle, metaDescription } = post;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   const postUrl = `${baseUrl}/blog/${post?.slug}`;
@@ -263,7 +262,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                   </div>
 
                   <p className="text-md font-normal">{post?.description}</p>
-                  <BodyDescription body={post?.body} title={post?.title} />
+                  <BodyDescription body={post?.body} title={post?.title} table={post?.table} />
                 </div>
               </div>
               <div>

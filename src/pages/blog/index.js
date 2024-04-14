@@ -19,7 +19,6 @@ const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
-  console.log(latestProducts);
   useEffect(() => {
     // selectedCategory, searchTerm veya latestProducts değiştiğinde filtreleme işlemini yeniden yap
     setFilteredPosts(
