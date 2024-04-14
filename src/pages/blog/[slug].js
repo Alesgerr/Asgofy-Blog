@@ -30,17 +30,14 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
   //   return <LoadingCard />;
   // }
   // const { metaTitle, metaDescription } = post;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const postUrl = `${baseUrl}/blog/${post?.slug}`;
   const postImage = post?.postImage;
   return (
     <>
       <Head>
         <title>{post?.title || post?.metaTitle}</title>
-        <meta
-          name="description"
-          content={post?.metaDescription || post?.description}
-        />
+        <meta name="description" content={post?.metaDescription} />
         <meta
           property="og:url"
           content={`https://asgoshop.com/blog/${post?.slug}`}
@@ -262,7 +259,11 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                   </div>
 
                   <p className="text-md font-normal">{post?.description}</p>
-                  <BodyDescription body={post?.body} title={post?.title} table={post?.table} />
+                  <BodyDescription
+                    body={post?.body}
+                    title={post?.title}
+                    table={post?.table}
+                  />
                 </div>
               </div>
               <div>
@@ -308,7 +309,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                   <div className="my-5 mb-3">
                     <h2 className="font-bold mb-5">Related Posts</h2>
                     <div className="grid grid-cols-1 mx-auto">
-                      {relatedProducts?.slice(0, 5)?.map((post,i) => (
+                      {relatedProducts?.slice(0, 5)?.map((post, i) => (
                         <Link href={`/blog/${post?.slug}`} key={i}>
                           <div className="flex items-center mb-5 md:mb-7 lg:mb-2">
                             <div className="img-box">
