@@ -3,21 +3,20 @@ import { getProductsByCategory } from "../../../../sanity/lib/client";
 
 function generateRSSFeed(products, slug) {
   const feed = new Feed({
-    title: "My Website RSS Feed",
-    description: "Latest articles in the category",
+    title: "Asgofy RSS Feed",
+    description: "Follow our latest blog posts and updates here!",
     link: "https://asgofy.com/",
     language: "en",
-    feed: `https://asgofy.com/categories/${slug}/rss.xml`,
     // Diğer isteğe bağlı ayarları buraya ekleyebilirsiniz
   });
-
+  // feed.addAtomLink(`https://asgofy.com/categories/${slug}/rss.xml`);
   products.forEach((product) => {
     feed.addItem({
       title: product.title,
-      guid: product._id,
       link: `https://asgofy.com/blog/${product?.slug}`,
       description: product?.description,
       date: new Date(product.publishedAt), // Ürünün yayınlanma tarihini ekleyin
+      guid: `https://asgofy.com/blog/${product._id}`,
     });
   });
 
