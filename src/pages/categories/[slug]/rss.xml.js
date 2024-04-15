@@ -1,7 +1,12 @@
 import { Feed } from "feed";
 import { getProductsByCategory } from "../../../../sanity/lib/client";
 
-function generateRSSFeed(products, slug) {
+export async function getServerSideProps({ params, res }) {
+  const { slug } = params;
+  // Kategoriden ürünleri almak için gerekli işlemleri yapın
+  const products = await getProductsByCategory(slug);
+
+  // RSS beslemesini oluştur
   const feed = new Feed({
     title: "Asgofy RSS Feed",
     description: "Follow our latest blog posts and updates here!",
@@ -9,7 +14,8 @@ function generateRSSFeed(products, slug) {
     language: "en",
     // Diğer isteğe bağlı ayarları buraya ekleyebilirsiniz
   });
-  // feed.addAtomLink(`https://asgofy.com/categories/${slug}/rss.xml`);
+
+  // Ürünleri RSS XML formatına dönüştürün
   products.forEach((product) => {
     feed.addItem({
       title: product.title,
@@ -20,21 +26,23 @@ function generateRSSFeed(products, slug) {
     });
   });
 
-  // Oluşturulan feed'i döndürün
-  return feed.rss2();
-}
+  // Atom linkini XML içeriğine doğrudan ekleyin
+  const feedXml = feed.rss2();
+  const atomLink = `<atom:link href="https://asgofy.com/categories/${slug}/rss.xml" rel="self" type="application/rss+xml"/>`;
+  const modifiedFeedXml = feedXml.replace(
+    "</channel>",
+    `${atomLink}</channel>`
+  );
 
-export async function getServerSideProps({ params, res }) {
-  const { slug } = params;
-  // Kategoriden ürünleri almak için gerekli işlemleri yapın
-  const products = await getProductsByCategory(slug);
+  // Atom ad alanını tanımlayın
+  const rssWithAtomNamespace = modifiedFeedXml.replace(
+    '<rss version="2.0">',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'
+  );
 
-  // Ürünleri RSS XML formatına dönüştürün
-  const feed = generateRSSFeed(products, slug);
-
-  // XML içeriğini döndürmek için HTTP yanıtını yapılandırın
+  // XML içeriğini HTTP yanıtı olarak gönder
   res.setHeader("Content-Type", "text/xml");
-  res.write(feed);
+  res.write(rssWithAtomNamespace);
   res.end();
 
   // Döndürülen içeriği kullanmadığımız için `props` objesini boş bırakabiliriz
