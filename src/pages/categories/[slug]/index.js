@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { urlForImage } from "../../../sanity/lib/image";
-import { getProductsByCategory } from "../../../sanity/lib/client";
-
+import { urlForImage } from "../../../../sanity/lib/image";
+import { getProductsByCategory } from "../../../../sanity/lib/client";
 const CategoryDetailPage = ({ products, slug }) => {
   const prodTitle =
     products?.length > 0 ? products[0]?.categories[0]?.title : slug;
