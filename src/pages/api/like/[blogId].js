@@ -4,7 +4,6 @@ import { client } from "../../../../sanity/lib/client";
 
 export default async function handler(req, res) {
   const { blogId } = req.query;
-  console.log(blogId,'sasa');
 
   try {
     // Blog gönderisini alın
