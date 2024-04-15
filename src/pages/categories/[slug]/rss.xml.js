@@ -1,19 +1,20 @@
 import { Feed } from "feed";
 import { getProductsByCategory } from "../../../../sanity/lib/client";
 
-function generateRSSFeed(products) {
+function generateRSSFeed(products, slug) {
   const feed = new Feed({
     title: "My Website RSS Feed",
     description: "Latest articles in the category",
     link: "https://asgofy.com/",
     language: "en",
+    feed: `https://asgofy.com/categories/${slug}/rss.xml`,
     // Diğer isteğe bağlı ayarları buraya ekleyebilirsiniz
   });
 
   products.forEach((product) => {
     feed.addItem({
       title: product.title,
-      id: product._id,
+      guid: product._id,
       link: `https://asgofy.com/blog/${product?.slug}`,
       description: product?.description,
       date: new Date(product.publishedAt), // Ürünün yayınlanma tarihini ekleyin
@@ -30,7 +31,7 @@ export async function getServerSideProps({ params, res }) {
   const products = await getProductsByCategory(slug);
 
   // Ürünleri RSS XML formatına dönüştürün
-  const feed = generateRSSFeed(products);
+  const feed = generateRSSFeed(products, slug);
 
   // XML içeriğini döndürmek için HTTP yanıtını yapılandırın
   res.setHeader("Content-Type", "text/xml");
