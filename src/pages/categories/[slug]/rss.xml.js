@@ -22,7 +22,7 @@ export async function getServerSideProps({ params, res }) {
       link: `https://asgofy.com/blog/${product?.slug}`,
       description: product?.description,
       date: new Date(product.publishedAt), // Ürünün yayınlanma tarihini ekleyin
-      guid: `https://asgofy.com/blog/${product._id}`,
+      guid: `https://asgofy.com/blog/${product?.slug}`,
     });
   });
 
