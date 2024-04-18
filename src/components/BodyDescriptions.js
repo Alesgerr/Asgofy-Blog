@@ -8,6 +8,7 @@ import Link from "next/link";
 const BodyDescription = ({ body, title, table }) => {
   // Önceki başlık kontrolü için bir değişken tanımlayalım
   let previousHeading = "";
+  console.log(body);
   
   return (
     <div>
@@ -175,7 +176,7 @@ const BodyDescription = ({ body, title, table }) => {
               <div key={key} className="my-5">
                 <ul className="list-disc pl-5">
                   {block.children.map((listItem, listItemIndex) => (
-                    <li key={`${key}-${listItemIndex}`}>{listItem.text}</li>
+                    <li key={key}>{listItem.text}</li>
                   ))}
                 </ul>
               </div>

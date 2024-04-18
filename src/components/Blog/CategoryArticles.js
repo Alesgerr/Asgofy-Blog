@@ -76,7 +76,7 @@ export default function CategoryArticles() {
                       <div className="absolute h-96 inset-0 bg-black opacity-60 rounded-md"></div>
                     </div>
 
-                    <div className="absolute top-0 inset-x-0 z-10">
+                    {/* <div className="absolute top-0 inset-x-0 z-10">
                       <div className="p-4 flex flex-col h-full sm:p-6">
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
@@ -98,7 +98,7 @@ export default function CategoryArticles() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="absolute bottom-0 inset-x-0 z-10">
                       <div className="flex flex-col h-full p-4 sm:p-6">
