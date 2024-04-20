@@ -20,9 +20,9 @@ const CategoryDetailPage = ({ products, slug }) => {
       <section>
         <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-14">
           <div className="flex flex-col items-center">
-            <h2 className="max-w-3xl text-center text-2xl mb-12 mt-4 font-bold">
+            <h1 className="max-w-3xl text-center text-2xl mb-12 mt-4 font-bold">
               {prodTitle}
-            </h2>
+            </h1>
             <div className="mb-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
               {products?.map((item) => (
                 <Link key={item._id} href={`/blog/${item?.slug}`}>

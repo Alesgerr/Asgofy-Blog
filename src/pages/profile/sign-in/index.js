@@ -18,10 +18,6 @@ const Login = () => {
   const handleSignIn = async () => {
     try {
       const user = await googleSingIn();
-      //  if(user){
-      //   }
-      router.push("/");
-
       toast.success("Login successfuly");
     } catch (error) {
       console.log(error);
