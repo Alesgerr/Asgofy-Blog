@@ -10,7 +10,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body {
+  background-color: #fdfdfd;
+}
+.dark body {
+  background-color: #000;
+}
 .modal {
   position: fixed;
   top: 50%;

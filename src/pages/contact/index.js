@@ -1,4 +1,5 @@
 "use client";
+import AnimationWrapper from "@/components/AnimationWrapper";
 import ContactForm from "@/components/ContactForm";
 import Head from "next/head";
 import React from "react";
@@ -9,9 +10,9 @@ const ContactPage = () => {
       <Head>
         <title>Contact Page - Asgofy</title>
       </Head>
-      <div>
+      <AnimationWrapper>
         <ContactForm />
-      </div>
+      </AnimationWrapper>
       {/* <section class="bg-white dark:bg-gray-900">
         <div class="container px-6 py-12 mx-auto">
           <div>

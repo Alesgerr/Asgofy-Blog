@@ -161,7 +161,7 @@ const CommentForm = ({ postId }) => {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 dark:bg-purple-700  bg-none px-5 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+              className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 dark:bg-indigo-600  bg-none px-5 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
               disabled={loadingStates.submitting} // Eğer yorum gönderme işlemi devam ediyorsa butonu devre dışı bırak
             >
               {loadingStates.submitting ? ( // Yüklenme durumuna göre buton içeriğini değiştir

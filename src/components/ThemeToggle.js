@@ -20,7 +20,7 @@ const ThemeToggle = () => {
             onClick={() => setTheme("light")}
           >
             <div className="font-bold sm:hidden">Light Mode</div>
-            <CiLight className="ml-2 sm:ml-0 text-purple-700 font-bold" size={25} />
+            <CiLight className="ml-2 sm:ml-0 font-bold" size={25} />
           </div>
         ) : (
           <div

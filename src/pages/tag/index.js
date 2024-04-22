@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { getTagsWithPostCount } from "../../../sanity/lib/client";
 import Head from "next/head";
+import AnimationWrapper from "@/components/AnimationWrapper";
 
 const TagsPage = ({ tags }) => {
   return (
@@ -28,21 +29,23 @@ const TagsPage = ({ tags }) => {
           content="All tags on the blog. Here are the number of posts and descriptions for each tag."
         />
       </Head>
-      <h1 className="text-2xl font-bold mb-4">Tags</h1>
-      <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {tags.map((tag) => (
-          <li
-            key={tag?._id}
-            className="p-2 py-4 bg-zinc-900 dark:bg-white rounded-md"
-          >
-            <Link href={`/tag/${tag?.slug?.current}`}>
-              <span className="text-white dark:text-black font-bold hover:text-blue-700">
-                {tag?.tag} ({tag?.postCount})
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <AnimationWrapper>
+        <h1 className="text-2xl font-bold mb-4">Tags</h1>
+        <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {tags.map((tag) => (
+            <li
+              key={tag?._id}
+              className="p-2 py-4 bg-zinc-900 dark:bg-white rounded-md"
+            >
+              <Link href={`/tag/${tag?.slug?.current}`}>
+                <span className="text-white dark:text-black font-bold hover:text-blue-700">
+                  {tag?.tag} ({tag?.postCount})
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </AnimationWrapper>
     </div>
   );
 };

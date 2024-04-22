@@ -24,6 +24,7 @@ import Script from "next/script";
 import React from "react";
 import ShareGroup from "@/components/ShareGroup";
 import CommentForm from "@/components/CommentForm";
+import AnimationWrapper from "@/components/AnimationWrapper";
 
 export default function BlogDetailsPage({ post, relatedProducts }) {
   // if (!post) {
@@ -52,51 +53,52 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
         <meta name="twitter:description" content={post?.metaDescription} />
         <meta name="twitter:image" content={postImage} />
       </Head>
-      <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
-        {/* <!-- Blog Article --> */}
-        <div className="blog-article">
-          <div className="pb-12 lg:flex">
-            <div className="hidden">
-              <button
-                className="py-3 bg-black dark:bg-white my-5 px-5 rounded-md dark:text-black text-white"
-                // onClick={toggleMenu}
-              >
-                Categories
-              </button>
-            </div>
-            <div className="lg:w-6/12 md:order-2">
-              <div className="md:mx-5 rounded-md">
-                {/* <!-- Avatar Media --> */}
-                <div className="flex justify-between items-center mb-6 overflow-hidden">
-                  <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
-                    <div className="flex-shrink-0">
-                      <Image
-                        className="size-12 rounded-full"
-                        src={post?.imageUrl}
-                        alt={post?.title}
-                        width={100}
-                        height={100}
-                        quality={60}
-                        priority
-                      />
-                    </div>
-                    <div className="grow">
-                      <div className="flex justify-between items-center gap-x-2">
-                        <div>
-                          {/* <!-- Tooltip --> */}
-                          <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
-                            <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
-                              <span className="font-semibold text-indigo-600 ">
-                                {post?.author.name}
-                              </span>
+      <AnimationWrapper>
+        <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
+          {/* <!-- Blog Article --> */}
+          <div className="blog-article">
+            <div className="pb-12 lg:flex">
+              <div className="hidden">
+                <button
+                  className="py-3 bg-black dark:bg-white my-5 px-5 rounded-md dark:text-black text-white"
+                  // onClick={toggleMenu}
+                >
+                  Categories
+                </button>
+              </div>
+              <div className="lg:w-6/12 md:order-2">
+                <div className="md:mx-5 rounded-md">
+                  {/* <!-- Avatar Media --> */}
+                  <div className="flex justify-between items-center mb-6 overflow-hidden">
+                    <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+                      <div className="flex-shrink-0">
+                        <Image
+                          className="size-12 rounded-full"
+                          src={post?.imageUrl}
+                          alt={post?.title}
+                          width={100}
+                          height={100}
+                          quality={60}
+                          priority
+                        />
+                      </div>
+                      <div className="grow">
+                        <div className="flex justify-between items-center gap-x-2">
+                          <div>
+                            {/* <!-- Tooltip --> */}
+                            <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
+                              <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
+                                <span className="font-semibold text-indigo-600 ">
+                                  {post?.author.name}
+                                </span>
 
-                              {/* <!-- Dropdown Card --> */}
-                              <div
-                                className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-black"
-                                role="tooltip"
-                              >
-                                {/* <!-- Body --> */}
-                                {/* <div className="p-4 sm:p-5">
+                                {/* <!-- Dropdown Card --> */}
+                                <div
+                                  className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-black"
+                                  role="tooltip"
+                                >
+                                  {/* <!-- Body --> */}
+                                  {/* <div className="p-4 sm:p-5">
                                   <div className="mb-2 flex w-full sm:items-center gap-x-5 sm:gap-x-3">
                                     <div className="flex-shrink-0">
                                       <Image
@@ -121,7 +123,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                                     in-house recruiters all over the world.
                                   </p>
                                 </div> */}
-                                {/* 
+                                  {/* 
                                 <div className="flex justify-between items-center px-4 py-3 sm:px-5">
                                   <ul className="text-xs space-x-3">
                                     <li className="inline-block">
@@ -165,54 +167,54 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                                     </button>
                                   </div>
                                 </div> */}
+                                </div>
+                                {/* <!-- End Dropdown Card --> */}
                               </div>
-                              {/* <!-- End Dropdown Card --> */}
                             </div>
+                            {/* <!-- End Tooltip --> */}
+
+                            <ul className="text-xs text-gray-500">
+                              <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
+                                <PostPublishedDate
+                                  publishedAt={post?.publishedAt}
+                                />
+                              </li>
+                              <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
+                                {post?.timeAgo}
+                              </li>
+                            </ul>
                           </div>
-                          {/* <!-- End Tooltip --> */}
 
-                          <ul className="text-xs text-gray-500">
-                            <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
-                              <PostPublishedDate
-                                publishedAt={post?.publishedAt}
-                              />
-                            </li>
-                            <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
-                              {post?.timeAgo}
-                            </li>
-                          </ul>
-                        </div>
+                          {/* <!-- Button Group --> */}
+                          <div>
+                            {/* <div class="sharethis-inline-share-buttons"></div> */}
+                            <div className="social-buttons flex">
+                              <PinterestShareButton
+                                title={post?.title || post?.metaTitle}
+                                url={postUrl}
+                                media={
+                                  "next-share is a social share buttons for your next React apps."
+                                }
+                              >
+                                <span className="mr-2 py-1.5 px-2.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                  <PinterestIcon size={32} round />
+                                  <span className="hidden sm:block">Pin</span>
+                                </span>
+                              </PinterestShareButton>
 
-                        {/* <!-- Button Group --> */}
-                        <div>
-                          {/* <div class="sharethis-inline-share-buttons"></div> */}
-                          <div className="social-buttons flex">
-                            <PinterestShareButton
-                              title={post?.title || post?.metaTitle}
-                              url={postUrl}
-                              media={
-                                "next-share is a social share buttons for your next React apps."
-                              }
-                            >
-                              <span className="mr-2 py-1.5 px-2.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                                <PinterestIcon size={32} round />
-                                <span className="hidden sm:block">Pin</span>
-                              </span>
-                            </PinterestShareButton>
-
-                            <TwitterShareButton
-                              className="flex"
-                              title={post?.title || post?.metaTitle}
-                              url={postUrl}
-                              image={post?.postImage}
-                            >
-                              <span className="py-1.5 px-2.5 flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                                <TwitterIcon size={32} round />
-                                <span className="hidden sm:block">Tweet</span>
-                              </span>
-                            </TwitterShareButton>
-                          </div>
-                          {/* <TwitterShareButton
+                              <TwitterShareButton
+                                className="flex"
+                                title={post?.title || post?.metaTitle}
+                                url={postUrl}
+                                image={post?.postImage}
+                              >
+                                <span className="py-1.5 px-2.5 flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                  <TwitterIcon size={32} round />
+                                  <span className="hidden sm:block">Tweet</span>
+                                </span>
+                              </TwitterShareButton>
+                            </div>
+                            {/* <TwitterShareButton
                             title={metaTitle}
                             image={post?.postImage}
                             url={currentUrl ? currentUrl : "asgoshop.com"}
@@ -235,121 +237,121 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                               Tweet
                             </button>
                           </TwitterShareButton> */}
+                          </div>
+                          {/* <!-- End Button Group --> */}
                         </div>
-                        {/* <!-- End Button Group --> */}
                       </div>
                     </div>
                   </div>
-                </div>
-                {/* <!-- Content --> */}
-                <div className="space-y-5 md:space-y-8">
-                  <h1 className="text-lg mt-5 sm:text-3xl font-bold">
-                    {post?.title}
-                  </h1>
-                  <div className="flex justify-center">
-                    <Image
-                      src={post?.postImage}
-                      alt={post?.title}
-                      width={1000}
-                      height={500}
-                      priority
-                      quality={70}
-                      className="rounded-md h-[250px] sm:h-[350px] object-cover"
+                  {/* <!-- Content --> */}
+                  <div className="space-y-5 md:space-y-8">
+                    <h1 className="text-lg mt-5 sm:text-3xl font-bold">
+                      {post?.title}
+                    </h1>
+                    <div className="flex justify-center">
+                      <Image
+                        src={post?.postImage}
+                        alt={post?.title}
+                        width={1000}
+                        height={500}
+                        priority
+                        quality={70}
+                        className="rounded-md h-[250px] sm:h-[350px] object-cover"
+                      />
+                    </div>
+
+                    <p className="text-md font-normal">{post?.description}</p>
+                    <BodyDescription
+                      body={post?.body}
+                      title={post?.title}
+                      table={post?.table}
                     />
                   </div>
-
-                  <p className="text-md font-normal">{post?.description}</p>
-                  <BodyDescription
-                    body={post?.body}
-                    title={post?.title}
-                    table={post?.table}
-                  />
                 </div>
-              </div>
-              <div>
-                <CommentForm postId={post && post?._id} />
-              </div>
-              {/* <!-- End Content --> */}
-            </div>
-            <div className="lg:w-3/12 md:order-1">
-              <div className="mb-3 md:mr-4 shadow-sm rounded-md">
-                <h3 className="font-bold">Categories</h3>
-                {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
-                <div className="border dark:border-gray-800 mt-3 p-2">
-                  {post?.categories?.map((category) => (
-                    <Link
-                      href={`/categories/${category?.slug?.current}`}
-                      key={category._id}
-                      className="flex justify-between leading-4 my-4 items-center hover:text-indigo-600"
-                    >
-                      <span className="mr-2">{category?.title}</span>
-                      <LiaArrowRightSolid />
-                    </Link>
-                  ))}
+                <div>
+                  <CommentForm postId={post && post?._id} />
                 </div>
+                {/* <!-- End Content --> */}
               </div>
-            </div>
-            <div className="lg:w-3/12 md:order-3">
-              <div className="shadow-sm md:ml-2 rounded-md">
-                <div className="tags">
-                  <h3 className="font-bold">Tags</h3>
-                  <div className="flex flex-wrap my-3 gap-1">
-                    {post?.tags?.map((item) => (
+              <div className="lg:w-3/12 md:order-1">
+                <div className="mb-3 md:mr-4 shadow-sm rounded-md">
+                  <h3 className="font-bold">Categories</h3>
+                  {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
+                  <div className="border dark:border-gray-800 mt-3 p-2">
+                    {post?.categories?.map((category) => (
                       <Link
-                        href={`/tag/${item?.slug?.current}`}
-                        key={item._id}
-                        className="px-1 py-1 text-sm border border-gray-200 rounded-md transition hover:text-indigo-600"
+                        href={`/categories/${category?.slug?.current}`}
+                        key={category._id}
+                        className="flex justify-between leading-4 my-4 items-center hover:text-indigo-600"
                       >
-                        {item?.tag}
+                        <span className="mr-2">{category?.title}</span>
+                        <LiaArrowRightSolid />
                       </Link>
                     ))}
                   </div>
                 </div>
-                <div className="related">
-                  <div className="my-5 mb-3">
-                    <h2 className="font-bold mb-5">Related Posts</h2>
-                    <div className="grid grid-cols-1 mx-auto">
-                      {relatedProducts?.slice(0, 5)?.map((post, i) => (
-                        <Link href={`/blog/${post?.slug}`} key={i}>
-                          <div className="flex items-center mb-5 md:mb-7 lg:mb-2">
-                            <div className="img-box">
-                              <Image
-                                src={post?.imageUrl}
-                                alt={post?.title}
-                                width={150}
-                                height={150}
-                                priority
-                                quality={50}
-                                className="rounded-md h-[70px] max-w-[100px] object-cover"
-                              />
-                            </div>
-                            <div className="body-box p-2">
-                              <h2 className="text-sm md:text-[13px] font-bold">
-                                {post?.title?.length > 50
-                                  ? post?.title.slice(0, 40) + "..."
-                                  : post?.title}
-                              </h2>
-                              <div className="flex flex-wrap items-center">
-                                <span className="mr-1">
-                                  <CiClock1 />
-                                </span>
-                                <span className="text-sm md:text-[13px]">
-                                  {post?.timeAgo}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+              </div>
+              <div className="lg:w-3/12 md:order-3">
+                <div className="shadow-sm md:ml-2 rounded-md">
+                  <div className="tags">
+                    <h3 className="font-bold">Tags</h3>
+                    <div className="flex flex-wrap my-3 gap-1">
+                      {post?.tags?.map((item) => (
+                        <Link
+                          href={`/tag/${item?.slug?.current}`}
+                          key={item._id}
+                          className="px-1 py-1 text-sm border border-gray-200 rounded-md transition hover:text-indigo-600"
+                        >
+                          {item?.tag}
                         </Link>
                       ))}
+                    </div>
+                  </div>
+                  <div className="related">
+                    <div className="my-5 mb-3">
+                      <h2 className="font-bold mb-5">Related Posts</h2>
+                      <div className="grid grid-cols-1 mx-auto">
+                        {relatedProducts?.slice(0, 5)?.map((post, i) => (
+                          <Link href={`/blog/${post?.slug}`} key={i}>
+                            <div className="flex items-center mb-5 md:mb-7 lg:mb-2">
+                              <div className="img-box">
+                                <Image
+                                  src={post?.imageUrl}
+                                  alt={post?.title}
+                                  width={150}
+                                  height={150}
+                                  priority
+                                  quality={50}
+                                  className="rounded-md h-[70px] max-w-[100px] object-cover"
+                                />
+                              </div>
+                              <div className="body-box p-2">
+                                <h2 className="text-sm md:text-[13px] font-bold">
+                                  {post?.title?.length > 50
+                                    ? post?.title.slice(0, 40) + "..."
+                                    : post?.title}
+                                </h2>
+                                <div className="flex flex-wrap items-center">
+                                  <span className="mr-1">
+                                    <CiClock1 />
+                                  </span>
+                                  <span className="text-sm md:text-[13px]">
+                                    {post?.timeAgo}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* !-- Related Posts */}
-        {/* <div className="space-y-5 mb-3">
+          {/* !-- Related Posts */}
+          {/* <div className="space-y-5 mb-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-4 gap-1">
             {relatedProducts?.map((post) => (
               <div className="p-4 rounded-md shadow-md">
@@ -389,9 +391,10 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
             ))}
           </div>
         </div> */}
-        {/* <!-- Sticky Share Group --> */}
-        <ShareGroup post={post} slug={post?.slug} />
-      </div>
+          {/* <!-- Sticky Share Group --> */}
+          <ShareGroup post={post} slug={post?.slug} />
+        </div>
+      </AnimationWrapper>
     </>
   );
 }

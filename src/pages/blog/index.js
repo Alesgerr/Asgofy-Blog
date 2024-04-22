@@ -13,6 +13,7 @@ import {
   FormControl,
   TextField,
 } from "@mui/material";
+import AnimationWrapper from "@/components/AnimationWrapper";
 
 const BlogPage = () => {
   const { latestProducts, categories, loading } = usePostContext();
@@ -79,7 +80,7 @@ const BlogPage = () => {
           Stay in the know with insights from industry experts.https://asgofy.com/blog
         </p>
       </div> */}
-      <div>
+      <AnimationWrapper>
         {/* Filter Search && Category */}
         <div className="flex flex-wrap items-center gap-1 md:gap-5 py-5">
           {/* Kategori seçimi buraya gelebilir */}
@@ -155,7 +156,7 @@ const BlogPage = () => {
             </Link>
           ))}
         </div>
-      </div>
+      </AnimationWrapper>
     </div>
   );
 };
