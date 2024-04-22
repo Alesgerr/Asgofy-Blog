@@ -131,6 +131,8 @@ export default function CategoryArticles({ articles, loading }) {
                               className="w-full md:w-32 md:h-32 object-cover rounded-md mb-3"
                               width={500}
                               height={500}
+                              priority
+                              quality={50}
                               src={item?.imageUrl}
                               alt={item?.title}
                             />
