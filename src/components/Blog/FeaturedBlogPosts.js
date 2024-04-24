@@ -134,7 +134,7 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
                             alt={post?.title}
                             width={400}
                             height={100}
-                            priority
+                            loading="lazy"
                           />
                         </div>
                         <h3 className="text-xl text-gray-900 dark:text-white font-medium leading-8 mb-4 group-hover:text-indigo-600">

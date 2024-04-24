@@ -91,13 +91,13 @@ export default function CategoryArticles({
                       key={i}
                       className={`grid md:grid-cols-2 ${i !== visibleArticles.length - 1 ? "border-b-2" : ""} dark:border-gray-900 gap-2 mb-5`}
                     >
-                      <div className="md:order-2 flex items-center md:justify-end">
-                        <Link href={`/blog/${item?.slug}`}>
+                      <div className="md:order-2 flex items-center justify-center md:justify-end">
+                        <Link rel="preload" href={`/blog/${item?.slug}`}>
                           <Image
-                            className="w-full md:w-32 md:h-32 object-cover rounded-md mb-3"
-                            width={500}
-                            height={500}
-                            priority
+                            className="md:w-32 md:h-32 object-cover rounded-md mb-3"
+                            width={300}
+                            height={300}
+                            loading="lazy"
                             quality={50}
                             src={item?.imageUrl}
                             alt={item?.title}
