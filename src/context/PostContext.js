@@ -5,6 +5,7 @@ import {
   getCategories,
   getFeaturedProducts,
   getPosts,
+  getTagsWithPostCount,
 } from "../../sanity/lib/client";
 import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
@@ -13,10 +14,13 @@ export const usePostContext = () => useContext(PostContext);
 
 export const PostProvider = ({ children }) => {
   const [catPostCount, setCatPostCount] = useState([]);
+  const [tagPostCount, setTagPostCount] = useState([]);
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [latestProducts, setLatestProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingCatCount, setLoadingCatCount] = useState(true);
+  const [loadingTagCount, setLoadingTagCount] = useState(true);
   const fetchFeaturedPosts = async () => {
     try {
       const res = await getFeaturedProducts();
@@ -53,22 +57,43 @@ export const PostProvider = ({ children }) => {
     setCategories(res);
   };
    const fetchCatPostCount = async () => {
-     const res = await getCatWithPostCount();
-     setCatPostCount(res);
+    try {
+      setLoadingCatCount(false);
+      const res = await getCatWithPostCount();
+      setCatPostCount(res);
+    } catch (error) {
+      setLoadingCatCount(true);
+      console.error("Error fetching catPostCount:", error);
+    }
    };
+   const fetchTagPostCount = async () => {
+     try {
+       setLoadingTagCount(false);
+       const res = await getTagsWithPostCount();
+       setTagPostCount(res);
+     } catch (error) {
+       setLoadingTagCount(true);
+       console.error("Error fetching catPostCount:", error);
+     }
+   };
+   
   useEffect(() => {
     fetchFeaturedPosts();
     fetchPosts();
     fetchCategories();
     fetchCatPostCount()
+    fetchTagPostCount()
   }, []);
  
   const value = {
     featuredProducts,
     latestProducts,
     catPostCount,
+    tagPostCount,
     categories,
     loading,
+    loadingCatCount,
+    loadingTagCount
   };
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 };

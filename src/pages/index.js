@@ -7,12 +7,23 @@ import CategoryArticles from "@/components/Blog/CategoryArticles";
 import { usePostContext } from "@/context/PostContext";
 
 const Home = () => {
-  const { featuredProducts, latestProducts, loading } = usePostContext();
+  const {
+    featuredProducts,
+    latestProducts,
+    loading,
+    loadingCatCount,
+    loadingTagCount,
+  } = usePostContext();
 
   return (
     <div>
       <Hero />
-      <CategoryArticles articles={latestProducts} loading={loading} />
+      <CategoryArticles
+        articles={latestProducts}
+        loading={loading}
+        loadingCatCount={loadingCatCount}
+        loadingTagCount={loadingTagCount}
+      />
       <FeaturedBlogPosts
         featuredProducts={featuredProducts}
         isLoading={loading}

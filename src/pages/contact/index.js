@@ -10,7 +10,7 @@ const ContactPage = () => {
       <Head>
         <title>Contact Page - Asgofy</title>
       </Head>
-      <AnimationWrapper>
+      <AnimationWrapper >
         <ContactForm />
       </AnimationWrapper>
       {/* <section class="bg-white dark:bg-gray-900">

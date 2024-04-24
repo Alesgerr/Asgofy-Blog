@@ -17,24 +17,27 @@ import { logout } from "@/utils/firebase/auth";
 import { CiSearch, CiMenuBurger } from "react-icons/ci";
 import { usePostContext } from "@/context/PostContext";
 import { FaRegSadCry } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import { FaUser } from "react-icons/fa";
 const Header = () => {
   const [state, setState] = useState(false);
   const [state1, setState1] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [loadings, setLoadings] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchMessage, setSearchMessage] = useState();
+  const { latestProducts, loading } = usePostContext();
+
+  const { currentUser } = useAuth();
+  const navRef = useRef();
+  const profileRef = useRef();
   const open = Boolean(anchorEl);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const { currentUser } = useAuth();
-  const navRef = useRef();
-  const profileRef = useRef();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const { latestProducts, loading } = usePostContext();
-  const [loadings, setLoadings] = useState(true);
-  const [searchMessage, setSearchMessage] = useState();
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
@@ -114,7 +117,7 @@ const Header = () => {
           </div>
           <div className="flex lg:hidden">
             <button className="mr-2" onClick={handleModalOpen}>
-              <CiSearch size={22} />
+              <CiSearch size={25} />
             </button>
             <button
               type="button"
@@ -122,7 +125,7 @@ const Header = () => {
               onClick={toggleMenu}
             >
               <span className="sr-only">Open main menu</span>
-              <CiMenuBurger size={22} />
+              <CiMenuBurger size={25} />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
@@ -172,7 +175,7 @@ const Header = () => {
                         src={
                           currentUser?.photoURL
                             ? currentUser.photoURL
-                            : "avatar.png"
+                            : "/avatar.png"
                         }
                         alt="Profile Picture"
                       />
@@ -369,20 +372,7 @@ const Header = () => {
                 onClick={toggleMenu}
               >
                 <span className="sr-only">Close menu</span>
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <IoMdClose size={25} className="dark:text-white" />
               </button>
             </div>
             <div className="mt-6 flow-root">
@@ -400,16 +390,19 @@ const Header = () => {
                   ))}
                 </div>
                 <div className="py-6">
-                  <div className="text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0">
+                  <div className="text-center text-gray-600 hover:text-indigo-600 block lg:inline lg:border-0">
                     <ThemeToggle />
                   </div>
                   {currentUser ? (
                     <Link
                       href="/profile/"
                       onClick={toggleMenu}
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 dark:text-gray-400"
+                      className="block rounded-lg sm:ml-2 px-3 py-3 mt-3 sm:py-3 text-base font-semibold items-center bg-black dark:bg-white text-white dark:text-black"
                     >
-                      Profile
+                      <div className="flex items-center justify-center font-bold">
+                        <span className="sm:hidden">Profile</span>
+                        <FaUser className="ml-2 sm:flex" />
+                      </div>
                     </Link>
                   ) : (
                     <Link

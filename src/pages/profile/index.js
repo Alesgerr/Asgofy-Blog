@@ -33,6 +33,7 @@ import {
   Radio,
 } from "@nextui-org/react";
 import toast from "react-hot-toast";
+import Image from "next/image";
 const ProfilePage = () => {
   const {
     currentUser,
@@ -169,8 +170,7 @@ const ProfilePage = () => {
     // Ayrıca, kullanıcı oturum açmamışsa ve kullanıcı durumu kontrol edilmişse, giriş sayfasına yönlendir
     if (!userCheckLoading) {
       if (currentUser) {
-        // Kullanıcı oturum açmışsa, profil sayfasını göster
-        // Örnek olarak, "/dashboard" sayfasına yönlendir
+        return null
       } else {
         // Kullanıcı oturum açmamışsa, giriş sayfasına yönlendir
         history.push("/profile/sign-in");
@@ -190,11 +190,12 @@ const ProfilePage = () => {
               {/* Profil fotoğrafı ve güncelleme */}
               <div className="flex justify-center">
                 <label htmlFor="fileInput" className="custom-file-upload">
-                  <img
+                  <Image
                     className="rounded-circle object-fit-cover mr-1"
-                    width={35}
-                    height={35}
-                    src={currentUser?.photoURL || "/default-avatar.png"}
+                    width={500}
+                    height={500}
+                    priority
+                    src={currentUser?.photoURL || "/avatar.png"}
                     alt="asasa"
                   />
                   <input

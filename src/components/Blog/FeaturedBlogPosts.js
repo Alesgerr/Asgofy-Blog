@@ -2,81 +2,12 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Skeleton } from "@mui/material";
-import { usePostContext } from "@/context/PostContext";
-import PostPublishedDate from "../PostPublishedDate";
-import Slider from "react-slick";
-import Script from "next/script";
 import "../../assets/Blog.css";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 const FeaturedBlogPosts = ({ featuredProducts }) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    initialSlide: 3,
-    // appendDots: (dots) => (
-    //   <div
-    //     style={{
-    //       backgroundColor: "#ddd",
-    //       borderRadius: "10px",
-    //       padding: "10px",
-    //     }}
-    //   >
-    //     <ul style={{ margin: "0px" }}> {dots} </ul>
-    //   </div>
-    // ),
-    // customPaging: (i) => (
-    //   <div
-    //     style={{
-    //       width: "30px",
-    //       color: "blue",
-    //       border: "1px blue solid",
-    //     }}
-    //   >
-    //     {i + 1}
-    //   </div>
-    // ),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 1,
-        },
-      },
-    ],
-  };
+
   useEffect(() => {
     const swiper = new Swiper(".mySwiper", {
       slidesPerView: 2,

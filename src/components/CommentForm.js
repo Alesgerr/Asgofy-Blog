@@ -16,7 +16,7 @@ const CommentForm = ({ postId }) => {
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState([]);
   const { currentUser } = useAuth();
-
+console.log(comments);
   useEffect(() => {
     const getComments = async () => {
       const fetchedComments = await fetchComments(postId); // Ürün kimliğine göre yorumları al
@@ -192,7 +192,7 @@ const CommentForm = ({ postId }) => {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
                     <Image
-                      src={comment?.user?.imageUrl}
+                      src={comment?.user?.imageUrl || "/avatar.png"}
                       alt="Profile"
                       width={36}
                       height={36}
