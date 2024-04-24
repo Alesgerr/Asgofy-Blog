@@ -8,7 +8,6 @@ import Link from "next/link";
 const BodyDescription = ({ body, title, table }) => {
   // Önceki başlık kontrolü için bir değişken tanımlayalım
   let previousHeading = "";
-  console.log(body);
   
   return (
     <div>

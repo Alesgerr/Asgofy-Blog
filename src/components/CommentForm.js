@@ -9,6 +9,7 @@ import { CircularProgress, IconButton } from "@mui/material";
 import { Delete as DeleteIcon } from "@mui/icons-material";
 import Link from "next/link";
 import Image from "next/image"
+
 const CommentForm = ({ postId }) => {
   const [loadingStates, setLoadingStates] = useState({});
   const [comment, setComment] = useState("");
@@ -122,7 +123,7 @@ const CommentForm = ({ postId }) => {
 
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center">
-      <div className="md:px-5 w-full rounded-md dark:bg-zinc-950 dark:border-none p-4 shadow-md border">
+      <div className="md:px-5 my-5 w-full rounded-md dark:bg-zinc-950 dark:border-none p-4 shadow-md border">
         <p className="text-xl mb-3 font-semibold text-indigo-700 dark:text-white transition-all">
           Reviews
         </p>
