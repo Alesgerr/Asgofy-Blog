@@ -39,9 +39,14 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
       <Head>
         <title>{post?.title || post?.metaTitle}</title>
         <meta name="description" content={post?.metaDescription} />
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_BASE_URL}/blog/${post?.slug}`}
+        />{" "}
+        {/* Canonical URL */}
         <meta
           property="og:url"
-          content={`https://asgoshop.com/blog/${post?.slug}`}
+          content={`${process.env.NEXT_PUBLIC_BASE_URL}/blog/${post?.slug}`}
         />
         <meta property="og:title" content={post?.title} />
         <meta property="og:description" content={post?.description} />
