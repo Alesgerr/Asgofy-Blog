@@ -116,8 +116,8 @@ const Header = () => {
             </Link>
           </div>
           <div className="flex lg:hidden">
-            <button className="mr-2" onClick={handleModalOpen}>
-              <CiSearch size={25} />
+            <button className="mr-4" onClick={handleModalOpen}>
+              <CiSearch size={27} />
             </button>
             <button
               type="button"
@@ -125,7 +125,7 @@ const Header = () => {
               onClick={toggleMenu}
             >
               <span className="sr-only">Open main menu</span>
-              <CiMenuBurger size={25} />
+              <CiMenuBurger size={27} />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
@@ -145,7 +145,6 @@ const Header = () => {
                 <CiSearch size={25} />
               </button>
             </div>
-
             <span className="flex">
               <ThemeToggle />
             </span>
@@ -372,7 +371,7 @@ const Header = () => {
                 onClick={toggleMenu}
               >
                 <span className="sr-only">Close menu</span>
-                <IoMdClose size={25} className="dark:text-white" />
+                <IoMdClose size={27} className="dark:text-white" />
               </button>
             </div>
             <div className="mt-6 flow-root">

@@ -278,6 +278,7 @@ export async function getRelatedPostByCategory(categoryId) {
     return null;
   }
 }
+// ! Post Comment
 export const createComment = async (postId, commentData) => {
   try {
     const result = await client.create({
@@ -338,4 +339,13 @@ const fetchComments = async (postId) => {
     return [];
   }
 };
+// ! Post Views counter
+export async function incrementArticleViews(articleId) {
+  // Makaleyi al
+  const article = await client.getDocument(articleId);
+  // Görüntüleme sayısını bir artır
+  const newViews = article.views ? article.views + 1 : 1;
+  // Görüntüleme sayısını güncelle
+  await client.patch(articleId).set({ views: newViews }).commit();
+}
 export default fetchComments;

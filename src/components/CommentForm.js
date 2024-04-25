@@ -8,7 +8,7 @@ import useAuth from "@/custom-hook/useAuth";
 import { CircularProgress, IconButton } from "@mui/material";
 import { Delete as DeleteIcon } from "@mui/icons-material";
 import Link from "next/link";
-import Image from "next/image"
+import Image from "next/image";
 
 const CommentForm = ({ postId }) => {
   const [loadingStates, setLoadingStates] = useState({});
@@ -16,7 +16,6 @@ const CommentForm = ({ postId }) => {
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState([]);
   const { currentUser } = useAuth();
-console.log(comments);
   useEffect(() => {
     const getComments = async () => {
       const fetchedComments = await fetchComments(postId); // Ürün kimliğine göre yorumları al
