@@ -100,7 +100,8 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                                 {/* <!-- Dropdown Card --> */}
                                 <div
                                   className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-black"
-                                  role="tooltip">
+                                  role="tooltip"
+                                >
                                   {/* <!-- Body --> */}
                                   {/* <div className="p-4 sm:p-5">
                                   <div className="mb-2 flex w-full sm:items-center gap-x-5 sm:gap-x-3">
@@ -301,13 +302,14 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                     <h3 className="font-bold">Tags</h3>
                     <div className="flex flex-wrap my-3 gap-1">
                       {post?.tags?.map((item) => (
-                        <Link
-                          href={`/tag/${item?.slug?.current}`}
-                          key={item._id}
-                          className="px-1 py-1 text-sm border border-gray-200 rounded-md transition hover:text-indigo-600"
-                        >
-                          {item?.tag}
-                        </Link>
+                        <h2 key={item._id}>
+                          <Link
+                            href={`/tag/${item?.slug?.current}`}
+                            className="px-1 py-1 text-sm border border-gray-200 rounded-md transition hover:text-indigo-600"
+                          >
+                            {item?.tag}
+                          </Link>
+                        </h2>
                       ))}
                     </div>
                   </div>
