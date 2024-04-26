@@ -280,7 +280,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
               </div>
               <div className="lg:w-3/12 md:order-1">
                 <div className="mb-3 md:mr-4 shadow-sm rounded-md">
-                  <h3 className="font-bold">Categories</h3>
+                  <p className="font-bold">Categories</p>
                   {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
                   <div className="border dark:border-gray-800 mt-3 p-2">
                     {post?.categories?.map((category) => (
@@ -299,17 +299,17 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
               <div className="lg:w-3/12 md:order-3">
                 <div className="shadow-sm md:ml-2 rounded-md">
                   <div className="tags">
-                    <h3 className="font-bold">Tags</h3>
+                    <p className="font-bold">Tags</p>
                     <div className="flex flex-wrap my-3 gap-1">
                       {post?.tags?.map((item) => (
-                        <h2 key={item._id}>
+                        <span key={item._id}>
                           <Link
                             href={`/tag/${item?.slug?.current}`}
                             className="px-1 py-1 text-sm border border-gray-200 rounded-md transition hover:text-indigo-600"
                           >
                             {item?.tag}
                           </Link>
-                        </h2>
+                        </span>
                       ))}
                     </div>
                   </div>
