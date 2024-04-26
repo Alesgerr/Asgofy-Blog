@@ -66,7 +66,7 @@ export default function CategoryArticles({
 
   return (
     <>
-      <div className="px-5 max-w-7xl py-10 md:px-14 lg:py-14 overflow-hidden mx-auto flex justify-between flex-wrap">
+      <div className="home_article px-5 max-w-7xl py-10 md:px-14 lg:py-14 overflow-hidden mx-auto flex justify-between flex-wrap">
         <div className="w-full lg:max-w-[73%] pb-2 ">
           <div
             id="targetElement"
@@ -149,7 +149,7 @@ export default function CategoryArticles({
                         onChange={handleChange} // Sayfa değiştiğinde çalışacak fonksiyon
                         color="standard" // Sayfa numaralarının rengi
                         size="large" // Büyük boyut
-                        className="dark:bg-gray-100 rounded-md"
+                        className="rounded-md"
                       />
                     </Stack>
                   )}

@@ -93,15 +93,14 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                             {/* <!-- Tooltip --> */}
                             <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
                               <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
-                                <span className="font-semibold text-indigo-600 ">
+                                <span className="font-semibold">
                                   {post?.author.name}
                                 </span>
 
                                 {/* <!-- Dropdown Card --> */}
                                 <div
                                   className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-black"
-                                  role="tooltip"
-                                >
+                                  role="tooltip">
                                   {/* <!-- Body --> */}
                                   {/* <div className="p-4 sm:p-5">
                                   <div className="mb-2 flex w-full sm:items-center gap-x-5 sm:gap-x-3">

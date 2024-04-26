@@ -94,8 +94,8 @@ const Header = () => {
     // { title: "Guides", path: "javascript:void(0)" },
     // { title: "Partners", path: "javascript:void(0)" },
     // { title: "Teams", path: "javascript:void(0)" },
-    { title: "Contact", path: "/contact" },
-    { title: "About", path: "/about" },
+    // { title: "Contact", path: "/contact" },
+    // { title: "About", path: "/about" },
   ];
 
   return (

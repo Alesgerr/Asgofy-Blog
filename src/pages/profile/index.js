@@ -169,10 +169,7 @@ const ProfilePage = () => {
     // Kullanıcı oturum açılmışsa ve kullanıcı durumu kontrol edilmişse, profil sayfasını göster
     // Ayrıca, kullanıcı oturum açmamışsa ve kullanıcı durumu kontrol edilmişse, giriş sayfasına yönlendir
     if (!userCheckLoading) {
-      if (currentUser) {
-        return null
-      } else {
-        // Kullanıcı oturum açmamışsa, giriş sayfasına yönlendir
+      if (!currentUser) {
         history.push("/profile/sign-in");
       }
     }

@@ -30,7 +30,7 @@ const PageLoader = () => {
         </div> */}
 
           <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-zinc-900 bg-opacity-30 z-50">
-            <div className="loader">
+            <div className="page_loader">
               <span className="bar"></span>
               <span className="bar"></span>
               <span className="bar"></span>
