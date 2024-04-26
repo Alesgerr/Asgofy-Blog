@@ -25,6 +25,19 @@ class MyDocument extends Document {
               `,
             }}
           ></script>
+          <script
+            data-name="BMC-Widget"
+            data-cfasync="false"
+            src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+            data-id="Alesger"
+            data-description="Support me on Buy me a coffee!"
+            data-message="Time for a coffee break! If you enjoy the content on my blog and would like to support it, you can send your support for the price of a cup of coffee via Buymeacoffee. This is a great way to help keep new content and updates coming. Thank you in advance!"
+            data-color="#5F7FFF"
+            data-position="Right"
+            data-x_margin="5"
+            data-y_margin="5"
+            async // Asenkron olarak yükleme
+          ></script>
           {/* <Script>
             {`
               window.dataLayer = window.dataLayer || [];

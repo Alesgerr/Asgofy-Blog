@@ -25,7 +25,6 @@ import React from "react";
 import ShareGroup from "@/components/ShareGroup";
 import CommentForm from "@/components/CommentForm";
 import AnimationWrapper from "@/components/AnimationWrapper";
-import BuymeacoffeeWidget from "@/components/BuyMeaCoffee";
 
 export default function BlogDetailsPage({ post, relatedProducts }) {
   // if (!post) {
@@ -62,7 +61,6 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
       <AnimationWrapper>
         <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
           {/* <!-- Blog Article --> */}
-          <BuymeacoffeeWidget />
           <div className="blog-article">
             <div className="pb-12 lg:flex">
               <div className="hidden">
