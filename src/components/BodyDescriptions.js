@@ -40,6 +40,7 @@ const BodyDescription = ({ body, title, table }) => {
 
         if (block._type === "block") {
           // Eğer blok bir başlık ise ve önceki başlık ile aynı değilse, ekrana yaz
+          console.log(block)
           if (
             block.style === "h2" &&
             block.children[0].text !== previousHeading
@@ -144,7 +145,59 @@ const BodyDescription = ({ body, title, table }) => {
                 </h4>
               </div>
             );
-          } else if (block._type == "link") {
+          } else if(block.style === "h5"){
+             return (
+               <>
+                 <h5 className="flex text-lg">
+                   {block?.markDefs?.map((item, index) => {
+                     if (
+                       block?.markDefs?.some((mark) => mark?._type === "link")
+                     ) {
+                       const linkMark = block?.markDefs?.find(
+                         (mark) => mark._type === "link"
+                       );
+                       const link = linkMark.href;
+                       return (
+                         <a key={`${key}-${index}`} href={link}>
+                           {block.children?.map((item, i) => (
+                             <span key={i}>{item?.text}</span>
+                           ))}
+                         </a>
+                       );
+                     }
+                   })}
+                 </h5>
+                 <h5 className="font-semibold text-xl flex">
+                   {block?.children?.map((item, index) => {
+                     if (
+                       block?.markDefs?.find((mark) => mark._type === "link")
+                     ) {
+                       const linkMark = block?.markDefs?.find(
+                         (mark) => mark._type === "link"
+                       );
+                       const link = linkMark.href;
+                       return (
+                         <a key={index} href={link}>
+                           <span className="font-bold underline">
+                             {item.text}
+                           </span>
+                         </a>
+                       );
+                     } else {
+                       return (
+                         <>
+                           <span key={index} className="font-bold text-xl flex">
+                             {item?.text}
+                           </span>
+                         </>
+                       );
+                     }
+                   })}
+                 </h5>
+               </>
+             );
+          }
+           else if (block._type == "link") {
             {
               block?.children?.map((span) => {
                 const markDefs = span?.markDefs;
