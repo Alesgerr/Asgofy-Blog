@@ -27,11 +27,11 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   getFirestore,
   setDoc,
 } from "@firebase/firestore";
 import toast from "react-hot-toast";
-
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -41,15 +41,25 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-let app
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApp(); // Zaten mevcut olan uygulamayı al
-}
+// let app
+// if (!getApps().length) {
+//   app = initializeApp(firebaseConfig);
+// } else {
+//   app = getApp(); // Zaten mevcut olan uygulamayı al
+// }
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+
+// export const getStories = async () => {
+//   const storiesSnapshot = await getDocs(collection(db, "stories"));
+//   const stories = storiesSnapshot.docs.map((doc) => ({
+//     id: doc.id,
+//     ...doc.data(),
+//   }));
+//   return stories;
+// };
 
 export const register = async (email, password, displayName) => {
   const auth = getAuth(app);

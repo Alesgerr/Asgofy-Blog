@@ -197,6 +197,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                               <PinterestShareButton
                                 title={post?.title || post?.metaTitle}
                                 url={postUrl}
+                                image={post?.postImage}
                                 media={
                                   "next-share is a social share buttons for your next React apps."
                                 }
@@ -261,7 +262,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                         height={500}
                         priority
                         quality={70}
-                        className="rounded-md h-[250px] sm:h-[350px] object-cover"
+                        className="rounded-md"
                       />
                     </div>
 

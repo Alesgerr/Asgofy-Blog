@@ -122,8 +122,8 @@ const CommentForm = ({ postId }) => {
 
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center">
-      <div className="md:px-5 my-5 w-full rounded-md dark:bg-zinc-950 dark:border-none p-4 shadow-md border">
-        <p className="text-xl mb-3 font-semibold text-indigo-700 dark:text-white transition-all">
+      <div className="md:px-5 my-5 w-full rounded-md dark:bg-zinc-950 dark:border-none">
+        <p className="text-xl mb-3 font-semibold dark:text-white transition-all">
           Reviews
         </p>
 
@@ -179,51 +179,53 @@ const CommentForm = ({ postId }) => {
             </span>
           </p>
         )}
-        <h2 className="text-lg font-bold mb-4">
-          Comments ({comments?.length})
-        </h2>
-        <ul>
-          {comments?.length === 0 ? (
-            <li className="text-sm text-gray-500 mb-4">No comments yet</li>
-          ) : (
-            comments?.map((comment, index) => (
-              <li key={index} className="mb-4">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center">
-                    <Image
-                      src={comment?.user?.imageUrl || "/avatar.png"}
-                      alt="Profile"
-                      width={36}
-                      height={36}
-                      priority
-                      className="w-10 h-10 rounded-full mr-2"
-                    />
-                    <p className="font-bold">{comment?.user?.fullName}</p>
+        <div className="border dark:border-gray-900 p-4 md:mb-5">
+          <h2 className="text-lg font-bold mb-4">
+            Comments ({comments?.length})
+          </h2>
+          <ul>
+            {comments?.length === 0 ? (
+              <li className="text-sm text-gray-500 mb-4">No comments yet</li>
+            ) : (
+              comments?.map((comment, index) => (
+                <li key={index} className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <Image
+                        src={comment?.user?.imageUrl || "/avatar.png"}
+                        alt="Profile"
+                        width={36}
+                        height={36}
+                        priority
+                        className="w-10 h-10 rounded-full mr-2"
+                      />
+                      <p className="font-bold">{comment?.user?.fullName}</p>
+                    </div>
+                    {loadingStates[comment._id] ? (
+                      <CircularProgress className="mx-5" size={24} />
+                    ) : (
+                      currentUser &&
+                      currentUser?.uid === comment?.user?.id && (
+                        <IconButton
+                          onClick={() => handleDeleteComment(comment._id)}
+                        >
+                          <DeleteIcon className="dark:text-red-600" />
+                        </IconButton>
+                      )
+                    )}
                   </div>
-                  {loadingStates[comment._id] ? (
-                    <CircularProgress className="mx-5" size={24} />
-                  ) : (
-                    currentUser &&
-                    currentUser?.uid === comment?.user?.id && (
-                      <IconButton
-                        onClick={() => handleDeleteComment(comment._id)}
-                      >
-                        <DeleteIcon className="dark:text-red-600" />
-                      </IconButton>
-                    )
-                  )}
-                </div>
-                <p className="mb-1 text-sm">{comment.text}</p>
-                <p className="text-sm mb-1 flex">
-                  {renderRatingStars(comment)}
-                </p>
-                <p className="text-sm text-gray-500">
-                  {formatDate(comment.date)}
-                </p>
-              </li>
-            ))
-          )}
-        </ul>
+                  <p className="mb-1 text-sm">{comment.text}</p>
+                  <p className="text-sm mb-1 flex">
+                    {renderRatingStars(comment)}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {formatDate(comment.date)}
+                  </p>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );
