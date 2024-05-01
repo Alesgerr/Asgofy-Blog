@@ -72,7 +72,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                 </button>
               </div>
               <div className="lg:w-6/12 md:order-2">
-                <div className="md:mx-5 rounded-md">
+                <div className="md:mx-5 rounded">
                   {/* <!-- Avatar Media --> */}
                   <div className="flex justify-between items-center mb-6 overflow-hidden">
                     <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
@@ -280,7 +280,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                 {/* <!-- End Content --> */}
               </div>
               <div className="lg:w-3/12 md:order-1">
-                <div className="mb-3 md:mr-4 shadow-sm rounded-md">
+                <div className="mb-3 md:mr-4">
                   <p className="font-bold">Categories</p>
                   {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
                   <div className="border dark:border-gray-800 mt-3 p-2">
@@ -298,7 +298,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                 </div>
               </div>
               <div className="lg:w-3/12 md:order-3">
-                <div className="shadow-sm md:ml-2 rounded-md">
+                <div className="md:ml-2">
                   <div className="tags">
                     <p className="font-bold">Tags</p>
                     <div className="flex flex-wrap my-3 gap-1">
