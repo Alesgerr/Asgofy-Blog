@@ -31,7 +31,6 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
   //   return <LoadingCard />;
   // }
   // const { metaTitle, metaDescription } = post;
-  console.log(post);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const postUrl = `${baseUrl}/blog/${post?.slug}`;
   const postImage = post?.postImage;
