@@ -7,6 +7,7 @@ export const post = {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
@@ -16,6 +17,7 @@ export const post = {
         source: "title",
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
@@ -26,24 +28,27 @@ export const post = {
       name: "body",
       title: "Body",
       type: "blockContent",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "table",
       title: "Table",
       type: "array",
-      of: [{ type: "reference", to: {type: "table"} }], // Tablo şemasına referans verin
+      of: [{ type: "reference", to: { type: "table" } }], // Tablo şemasına referans verin
     },
     {
       name: "author",
       title: "Author",
       type: "reference",
       to: { type: "author" },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "categories",
       title: "Categories",
       type: "array",
       of: [{ type: "reference", to: { type: "category" } }],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "mainImage",
@@ -51,7 +56,12 @@ export const post = {
       type: "image",
       options: {
         hotspot: true,
+        maxWidth: 800, // Maksimum genişlik
+        maxHeight: 600, // Maksimum yükseklik
+        fit: "crop", // Görüntü boyutu ayarları (örneğin, crop, fill, scale, vb.)
+        quality: 80, // Görüntü kalitesi (0 ile 100 arasında bir değer)
       },
+      validation: (Rule) => Rule.required(),
       fields: [
         {
           name: "alt",
@@ -60,16 +70,17 @@ export const post = {
         },
       ],
     },
-
     {
       name: "publishedAt",
       title: "Published at",
       type: "datetime",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "lastModifiedDate",
       title: "Last Modified Date",
       type: "datetime",
+      validation: (Rule) => Rule.required(),
     },
 
     {
@@ -77,6 +88,7 @@ export const post = {
       title: "Tags",
       type: "array",
       of: [{ type: "reference", to: [{ type: "tags" }] }], // Tags alanı bir referans olarak tanımlanıyor
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "featured",
@@ -107,6 +119,7 @@ export const post = {
       title: "Meta Description",
       type: "text",
       description: "SEO için meta açıklaması",
+      validation: (Rule) => Rule.required(),
     },
     //  {
     //     name: 'metaTags',

@@ -38,7 +38,7 @@
     "react-slick": "^0.30.2",
     "rss": "^1.2.2",
     "sanity": "^3.35.2",
-    "sanity-plugin-asset-source-unsplash": "^2.0.1",
+    "sanity-plugin-media": "^2.2.5",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.8",
     "swiper": "^11.1.1"
