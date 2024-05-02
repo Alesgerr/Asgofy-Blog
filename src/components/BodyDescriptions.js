@@ -8,7 +8,6 @@ import Link from "next/link";
 const BodyDescription = ({ body, title, table }) => {
   // Önceki başlık kontrolü için bir değişken tanımlayalım
   let previousHeading = "";
-  console.log(body);
   return (
     <div>
       {table && (
@@ -96,7 +95,7 @@ const BodyDescription = ({ body, title, table }) => {
                     }
                   })}
                 </h2> */}
-                <h2 className="font-semibold text-xl flex">
+                <h2 className="font-semibold text-xl flex text-[#e24949]">
                   {block?.children?.map((item, index) => {
                     const linkMark = block?.markDefs?.find(
                       (mark) => mark._type === "link"
@@ -127,7 +126,7 @@ const BodyDescription = ({ body, title, table }) => {
           else if (block.style === "h3") {
             return (
               <div key={key} className="my-5">
-                <h3 className="font-semibold text-md mb-2">
+                <h3 className="font-semibold text-md mb-2 text-gray-700 dark:text-gray-300">
                   {block.children[0].text}
                 </h3>
               </div>
@@ -213,18 +212,18 @@ const BodyDescription = ({ body, title, table }) => {
                   className="pl-5 body-content"
                   style={{ display: "flex", flexWrap: "wrap" }}
                 >
-                  {block.children.map((listItem, listItemIndex) => {
-                    console.log(listItem);
-                    return (
-                      <li
-                        key={listItemIndex}
-                        className={`list-disc-first ${listItemIndex !== 0 ? "inline-block" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
-                        style={{ marginRight: "10px", marginBottom: "10px" }} // İstenirse bir boşluk eklenebilir
-                      >
+                  <li>
+                    {block.children.map((listItem, listItemIndex) => {
+                      return (
+                        <span
+                          key={listItemIndex}
+                          className={`list-disc-first ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
+                        >
                         {listItem.text}
-                      </li>
-                    );
-                  })}
+                        </span>
+                      );
+                    })}
+                  </li>
                 </ul>
               </div>
             );

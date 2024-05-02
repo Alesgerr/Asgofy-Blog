@@ -110,15 +110,15 @@ export default function CategoryArticles({
                             {loading ? (
                               <div>Loading...</div>
                             ) : (
-                              <span>
+                              <span className="text-sm">
                                 <PostPublishedDate
                                   publishedAt={item?.publishedAt}
                                 />
                               </span>
                             )}
 
-                            <span className="px-1">|</span>
-                            <span>{item?.timeAgo}</span>
+                            <span className="pr-1">,</span>
+                            <span className="text-sm">{item?.timeAgo}</span>
                           </div>
                           <h2 className="sm:text-lg mb-4 font-bold">
                             {item?.title}

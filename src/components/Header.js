@@ -102,7 +102,7 @@ const Header = () => {
     <>
       <header className="header">
         <nav
-          className="mx-auto flex max-w-7xl items-center justify-between px-5 md:px-14 p-5"
+          className="mx-auto flex max-w-7xl items-center justify-between px-5 fixed w-full z-50 bg-white dark:bg-black shadow-sm md:px-14 p-5"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">

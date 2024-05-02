@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
           name="keywords"
           content="blog, article, post, guide, tip, update, content"
         /> */}
-        
+
         <script
           type="text/javascript"
           charset="UTF-8"
@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }) {
         <AuthContextProvider>
           <ThemeProvider enableSystem={true} attribute="class">
             <Header />
-            <main>
+            <main className="pt-16 sm:pt-20">
               <PageLoader />
               <Component {...pageProps} />
             </main>
