@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }) {
         <AuthContextProvider>
           <ThemeProvider enableSystem={true} attribute="class">
             <Header />
-            <main className="pt-16 sm:pt-20">
+            <main>
               <PageLoader />
               <Component {...pageProps} />
             </main>
