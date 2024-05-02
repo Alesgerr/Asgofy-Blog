@@ -8,7 +8,7 @@ import Link from "next/link";
 const BodyDescription = ({ body, title, table }) => {
   // Önceki başlık kontrolü için bir değişken tanımlayalım
   let previousHeading = "";
-
+  console.log(body);
   return (
     <div>
       {table && (
@@ -209,10 +209,22 @@ const BodyDescription = ({ body, title, table }) => {
           else if (block.listItem === "bullet") {
             return (
               <div key={key} className="my-5">
-                <ul className="list-disc pl-5">
-                  {block.children.map((listItem, listItemIndex) => (
-                    <li key={key}>{listItem.text}</li>
-                  ))}
+                <ul
+                  className="pl-5 body-content"
+                  style={{ display: "flex", flexWrap: "wrap" }}
+                >
+                  {block.children.map((listItem, listItemIndex) => {
+                    console.log(listItem);
+                    return (
+                      <li
+                        key={listItemIndex}
+                        className={`list-disc-first ${listItemIndex !== 0 ? "inline-block" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
+                        style={{ marginRight: "10px", marginBottom: "10px" }} // İstenirse bir boşluk eklenebilir
+                      >
+                        {listItem.text}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             );

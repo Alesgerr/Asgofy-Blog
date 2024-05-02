@@ -72,6 +72,10 @@ body {
 .MuiInputBase-input {
   height: 10px !important;
 }
+.body-content li:first-child {
+  list-style-type: disc !important;
+}
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
