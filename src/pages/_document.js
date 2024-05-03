@@ -47,6 +47,11 @@ class MyDocument extends Document {
               gtag('config', 'G-JLL3BBVNRL');
             `}
           </Script> */}
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4424970427520359"
+            crossorigin="anonymous"
+          ></script>
         </Head>
         <body>
           <Main />
