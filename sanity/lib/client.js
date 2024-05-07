@@ -76,6 +76,7 @@ export async function getPostById(slug) {
           mainImage,
           categories[]->,
           tags[]->,
+          faq[]->,
           publishedAt,
           lastModifiedDate,
           metaTitle,
@@ -99,7 +100,6 @@ export async function getPostById(slug) {
       `,
       { slug }
     );
-
     // likes ve dislikes alanlarını kontrol et ve null ise 0 olarak ayarla
     // product.likes = product.likes === null ? 0 : product.likes;
     // product.dislikes = product.dislikes === null ? 0 : product.dislikes;
@@ -348,4 +348,51 @@ export async function incrementArticleViews(articleId) {
   // Görüntüleme sayısını güncelle
   await client.patch(articleId).set({ views: newViews }).commit();
 }
+// ! Faq
+// export async function getArticleIdFromSlug(slug) {
+//   const query = `*[_type == "post" && slug.current == $slug][0]._id`;
+
+//   const params = { slug };
+
+//   const result = await client.fetch(query, params);
+
+//   // Eğer sonuç dizi şeklinde değilse veya boşsa hata fırlat
+//   if (!Array.isArray(result) || result.length === 0) {
+//     throw new Error("Makale bulunamadı");
+//   }
+
+//   return result[0];
+// }
+
+// export async function getFAQsForArticle(articleId) {
+//   const query = `*[_type == "post" && _id == $articleId][0].faq[]{
+//     _id,
+//     question,
+//     answer
+//   }`;
+
+//   const params = { articleId };
+
+//   const results = await client.fetch(query, params);
+//   return results;
+// }
+
+// export async function getFAQsForPost(postId) {
+//   try {
+//     const faqs = await client.fetch(
+//       `*[_type == "faq" && relatedPost._ref == $postId] {
+//         _id,
+//         question,
+//         answer
+//       }`,
+//       { postId }
+//     );
+
+//     return faqs;
+//   } catch (error) {
+//     console.error("Error fetching FAQs for post:", error);
+//     return null;
+//   }
+// }
+
 export default fetchComments;

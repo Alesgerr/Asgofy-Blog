@@ -16,6 +16,9 @@ import {
 
 import Head from "next/head";
 import {
+  getArticleIdFromSlug,
+  getFAQsForArticle,
+  getFAQsForPost,
   getPostById,
   getRelatedPostByCategory,
 } from "../../../sanity/lib/client";
@@ -25,8 +28,9 @@ import React from "react";
 import ShareGroup from "@/components/ShareGroup";
 import CommentForm from "@/components/CommentForm";
 import AnimationWrapper from "@/components/AnimationWrapper";
+import Faq from "@/components/Faq";
 
-export default function BlogDetailsPage({ post, relatedProducts }) {
+export default function BlogDetailsPage({ post, relatedProducts}) {
   // if (!post) {
   //   return <LoadingCard />;
   // }
@@ -272,6 +276,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                       title={post?.title}
                       table={post?.table}
                     />
+                    <Faq faqs={post?.faq} />
                   </div>
                 </div>
                 <div>
@@ -411,7 +416,6 @@ export async function getServerSideProps(context) {
   const currentUrl = req.url;
   try {
     const processedPost = await getPostById(slug); // Post verisini getirme işlevi
-
     if (!processedPost) {
       return {
         notFound: true, // Eğer post bulunamazsa 404 sayfasına yönlendirilir

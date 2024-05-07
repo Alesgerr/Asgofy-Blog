@@ -82,7 +82,6 @@ export const post = {
       type: "datetime",
       validation: (Rule) => Rule.required(),
     },
-
     {
       name: "tags",
       title: "Tags",
@@ -108,6 +107,18 @@ export const post = {
       type: "number",
       initialValue: 0, // Varsayılan değer olarak 0
     },
+    {
+      name: "faq",
+      title: "FAQs",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "faq" }] }],
+    },
+    // {
+    //   name: "faq",
+    //   title: "Frequently Asked Questions",
+    //   type: "array",
+    //   of: [{ type: "faqItem" }],
+    // },
     {
       name: "metaTitle",
       title: "Meta Title",

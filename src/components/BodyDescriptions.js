@@ -95,7 +95,7 @@ const BodyDescription = ({ body, title, table }) => {
                     }
                   })}
                 </h2> */}
-                <h2 className="font-semibold text-xl flex text-[#e24949]">
+                <h2 className="font-semibold text-xl flex text-[#5c1e1e] dark:text-red-800">
                   {block?.children?.map((item, index) => {
                     const linkMark = block?.markDefs?.find(
                       (mark) => mark._type === "link"
@@ -126,7 +126,7 @@ const BodyDescription = ({ body, title, table }) => {
           else if (block.style === "h3") {
             return (
               <div key={key} className="my-5">
-                <h3 className="font-semibold text-md mb-2 text-gray-700 dark:text-gray-300">
+                <h3 className="font-semibold text-md mb-2 text-gray-900 dark:text-gray-300">
                   {block.children[0].text}
                 </h3>
               </div>

@@ -7,11 +7,12 @@ import tags from "./schemaTypes/tags";
 import user from "./schemaTypes/user";
 import postComment from "./schemaTypes/postComment";
 import { tableSchema } from "./schemaTypes/tableSchema";
-
+import faq from "./schemaTypes/faq";
 export const schema = {
   types: [
     post,
     tags,
+    faq,
     author,
     user,
     tableSchema,
