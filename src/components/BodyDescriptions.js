@@ -95,7 +95,7 @@ const BodyDescription = ({ body, title, table }) => {
                     }
                   })}
                 </h2> */}
-                <h2 className="font-semibold text-xl flex text-white">
+                <h2 className="font-semibold text-xl flex dark:text-white">
                   {block?.children?.map((item, index) => {
                     const linkMark = block?.markDefs?.find(
                       (mark) => mark._type === "link"
