@@ -25,10 +25,15 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useRouter()
 
 
-  const googleSingIn = () => {
+  const googleSingIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      throw error;
+    }
   };
+
 
   const logOut = () => {
     signOut(auth);
