@@ -20,12 +20,21 @@ const BodyDescription = ({ body, title, table }) => {
                   {row?.subtitles?.map((subtitle, subIndex) => (
                     <li key={subIndex} className="flex items-center">
                       <span className="mr-2">{subIndex + 1}.</span>
-                      <Link
-                        href={subtitle?.product?.slug?.current}
-                        className="text-black dark:text-gray-200 underline my-1 hover:underline text-sm"
-                      >
-                        {subtitle?.subtitle || subtitle?.product?.title}
-                      </Link>
+                      {subtitle?.product ? (
+                        <Link
+                          href={subtitle?.product?.slug?.current}
+                          className="text-black dark:text-gray-200 underline my-1 hover:underline text-sm"
+                        >
+                          {subtitle?.subtitle || subtitle?.product?.title}
+                        </Link>
+                      ) : (
+                        <Link
+                          href={`#${subtitle?.id}`}
+                          className="text-black dark:text-gray-200 my-1 hover:underline text-sm"
+                        >
+                          {subtitle?.subtitle || subtitle?.product?.title}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -45,56 +54,11 @@ const BodyDescription = ({ body, title, table }) => {
           ) {
             previousHeading = block.children[0].text; // Önceki başlığı güncelle
             return (
-              <div key={key} className="my-5">
-                {/* <h2 className="font-bold text-xl mb-3">
-                  {block?.children[0].text}
-                </h2> */}
-                {/* <h2 className="flex text-lg">
-                  {block?.markDefs?.map((item, index) => {
-                    if (
-                      block?.markDefs?.some((mark) => mark?._type === "link")
-                    ) {
-                      const linkMark = block?.markDefs?.find(
-                        (mark) => mark._type === "link"
-                      );
-                      const link = linkMark.href;
-                      return (
-                        <a key={`${key}-${index}`} href={link}>
-                          {block.children?.map((item) => (
-                            <span>{item?.text}</span>
-                          ))}
-                        </a>
-                      );
-                    }
-                  })}
-                </h2> */}
-                {/* <h2 className="font-semibold text-xl flex">
-                  {block?.children?.map((item, index) => {
-                    if (
-                      block?.markDefs?.find((mark) => mark._type === "link")
-                    ) {
-                      const linkMark = block?.markDefs?.find(
-                        (mark) => mark._type === "link"
-                      );
-                      const link = linkMark.href;
-                      return (
-                        <a key={index} href={link}>
-                          <span className="font-bold underline">
-                            {item.text}
-                          </span>
-                        </a>
-                      );
-                    } else {
-                      return (
-                        <>
-                          <span key={index} className="font-bold text-xl flex">
-                            {item?.text}
-                          </span>
-                        </>
-                      );
-                    }
-                  })}
-                </h2> */}
+              <div
+                key={key}
+                id={table?.subtitles?.subtitle?.id}
+                className="my-5"
+              >
                 <h2 className="font-semibold text-xl flex dark:text-white">
                   {block?.children?.map((item, index) => {
                     const linkMark = block?.markDefs?.find(
@@ -219,7 +183,7 @@ const BodyDescription = ({ body, title, table }) => {
                           key={listItemIndex}
                           className={`list-disc-first ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
                         >
-                        {listItem.text}
+                          {listItem.text}
                         </span>
                       );
                     })}
@@ -260,5 +224,4 @@ const BodyDescription = ({ body, title, table }) => {
     </div>
   );
 };
-
 export default BodyDescription;

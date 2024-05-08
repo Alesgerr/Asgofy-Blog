@@ -22,6 +22,12 @@ export const tableSchema = {
               type: "string",
             },
             {
+              name: "id",
+              title: "ID",
+              type: "string",
+              description: "Unique identifier for internal navigation",
+            },
+            {
               name: "product",
               title: "Product",
               type: "reference",

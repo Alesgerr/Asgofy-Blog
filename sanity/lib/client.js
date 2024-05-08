@@ -85,6 +85,7 @@ export async function getPostById(slug) {
               mainTitle,
               subtitles[]{
                 subtitle,
+                id,
                 product->{title, slug} // Product alanını referans olarak alırken, hangi alanları almak istediğinizi belirtin
               }
             },
