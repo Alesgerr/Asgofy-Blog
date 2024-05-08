@@ -35,10 +35,10 @@ const TagsPage = ({ tags }) => {
           {tags.map((tag) => (
             <li
               key={tag?._id}
-              className="p-2 py-4 bg-zinc-900 dark:bg-white rounded-md"
+              className="p-2 py-4 bg-zinc-900 dark:bg-white text-center rounded-md"
             >
               <Link href={`/tag/${tag?.slug?.current}`}>
-                <span className="text-white dark:text-black font-bold hover:text-blue-700">
+                <span className="text-white dark:text-black hover:text-blue-700">
                   {tag?.tag} ({tag?.postCount})
                 </span>
               </Link>

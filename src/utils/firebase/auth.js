@@ -4,7 +4,7 @@ import "firebase/auth";
 import "firebase/analytics"; // Firebase Analytics'ı içe aktarın
 // import firebaseConfig from "./firebaseConfig"; // Firebase yapılandırma bilgilerini içeren dosya
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 import {
   EmailAuthProvider,
   GoogleAuthProvider,
@@ -39,15 +39,15 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  // measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-// let app
-// if (!getApps().length) {
-//   app = initializeApp(firebaseConfig);
-// } else {
-//   app = getApp(); // Zaten mevcut olan uygulamayı al
-// }
-const app = initializeApp(firebaseConfig);
+let app
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApp(); // Zaten mevcut olan uygulamayı al
+}
+// const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);

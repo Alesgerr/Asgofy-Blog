@@ -255,7 +255,7 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                   </div>
                   {/* <!-- Content --> */}
                   <div className="space-y-5 md:space-y-8">
-                    <h1 className="text-lg mt-5 sm:text-3xl font-bold">
+                    <h1 className="text-lg mt-5 sm:text-2xl font-bold">
                       {post?.title}
                     </h1>
                     <div className="flex justify-center">

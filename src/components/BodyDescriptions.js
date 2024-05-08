@@ -32,7 +32,7 @@ const BodyDescription = ({ body, title, table }) => {
                           href={`#${subtitle?.id}`}
                           className="text-black dark:text-gray-200 my-1 hover:underline text-sm"
                         >
-                          {subtitle?.subtitle || subtitle?.product?.title}
+                          {subtitle?.subtitle}
                         </Link>
                       )}
                     </li>
@@ -45,7 +45,6 @@ const BodyDescription = ({ body, title, table }) => {
       )}
       {body?.map((block, index) => {
         let key = `${block._type}-${index}`;
-
         if (block._type === "block") {
           // Eğer blok bir başlık ise ve önceki başlık ile aynı değilse, ekrana yaz
           if (
@@ -54,11 +53,7 @@ const BodyDescription = ({ body, title, table }) => {
           ) {
             previousHeading = block.children[0].text; // Önceki başlığı güncelle
             return (
-              <div
-                key={key}
-                id={table?.subtitles?.subtitle?.id}
-                className="my-5"
-              >
+              <div key={key} className="my-5">
                 <h2 className="font-semibold text-xl flex dark:text-white">
                   {block?.children?.map((item, index) => {
                     const linkMark = block?.markDefs?.find(
