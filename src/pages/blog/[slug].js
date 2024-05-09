@@ -258,15 +258,17 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                     <h1 className="text-lg mt-5 sm:text-2xl font-bold">
                       {post?.title}
                     </h1>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center postMainImages">
                       <Image
                         src={post?.postImage}
                         alt={post?.title}
-                        width={1000}
-                        height={500}
+                        // width={1000}
+                        // height={500}
+                        fill
+                        sizes="(max-width:768px) 100vw, 700px"
                         priority
-                        quality={70}
-                        className="rounded-md"
+                        // quality={70}
+                        className="rounded-md object-cover"
                       />
                     </div>
 
