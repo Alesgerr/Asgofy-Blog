@@ -325,7 +325,7 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                     <div className="my-5 mb-3">
                       <h2 className="font-bold mb-5">Related Posts</h2>
                       <div className="grid grid-cols-1 mx-auto">
-                        {relatedProducts?.slice(0, 5)?.map((post, i) => (
+                        {relatedProducts?.slice(0, 6)?.map((post, i) => (
                           <Link href={`/blog/${post?.slug}`} key={i}>
                             <div className="flex items-center mb-5 md:mb-7 lg:mb-2">
                               <div className="img-box">

@@ -123,7 +123,7 @@ const CommentForm = ({ postId }) => {
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center">
       <div className="md:px-5 my-5 w-full rounded-md dark:bg-zinc-950 dark:border-none">
-        <p className="text-xl mb-3 font-semibold dark:text-white transition-all p-4">
+        <p className="text-xl my-3 mb-3 font-semibold dark:text-white transition-all">
           Reviews
         </p>
 
@@ -172,7 +172,7 @@ const CommentForm = ({ postId }) => {
             </button>
           </form>
         ) : (
-          <p className="my-3 px-4">
+          <p className="my-3">
             You Need to Register to Comment{" "}
             <span className="text-blue-800 underline">
               <Link href="/profile/sign-in">Login</Link>

@@ -65,7 +65,10 @@ const BodyDescription = ({ body, title, table }) => {
                         <span className="font-bold underline">{item.text}</span>
                       </a>
                     ) : (
-                      <span key={index} className="font-bold text-xl flex">
+                      <span
+                        key={index}
+                        className="font-bold tracking-wide text-xl flex"
+                      >
                         {item.text}
                       </span>
                     );
@@ -85,8 +88,8 @@ const BodyDescription = ({ body, title, table }) => {
           else if (block.style === "h3") {
             return (
               <div key={key} className="my-5">
-                <h3 className="font-semibold text-md mb-2 text-gray-900 dark:text-gray-300">
-                  {block.children[0].text}
+                <h3 className="font-semibold tracking-wide text-md mb-2 text-gray-900 dark:text-gray-100">
+                  {block?.children[0]?.text}
                 </h3>
               </div>
             );
@@ -95,7 +98,7 @@ const BodyDescription = ({ body, title, table }) => {
               <div key={key} className="my-5">
                 <h4 className="font-semibold text-md mb-2">
                   {block?.children?.map((item, i) => (
-                    <span className="font-medium" key={i}>
+                    <span className="font-medium tracking-wide" key={i}>
                       {item?.text}
                     </span>
                   ))}
@@ -112,7 +115,7 @@ const BodyDescription = ({ body, title, table }) => {
                       <h5 className="flex text-lg" key={`${key}-${index}`}>
                         <Link href={link}>
                           {block.children?.map((child, i) => (
-                            <span className="underline" key={i}>
+                            <span className="underline tracking-wide" key={i}>
                               {child?.text}
                             </span>
                           ))}
@@ -176,7 +179,7 @@ const BodyDescription = ({ body, title, table }) => {
                       return (
                         <span
                           key={listItemIndex}
-                          className={`list-disc-first ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
+                          className={`list-disc-first tracking-wide ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
                         >
                           {listItem.text}
                         </span>
@@ -192,7 +195,11 @@ const BodyDescription = ({ body, title, table }) => {
             return (
               <div key={key} className="my-5">
                 {block.children.map((span, spanIndex) => {
-                  return <span key={`${key}-${spanIndex}`}>{span?.text}</span>;
+                  return (
+                    <span className="tracking-wide" key={`${key}-${spanIndex}`}>
+                      {span?.text}
+                    </span>
+                  );
                 })}
               </div>
             );
