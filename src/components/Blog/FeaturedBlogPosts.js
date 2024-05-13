@@ -141,7 +141,7 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
                           {post?.title}
                         </h3>
                         <p className="text-gray-500 leading-6 transition-all duration-500 mb-8">
-                          {post?.description.length > 100
+                          {post?.description?.length > 100
                             ? post?.description?.slice(0, 100) + "..."
                             : post?.description}
                         </p>
