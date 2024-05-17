@@ -68,9 +68,9 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
                       featuredProducts[featuredProducts.length - 1]?.imageUrl
                     } // İlk ürünün resmini büyük olarak gösteriyoruz
                     alt={featuredProducts[featuredProducts.length - 1]?.title}
-                    className="rounded-lg"
-                    width={1000}
-                    height={300}
+                    className="rounded-lg w-full"
+                    width={350}
+                    height={200}
                     objectFit="fil"
                     loading="lazy"
                   />
@@ -112,7 +112,7 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
               {featuredProducts
                 ?.slice(0, -1)
                 ?.slice(-4)
-                .map((product, index) => (
+                ?.map((product, index) => (
                   <div
                     className="flex flex-col rounded-lg featured-article"
                     key={index}
@@ -120,10 +120,10 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
                     <div className="img">
                       <Link href={`/blog/${product?.slug}`}>
                         <Image
-                          className="rounded-lg h-28 sm:h-28 object-cover hover:scale-[1.1] duration-200 cursor-pointer"
+                          className="rounded-lg w-full h-28 sm:h-28 object-cover hover:scale-[1.1] duration-200 cursor-pointer"
                           src={product?.imageUrl}
                           alt={product?.title}
-                          width={1000}
+                          width={350}
                           height={200}
                           loading="lazy"
                           objectFit="contain"

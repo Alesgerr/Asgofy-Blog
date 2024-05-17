@@ -299,28 +299,26 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
               <div className="lg:w-3/12 md:order-3">
                 <div className="md:ml-2">
                   <div className="category">
-                    <div className="">
-                      <div className="mb-3 md:mr-4">
-                        <p className="font-bold">Categories</p>
-                        {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
-                        <div className="border dark:border-gray-800 mt-3 p-2">
-                          {post?.categories?.map((category) => (
-                            <Link
-                              href={`/categories/${category?.slug?.current}`}
-                              key={category._id}
-                              className="flex justify-between leading-4 my-4 items-center hover:text-indigo-600"
-                            >
-                              <span className="mr-2">{category?.title}</span>
-                              <LiaArrowRightSolid />
-                            </Link>
-                          ))}
-                        </div>
+                    <div className="mb-3 md:mr-4">
+                      <p className="font-bold">Categories</p>
+                      {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
+                      <div className="border dark:border-gray-800 rounded-md mt-3 p-1">
+                        {post?.categories?.map((category) => (
+                          <Link
+                            href={`/categories/${category?.slug?.current}`}
+                            key={category._id}
+                            className="flex justify-between leading-4 my-3 items-center hover:text-indigo-600"
+                          >
+                            <span className="mr-2">{category?.title}</span>
+                            <LiaArrowRightSolid />
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
                   <div className="tags">
                     <p className="font-bold">Tags</p>
-                    <div className="flex flex-wrap my-3 gap-1">
+                    <div className="flex flex-wrap my-3 gap-3">
                       {post?.tags?.map((item) => (
                         <span key={item._id}>
                           <Link
