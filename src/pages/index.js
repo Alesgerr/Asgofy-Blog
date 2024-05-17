@@ -17,17 +17,18 @@ const Home = () => {
 
   return (
     <div>
-      <Hero />
+      {/* <Hero /> */}
+      <FeaturedBlogPosts
+        featuredProducts={featuredProducts}
+        isLoading={loading}
+      />
       <CategoryArticles
         articles={latestProducts}
         loading={loading}
         loadingCatCount={loadingCatCount}
         loadingTagCount={loadingTagCount}
       />
-      <FeaturedBlogPosts
-        featuredProducts={featuredProducts}
-        isLoading={loading}
-      />
+
       {/* <LatestBlogPosts latestProducts={latestProducts} isLoading={loading} /> */}
       {/* <Newsletter /> */}
     </div>

@@ -70,7 +70,7 @@ export default function CategoryArticles({
         <div className="w-full lg:max-w-[73%] pb-2 ">
           <div
             id="targetElement"
-            className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black shadow-md"
+            className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
           >
             {articles && (
               <h2 className="text-lg font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
@@ -98,7 +98,6 @@ export default function CategoryArticles({
                             width={400}
                             height={400}
                             loading="lazy"
-                            quality={50}
                             src={item?.imageUrl}
                             alt={item?.title}
                           />
@@ -111,13 +110,13 @@ export default function CategoryArticles({
                               <div>Loading...</div>
                             ) : (
                               <span className="text-sm">
-                                <PostPublishedDate
+                                {/* <PostPublishedDate
                                   publishedAt={item?.publishedAt}
-                                />
+                                /> */}
                               </span>
                             )}
 
-                            <span className="pr-1">,</span>
+                            {/* <span className="pr-1">,</span> */}
                             <span className="text-sm">{item?.timeAgo}</span>
                           </div>
                           <h2 className="sm:text-lg mb-4 font-semibold">
@@ -162,7 +161,7 @@ export default function CategoryArticles({
           </div>
         </div>
         <div className="w-full lg:w-3/12">
-          <div className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black shadow-md mb-3">
+          <div className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
             {processedCategories && (
               <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">
                 Our Popular{" "}
@@ -190,7 +189,7 @@ export default function CategoryArticles({
               </ul>
             )}
           </div>
-          <div className="popular_tags rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black shadow-md">
+          <div className="popular_tags rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md">
             {processedTags && (
               <h2 className="text-lg font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
                 Popular <span className="text-indigo-600">tags</span>

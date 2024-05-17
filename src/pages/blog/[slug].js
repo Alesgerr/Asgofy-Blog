@@ -252,7 +252,6 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                         className="rounded-md object-cover"
                       />
                     </div>
-
                     <p className="text-md font-normal">{post?.description}</p>
                     <BodyDescription
                       body={post?.body}

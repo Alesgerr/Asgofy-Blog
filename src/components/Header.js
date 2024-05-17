@@ -19,6 +19,7 @@ import { usePostContext } from "@/context/PostContext";
 import { FaRegSadCry } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 const Header = () => {
   const [state, setState] = useState(false);
   const [state1, setState1] = useState(false);
@@ -94,8 +95,8 @@ const Header = () => {
     // { title: "Guides", path: "javascript:void(0)" },
     // { title: "Partners", path: "javascript:void(0)" },
     // { title: "Teams", path: "javascript:void(0)" },
-    // { title: "Contact", path: "/contact" },
-    // { title: "About", path: "/about" },
+    { title: "Contact", path: "/contact" },
+    { title: "About", path: "/about" },
   ];
 
   return (
@@ -231,7 +232,7 @@ const Header = () => {
                         <div className="mt-2">
                           {currentUser ? (
                             <h1 className="font-bold">
-                              {currentUser.displayName}
+                              {currentUser?.displayName}
                             </h1>
                           ) : (
                             <div className="hidden"></div>
@@ -384,7 +385,7 @@ const Header = () => {
                       onClick={toggleMenu}
                       key={index}
                     >
-                      {link.title}
+                      {link?.title}
                     </Link>
                   ))}
                 </div>
