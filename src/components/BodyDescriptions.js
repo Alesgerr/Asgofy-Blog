@@ -62,7 +62,9 @@ const BodyDescription = ({ body, title, table }) => {
                     const link = linkMark ? linkMark.href : null;
                     return link ? (
                       <a key={index} href={link}>
-                        <span className="font-bold underline">{item.text}</span>
+                        <span className="font-bold underline">
+                          {item?.text}
+                        </span>
                       </a>
                     ) : (
                       <span
@@ -114,11 +116,13 @@ const BodyDescription = ({ body, title, table }) => {
                     return (
                       <h5 className="flex text-lg" key={`${key}-${index}`}>
                         <Link href={link}>
-                          {block.children?.map((child, i) => (
-                            <span className="underline tracking-wide" key={i}>
-                              {child?.text}
-                            </span>
-                          ))}
+                          {block.children?.map((child, i) => {
+                            return (
+                              <span className="underline tracking-wide" key={i}>
+                                {child?.text}
+                              </span>
+                            );
+                          })}
                         </Link>
                       </h5>
                     );
@@ -128,13 +132,20 @@ const BodyDescription = ({ body, title, table }) => {
                   const linkMark = block?.markDefs?.find(
                     (mark) => mark._type === "link"
                   );
+                  console.log(item, "test");
+
                   if (!linkMark) {
                     return (
                       <h5
-                        className="font-semibold text-xl flex"
+                        className="font-semibold text-md flex"
                         key={`${key}-${index}`}
                       >
-                        <span key={index}>{item?.text}</span>
+                        <span
+                          className={`${item?.marks[0] === "strong" ? "font-semibold" : ""}`}
+                          key={index}
+                        >
+                          {item?.text}
+                        </span>
                       </h5>
                     );
                   }
@@ -171,8 +182,8 @@ const BodyDescription = ({ body, title, table }) => {
             return (
               <div key={key} className="my-5">
                 <ul
-                  className="pl-5 body-content"
-                  style={{ display: "flex", flexWrap: "wrap" }}
+                  className="pl-5 body-content flex flex-wrap"
+                  // style={{ display: "flex", flexWrap: "wrap" }}
                 >
                   <li>
                     {block.children.map((listItem, listItemIndex) => {

@@ -85,9 +85,12 @@ body {
 .postMainImages {
   position: relative;
   width: 100%;
-  max-width: 700px;
+  /* max-width: 700px; */
   aspect-ratio: 60/45;
   margin: 2rem auto;
+}
+.dark .MuiBreadcrumbs-separator{
+  color: #a5a5a5;
 }
 /* :root {
   --foreground-rgb: 0, 0, 0;

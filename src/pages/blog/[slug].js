@@ -29,8 +29,9 @@ import ShareGroup from "@/components/ShareGroup";
 import CommentForm from "@/components/CommentForm";
 import AnimationWrapper from "@/components/AnimationWrapper";
 import Faq from "@/components/Faq";
+import Breadcrumb from "@/components/Breadcrumbs";
 
-export default function BlogDetailsPage({ post, relatedProducts}) {
+export default function BlogDetailsPage({ post, relatedProducts }) {
   // if (!post) {
   //   return <LoadingCard />;
   // }
@@ -65,6 +66,7 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
       <AnimationWrapper>
         <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
           {/* <!-- Blog Article --> */}
+          <Breadcrumb />
           <div className="blog-article">
             <div className="pb-12 lg:flex">
               <div className="hidden">
@@ -75,8 +77,8 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                   Categories
                 </button>
               </div>
-              <div className="lg:w-6/12 md:order-2">
-                <div className="md:mx-5 rounded">
+              <div className="lg:w-9/12 md:order-2">
+                <div className="md:mr-3 rounded">
                   {/* <!-- Avatar Media --> */}
                   <div className="flex justify-between items-center mb-6 overflow-hidden">
                     <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
@@ -97,9 +99,14 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                             {/* <!-- Tooltip --> */}
                             <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
                               <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
-                                <span className="font-semibold">
-                                  {post?.author.name}
-                                </span>
+                                <div>
+                                  {/* <span className="font-semibold text-sm">
+                                    By
+                                  </span> */}
+                                  <span className="font-semibold">
+                                    {post?.author.name}
+                                  </span>
+                                </div>
 
                                 {/* <!-- Dropdown Card --> */}
                                 <div
@@ -197,33 +204,7 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                           {/* <!-- Button Group --> */}
                           <div>
                             {/* <div class="sharethis-inline-share-buttons"></div> */}
-                            <div className="social-buttons flex">
-                              <PinterestShareButton
-                                title={post?.title || post?.metaTitle}
-                                url={postUrl}
-                                image={post?.postImage}
-                                media={
-                                  "next-share is a social share buttons for your next React apps."
-                                }
-                              >
-                                <span className="mr-2 py-1.5 px-2.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                                  <PinterestIcon size={32} round />
-                                  <span className="hidden sm:block">Pin</span>
-                                </span>
-                              </PinterestShareButton>
 
-                              <TwitterShareButton
-                                className="flex"
-                                title={post?.title || post?.metaTitle}
-                                url={postUrl}
-                                image={post?.postImage}
-                              >
-                                <span className="py-1.5 px-2.5 flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                                  <TwitterIcon size={32} round />
-                                  <span className="hidden sm:block">Tweet</span>
-                                </span>
-                              </TwitterShareButton>
-                            </div>
                             {/* <TwitterShareButton
                             title={metaTitle}
                             image={post?.postImage}
@@ -258,7 +239,7 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                     <h1 className="text-lg mt-5 sm:text-2xl font-bold">
                       {post?.title}
                     </h1>
-                    <div className="flex justify-center postMainImages">
+                    <div className="postMainImages">
                       <Image
                         src={post?.postImage}
                         alt={post?.title}
@@ -279,6 +260,35 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                       table={post?.table}
                     />
                     <Faq faqs={post?.faq} />
+                    <div className="shareButtons">
+                      <div className="social-buttons flex">
+                        <PinterestShareButton
+                          title={post?.title || post?.metaTitle}
+                          url={postUrl}
+                          image={post?.postImage}
+                          media={
+                            "next-share is a social share buttons for your next React apps."
+                          }
+                        >
+                          <span className="mr-2 py-1.5 px-2.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                            <PinterestIcon size={32} round />
+                            <span className="hidden sm:block">Pin</span>
+                          </span>
+                        </PinterestShareButton>
+
+                        <TwitterShareButton
+                          className="flex"
+                          title={post?.title || post?.metaTitle}
+                          url={postUrl}
+                          image={post?.postImage}
+                        >
+                          <span className="py-1.5 px-2.5 flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                            <TwitterIcon size={32} round />
+                            <span className="hidden sm:block">Tweet</span>
+                          </span>
+                        </TwitterShareButton>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div>
@@ -286,26 +296,29 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                 </div>
                 {/* <!-- End Content --> */}
               </div>
-              <div className="lg:w-3/12 md:order-1">
-                <div className="mb-3 md:mr-4">
-                  <p className="font-bold">Categories</p>
-                  {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
-                  <div className="border dark:border-gray-800 mt-3 p-2">
-                    {post?.categories?.map((category) => (
-                      <Link
-                        href={`/categories/${category?.slug?.current}`}
-                        key={category._id}
-                        className="flex justify-between leading-4 my-4 items-center hover:text-indigo-600"
-                      >
-                        <span className="mr-2">{category?.title}</span>
-                        <LiaArrowRightSolid />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
+
               <div className="lg:w-3/12 md:order-3">
                 <div className="md:ml-2">
+                  <div className="category">
+                    <div className="">
+                      <div className="mb-3 md:mr-4">
+                        <p className="font-bold">Categories</p>
+                        {/* <div className="border border-b-2 border-y-red-900 dark:border-red-900 my-5"></div> */}
+                        <div className="border dark:border-gray-800 mt-3 p-2">
+                          {post?.categories?.map((category) => (
+                            <Link
+                              href={`/categories/${category?.slug?.current}`}
+                              key={category._id}
+                              className="flex justify-between leading-4 my-4 items-center hover:text-indigo-600"
+                            >
+                              <span className="mr-2">{category?.title}</span>
+                              <LiaArrowRightSolid />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div className="tags">
                     <p className="font-bold">Tags</p>
                     <div className="flex flex-wrap my-3 gap-1">
@@ -340,7 +353,7 @@ export default function BlogDetailsPage({ post, relatedProducts}) {
                                 />
                               </div>
                               <div className="body-box p-2">
-                                <h2 className="text-sm md:text-[13px] font-bold">
+                                <h2 className="text-sm md:text-[13px] font-semibold">
                                   {post?.title?.length > 50
                                     ? post?.title.slice(0, 40) + "..."
                                     : post?.title}

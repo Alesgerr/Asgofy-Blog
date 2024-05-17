@@ -70,10 +70,10 @@ export default function CategoryArticles({
         <div className="w-full lg:max-w-[73%] pb-2 ">
           <div
             id="targetElement"
-            className="popular_categories rounded-md p-3 bg-white dark:bg-gray-950 shadow-md"
+            className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black shadow-md"
           >
             {articles && (
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
                 Recent <span className=" text-indigo-600">Posts</span>
               </h2>
             )}
@@ -94,9 +94,9 @@ export default function CategoryArticles({
                       <div className="md:order-2 flex items-center justify-center md:justify-end">
                         <Link rel="preload" href={`/blog/${item?.slug}`}>
                           <Image
-                            className="md:w-32 md:h-32 object-cover rounded-md mb-3"
-                            width={300}
-                            height={300}
+                            className="md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
+                            width={400}
+                            height={400}
                             loading="lazy"
                             quality={50}
                             src={item?.imageUrl}
@@ -120,17 +120,20 @@ export default function CategoryArticles({
                             <span className="pr-1">,</span>
                             <span className="text-sm">{item?.timeAgo}</span>
                           </div>
-                          <h2 className="sm:text-lg mb-4 font-bold">
+                          <h2 className="sm:text-lg mb-4 font-semibold">
                             {item?.title}
                           </h2>
                           <div className="mb-4">
-                            <Link
+                            {/* <Link
                               href={`/categories/${item?.categories[0]?.slug?.current}`}
                             >
                               <span className="bg-gray-200 dark:bg-white rounded-md p-2 px-3 text-black">
                                 {item?.categories[0]?.title}
                               </span>
-                            </Link>
+                            </Link> */}
+                            <span className="text-black dark:text-gray-300 dark:hover:text-white">
+                              Read More
+                            </span>
                           </div>
                         </Link>
                         {/* <p className="text-sm mb-5">
@@ -159,10 +162,11 @@ export default function CategoryArticles({
           </div>
         </div>
         <div className="w-full lg:w-3/12">
-          <div className="popular_categories rounded-md p-3 bg-white dark:bg-gray-950 shadow-md mb-3">
+          <div className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black shadow-md mb-3">
             {processedCategories && (
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
-                Our Popular <span className=" text-indigo-600">Categories</span>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">
+                Our Popular{" "}
+                <span className="lg:ml-2 text-indigo-600">Categories</span>
               </h2>
             )}
             {loadingCatCount ? (
@@ -186,10 +190,10 @@ export default function CategoryArticles({
               </ul>
             )}
           </div>
-          <div className="popular_tags rounded-md p-3 bg-white dark:bg-gray-950 shadow-md">
+          <div className="popular_tags rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black shadow-md">
             {processedTags && (
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
-                Popular <span className=" text-indigo-600">tags</span>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+                Popular <span className="text-indigo-600">tags</span>
               </h2>
             )}
             {loadingTagCount ? (

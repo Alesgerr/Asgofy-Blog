@@ -54,7 +54,7 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
     <>
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-14">
-          <div className="flex justify-center flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between gap-8 bg-white dark:bg-gray-950 shadow-md rounded-md p-5">
+          <div className="flex justify-center flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between gap-8 bg-white md:dark:bg-gray-950 dark:bg-black shadow-md rounded-md p-5">
             <div className="w-full flex justify-between flex-col lg:w-2/5">
               <div className="block lg:text-left text-center">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
