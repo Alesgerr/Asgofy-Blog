@@ -63,27 +63,28 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
                 }`}
               >
                 {featuredProducts[featuredProducts.length - 1]?.imageUrl ? (
-                  <Image
-                    src={
-                      featuredProducts[featuredProducts.length - 1]?.imageUrl
-                    } // İlk ürünün resmini büyük olarak gösteriyoruz
-                    alt={featuredProducts[featuredProducts.length - 1]?.title}
-                    className="rounded-lg w-full"
-                    width={350}
-                    height={200}
-                    objectFit="fil"
-                    loading="lazy"
-                  />
+                  <div>
+                    <Image
+                      src={
+                        featuredProducts[featuredProducts.length - 1]?.imageUrl
+                      } // İlk ürünün resmini büyük olarak gösteriyoruz
+                      alt={featuredProducts[featuredProducts.length - 1]?.title}
+                      className="rounded-lg w-full"
+                      width={400}
+                      height={200}
+                      objectFit="fil"
+                      loading="lazy"
+                    />
+                    <div className="absolute h-full inset-0 bg-black opacity-50 rounded-md"></div>
+                  </div>
                 ) : (
                   <Skeleton
                     variant="rectangular"
-                    className=""
-                    width={500}
+                    className="bg-gray-200 dark:bg-zinc-400"
+                    width={600}
                     height={400}
                   />
                 )}
-
-                <div className="absolute h-full inset-0 bg-black opacity-50 rounded-md"></div>
               </Link>
 
               <div className="absolute bottom-1 p-7 lg:bottom-5 lg:p-10">
@@ -106,8 +107,8 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
             </div>
           </div>
           {/* Featured Articles */}
-          <div className="lg:col-span-2 grid grid-cols-1 gap-4">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="lg:col-span-2 grid grid-cols-1">
+            <div className="grid grid-cols-2 gap-3">
               {/* Loop through the rest of the latest products starting from index 1 */}
               {featuredProducts
                 ?.slice(0, -1)
@@ -120,7 +121,7 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
                     <div className="img">
                       <Link href={`/blog/${product?.slug}`}>
                         <Image
-                          className="rounded-lg w-full h-28 sm:h-28 object-cover hover:scale-[1.1] duration-200 cursor-pointer"
+                          className="rounded-lg w-full h-28 sm:h-32 object-cover cursor-pointer"
                           src={product?.imageUrl}
                           alt={product?.title}
                           width={350}
@@ -130,20 +131,19 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
                         />
                       </Link>
                     </div>
-                    <span className="mb-2 rounded-md bg-[#f2f2f7] my-5 px-2 py-1.5">
+                    {/* <span className="mb-2 rounded-md bg-[#f2f2f7] my-5 px-2 py-1.5">
                       <Link
                         href={`/categories/${product?.categories[0]?.slug?.current}`}
                         className="text-sm font-semibold text-[#6574f8]"
                       >
                         {product?.categories[0]?.title}
                       </Link>
-                    </span>
-                    <Link
-                      href={`/blog/${product?.slug}`}
-                      key={index}
-                    >
-                      <h2 className="text-[13px] font-bold">
-                        {product?.title?.length > 50 ? product?.title?.slice(0,50) + "..." : product?.title }
+                    </span> */}
+                    <Link href={`/blog/${product?.slug}`} key={index}>
+                      <h2 className="text-[13px] mt-3 font-bold">
+                        {product?.title?.length > 50
+                          ? product?.title?.slice(0, 50) + "..."
+                          : product?.title}
                       </h2>
                     </Link>
                   </div>
