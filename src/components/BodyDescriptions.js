@@ -132,8 +132,6 @@ const BodyDescription = ({ body, title, table }) => {
                   const linkMark = block?.markDefs?.find(
                     (mark) => mark._type === "link"
                   );
-                  console.log(item, "test");
-
                   if (!linkMark) {
                     return (
                       <h5
@@ -198,6 +196,27 @@ const BodyDescription = ({ body, title, table }) => {
                     })}
                   </li>
                 </ul>
+              </div>
+            );
+          } else if (block.listItem === "number") {
+            return (
+              <div key={key} className="my-5">
+                <ol
+                  className="pl-5 body-content flex flex-wrap"
+                  // style={{ display: "flex", flexWrap: "wrap" }}
+                >
+                  {block.children.map((listItem, listItemIndex) => {
+                    return (
+                      <li key={listItemIndex}>
+                        <span
+                          className={`list-disc-first list-disc tracking-wide ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-semibold" : ""}`}
+                        >
+                          {listItem.text}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ol>
               </div>
             );
           }

@@ -31,7 +31,7 @@ class MyDocument extends Document {
             src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
             data-id="Alesger"
             data-description="Support me on Buy me a coffee!"
-            data-message="Enjoying the content on my blog? Support it with the price of a cup of coffee via Buymeacoffee! Your support helps keep new content and updates coming. Thank you in advance!"
+            data-message="Enjoying my blog? Support it with a coffee's price on Buy Me a Coffee! Your help keeps new content coming. Thanks in advance!"
             data-color="#5F7FFF"
             data-position="Right"
             data-x_margin="5"

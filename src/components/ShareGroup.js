@@ -9,7 +9,7 @@ import {
   TwitterIcon,
 } from "next-share";
 import { dislikePost, getPostById, likePost } from "../../sanity/lib/client";
-
+import toast from "react-hot-toast";
 
 const ShareGroup = ({ post, slug }) => {
   const [likes, setLikes] = useState(post?.likes); // Beğeni sayısını tutmak için state
@@ -18,7 +18,7 @@ const ShareGroup = ({ post, slug }) => {
   const dropdownRef = useRef(null);
   const { metaTitle, metaDescription } = post;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const postUrl = `${baseUrl}/blog/blog-detail/${post?.slug}`;
+  const postUrl = `${baseUrl}/blog/${post?.slug}`;
   const postImage = post?.postImage;
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -53,36 +53,36 @@ const ShareGroup = ({ post, slug }) => {
   //   }, [slug]);
 
   // Beğeni işlemini gerçekleştiren işlev
-//   const handleLikeClick = async () => {
-//     try {
-//       const updatedLikes = await likePost(slug); // likePost işlevini çağırarak beğeni sayısını güncelle
-//       setLikes(updatedLikes); // Güncellenmiş beğeni sayısını state'e ayarla
-//     } catch (error) {
-//       console.error("Beğeni işlemi sırasında bir hata oluştu:", error);
-//     }
-//   };
+  //   const handleLikeClick = async () => {
+  //     try {
+  //       const updatedLikes = await likePost(slug); // likePost işlevini çağırarak beğeni sayısını güncelle
+  //       setLikes(updatedLikes); // Güncellenmiş beğeni sayısını state'e ayarla
+  //     } catch (error) {
+  //       console.error("Beğeni işlemi sırasında bir hata oluştu:", error);
+  //     }
+  //   };
 
-//   // Beğenmeme işlemini gerçekleştiren işlev
-//   const handleDislikeClick = async () => {
-//     try {
-//       const updatedDislikes = await dislikePost(slug); // dislikePost işlevini çağırarak beğenmeme sayısını güncelle
-//       setDislikes(updatedDislikes); // Güncellenmiş beğenmeme sayısını state'e ayarla
-//     } catch (error) {
-//       console.error("Beğenmeme işlemi sırasında bir hata oluştu:", error);
-//     }
-//   };
-// const addToLikes = async (selectedService) => {
-//    console.log(selectedService);
-//   console.log("addToLikes triggered");
-//   try {
-//     const data = { id: slug };
-//     console.log(data);
-//     const result = await axios.patch("/api/updateLikes", data);
-//     console.log(result.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+  //   // Beğenmeme işlemini gerçekleştiren işlev
+  //   const handleDislikeClick = async () => {
+  //     try {
+  //       const updatedDislikes = await dislikePost(slug); // dislikePost işlevini çağırarak beğenmeme sayısını güncelle
+  //       setDislikes(updatedDislikes); // Güncellenmiş beğenmeme sayısını state'e ayarla
+  //     } catch (error) {
+  //       console.error("Beğenmeme işlemi sırasında bir hata oluştu:", error);
+  //     }
+  //   };
+  // const addToLikes = async (selectedService) => {
+  //    console.log(selectedService);
+  //   console.log("addToLikes triggered");
+  //   try {
+  //     const data = { id: slug };
+  //     console.log(data);
+  //     const result = await axios.patch("/api/updateLikes", data);
+  //     console.log(result.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const copyToClipboard = () => {
     //  const url = window.location.href;
     setIsOpen(!isOpen);
@@ -90,30 +90,31 @@ const ShareGroup = ({ post, slug }) => {
       .writeText(postUrl)
       .then(() => {
         console.log("URL copied to clipboard:", postUrl);
+        toast.success("Article url copied");
       })
       .catch((error) => {
         console.error("Error copying URL to clipboard:", error);
       });
   };
 
-//   const handleLike = async () => {
-//     try {
-//       const token = process.env.NEXT_PUBLIC_SANITY_API_TOKEN;
-//       const response = await fetch(`/api/like/${post?._id}`, {
-//         method: "POST",
-//         headers: {
-//           Authorization: token,
-//         },
-//       });
-//       console.log(response);
-//       if (response.ok) {
-//         const data = await response.json();
-//         setLikes(data.likes);
-//       }
-//     } catch (error) {
-//       console.error("Bir hata oluştu:", error);
-//     }
-//   };
+  //   const handleLike = async () => {
+  //     try {
+  //       const token = process.env.NEXT_PUBLIC_SANITY_API_TOKEN;
+  //       const response = await fetch(`/api/like/${post?._id}`, {
+  //         method: "POST",
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       });
+  //       console.log(response);
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         setLikes(data.likes);
+  //       }
+  //     } catch (error) {
+  //       console.error("Bir hata oluştu:", error);
+  //     }
+  //   };
   return (
     <div className="sticky bottom-6 inset-x-0 text-center" ref={dropdownRef}>
       <div className="inline-block bg-white shadow-md rounded-full py-3 px-4 dark:bg-gray-800">
