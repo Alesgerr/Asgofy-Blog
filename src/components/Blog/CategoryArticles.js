@@ -52,7 +52,7 @@ export default function CategoryArticles({
     return catPostCount?.map((item) => ({
       ...item,
       imageUrl: urlForImage(item?.author?.image?.asset?._ref),
-      categoryImage: urlForImage(item?.image?.asset?._ref),
+      // categoryImage: urlForImage(item?.image?.asset?._ref),
       timeAgo: calculateTimeAgo(item?._createdAt),
     }));
   }, [catPostCount]);

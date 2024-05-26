@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Newsletter = () => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [email, setEmail] = useState("");
+  const handleSubscribe = async (data, e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/sender", data);
+      console.log(response);
+      if (response.status === 200) {
+        alert("Thank you for subscribing!");
+        setEmail(""); // Clear the input field
+        router.push("/"); // Redirect to homepage or desired route
+      } else {
+        console.error(response.data.error);
+        // Handle subscription error gracefully
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle API request error gracefully
+    }
+  };
   return (
     <section>
       {/* Container */}
@@ -17,9 +45,11 @@ const Newsletter = () => {
           </div>
           <div className="max-w-md sm:max-w-full">
             <form
-              name="email-form"
-              method="get"
+              name="email"
+              value={email}
+              onSubmit={handleSubmit(handleSubscribe)}
               className="relative mx-auto mb-4 flex w-full flex-col justify-center sm:flex-row"
+              onChange={(e) => setEmail(e.target.value)}
             >
               <input
                 type="email"

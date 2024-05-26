@@ -17,11 +17,11 @@ const Home = () => {
 
   return (
     <div>
-      {/* <Hero /> */}
-      <FeaturedBlogPosts
+      <Hero />
+      {/* <FeaturedBlogPosts
         featuredProducts={featuredProducts}
         isLoading={loading}
-      />
+      /> */}
       <CategoryArticles
         articles={latestProducts}
         loading={loading}
