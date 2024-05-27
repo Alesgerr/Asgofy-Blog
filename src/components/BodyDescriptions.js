@@ -225,8 +225,9 @@ const BodyDescription = ({ body, title, table }) => {
             return (
               <div key={key} className="my-5">
                 {block.children.map((span, spanIndex) => {
+                  const isStrong = span?.marks?.some(mark => mark === 'strong')
                   return (
-                    <span className="tracking-wide" key={`${key}-${spanIndex}`}>
+                    <span className={`tracking-wide ${isStrong ? "font-bold" : ""}`} key={`${key}-${spanIndex}`}>
                       {span?.text}
                     </span>
                   );

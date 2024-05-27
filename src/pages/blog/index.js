@@ -122,11 +122,10 @@ const BlogPage = () => {
               <span className="group dark:focus:outline-none">
                 <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
                   <Image
-                    className="size-full absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
+                    className="w-full h-72 absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-md"
                     src={post?.imageUrl}
                     alt={post?.title}
-                    width={500}
-                    height={500}
+                    fill
                     loading="lazy"
                   />
                 </div>

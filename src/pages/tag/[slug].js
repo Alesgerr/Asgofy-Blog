@@ -62,14 +62,16 @@ const TagProductsPage = ({ products, slug }) => {
                   </svg>
                 </Link>
               </div>
-              <Image
-                src={urlForImage(item?.mainImage?.asset?._ref)}
-                alt={item?.title}
-                className="mb-6 shadow-md rounded-lg bg-slate-50 w-full h-72 object-cover sm:w-[20rem] sm:mb-0 xl:mb-6 xl:w-full"
-                width={500}
-                height={500}
-                priority
-              />
+              <Link href={`/blog/${item?.slug?.current}`}>
+                <Image
+                  src={urlForImage(item?.mainImage?.asset?._ref)}
+                  alt={item?.title}
+                  className="mb-6 shadow-md rounded-lg bg-slate-50 w-full h-72 object-cover sm:w-[20rem] sm:mb-0 xl:mb-6 xl:w-full"
+                  width={500}
+                  height={500}
+                  priority
+                />
+              </Link>
             </li>
           ))}
         </ul>

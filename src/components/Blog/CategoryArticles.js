@@ -16,22 +16,27 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { usePostContext } from "@/context/PostContext";
 
-export default function CategoryArticles({
-  articles,
-  loading,
-  loadingCatCount,
-  loadingTagCount,
-}) {
+export default function CategoryArticles() {
+  const {
+    featuredProducts,
+    latestProducts,
+    loading,
+    loadingCatCount,
+    loadingTagCount,
+  } = usePostContext();
   const [categories, setCategories] = useState();
   const [tags, setTags] = useState();
   const [page, setPage] = useState(1); // Başlangıçta varsayılan olarak ilk sayfa
-  const itemsPerPage = 15; // Sayfa başına gösterilecek öğe sayısı
+  const itemsPerPage = 10; // Sayfa başına gösterilecek öğe sayısı
   const { catPostCount, tagPostCount } = usePostContext();
   // Anlık sayfa numarasına bağlı olarak görüntülenecek makaleleri hesaplar
   const startIndex = (page - 1) * itemsPerPage;
-  const visibleArticles = articles.slice(startIndex, startIndex + itemsPerPage);
+  const visibleArticles = latestProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
   // Toplam sayfa sayısını hesaplar
-  const totalPages = Math.ceil(articles.length / itemsPerPage);
+  const totalPages = Math.ceil(latestProducts.length / itemsPerPage);
 
   // Sayfa değiştirme işlevi
   const handleChange = (event, value) => {
@@ -72,9 +77,9 @@ export default function CategoryArticles({
             id="targetElement"
             className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
           >
-            {articles && (
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
-                Recent <span className=" text-indigo-600">Posts</span>
+            {latestProducts && (
+              <h2 className="text-lg  text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+                Recent <span className=" text-indigo-600 font-bold">Posts</span>
               </h2>
             )}
             <div>
@@ -95,8 +100,8 @@ export default function CategoryArticles({
                         <Link rel="preload" href={`/blog/${item?.slug}`}>
                           <Image
                             className="md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
-                            width={400}
-                            height={400}
+                            width={300} // Set appropriate width and height
+                            height={300}
                             loading="lazy"
                             src={item?.imageUrl}
                             alt={item?.title}
@@ -163,9 +168,11 @@ export default function CategoryArticles({
         <div className="w-full lg:w-3/12">
           <div className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
             {processedCategories && (
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">
+              <h2 className="text-lg text-gray-900 dark:text-white mb-5">
                 Our Popular{" "}
-                <span className="lg:ml-2 text-indigo-600">Categories</span>
+                <span className="lg:ml-2 text-indigo-600 font-bold">
+                  Categories
+                </span>
               </h2>
             )}
             {loadingCatCount ? (
@@ -191,8 +198,8 @@ export default function CategoryArticles({
           </div>
           <div className="popular_tags rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md">
             {processedTags && (
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
-                Popular <span className="text-indigo-600">tags</span>
+              <h2 className="text-lg text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+                Popular <span className="text-indigo-600 font-bold">tags</span>
               </h2>
             )}
             {loadingTagCount ? (

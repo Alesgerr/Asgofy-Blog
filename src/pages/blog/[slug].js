@@ -239,17 +239,15 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
                     <h1 className="text-lg mt-5 sm:text-2xl font-bold">
                       {post?.title}
                     </h1>
-                    <div className="postMainImages">
+                    <div className="">
                       <Image
                         src={post?.postImage}
                         alt={post?.title}
-                        // width={1000}
-                        // height={500}
-                        fill
+                        width={500}
+                        height={500}
                         sizes="(max-width:768px) 100vw, 700px"
                         priority
-                        // quality={70}
-                        className="rounded-md object-cover"
+                        className="rounded-md object-cover w-full h-full"
                       />
                     </div>
                     <p className="text-md font-normal">{post?.description}</p>
