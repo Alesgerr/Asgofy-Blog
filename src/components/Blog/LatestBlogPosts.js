@@ -7,7 +7,7 @@ import PostPublishedDate from "../PostPublishedDate";
 import Slider from "react-slick";
 
 const LatestBlogPosts = () => {
-  const {latestProducts, isLoading} = usePostContext()
+  const { latestProducts, loading } = usePostContext();
   const settings = {
     dots: false,
     infinite: true,
@@ -38,15 +38,15 @@ const LatestBlogPosts = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 0,
+          initialSlide: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 0,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 1,
         },
       },
     ],
@@ -55,7 +55,7 @@ const LatestBlogPosts = () => {
     <>
       <div className="py-12">
         <div className="max-w-7xl mx-auto px-5 md:px-14 overflow-hidden">
-          {isLoading ? (
+          {loading ? (
             <div className="rounded-md">
               <Skeleton
                 width={300}
@@ -69,7 +69,7 @@ const LatestBlogPosts = () => {
               Our latest <span className=" text-indigo-600">posts</span>
             </h2>
           )}
-          {isLoading ? (
+          {loading ? (
             <div className="mt-3 flex">
               <div className="sm:hidden">
                 <Skeleton
@@ -118,7 +118,7 @@ const LatestBlogPosts = () => {
               {/* Her bir slide için içerik doğrudan burada tanımlanıyor */}
               {latestProducts?.map((post, index) => (
                 <div key={index}>
-                  {isLoading ? (
+                  {loading ? (
                     <div className="rounded-md bg-gray-100 dark:bg-zinc-900">
                       <Skeleton
                         width={300}
@@ -132,7 +132,7 @@ const LatestBlogPosts = () => {
                       <div>
                         <Link href={`/blog/${post?.slug}`}>
                           <Image
-                            className="rounded-md mb-3 h-72 object-cover"
+                            className="rounded-md mb-3 h-32 sm:h-72 object-cover"
                             src={post?.imageUrl}
                             alt={post?.title}
                             width={400}
@@ -157,14 +157,14 @@ const LatestBlogPosts = () => {
                         <Link
                           href={`/categories/${post?.categories[0]?.slug.current}/`}
                         >
-                          <h3 className="mb-2 text-indigo-600 font-bold">
+                          <h3 className="mb-2 text-sm text-indigo-600 font-bold">
                             {post?.categories[0]?.title}
                           </h3>
                         </Link>
                         <Link href={`/blog/${post?.slug}`}>
                           <h2 className="text-sm md:text-base font-semibold dark:text-white mb-2">
                             {post?.title.length > 50
-                              ? post?.title.slice(0, 60) + "..."
+                              ? post?.title.slice(0, 50) + "..."
                               : post?.title}
                           </h2>
                         </Link>

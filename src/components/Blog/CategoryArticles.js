@@ -237,36 +237,3 @@ export default function CategoryArticles() {
     </>
   );
 }
-// export async function getServerSideProps() {
-//   try {
-//     const categoriesA = await getCatWithPostCount();
-//     const tagsA = await getTagsWithPostCount();
-
-//     if (!categoriesA || !tagsA) {
-//       return {
-//         notFound: true,
-//       };
-//     }
-//     const processedData = categoriesA?.map((item) => ({
-//       ...item,
-//       imageUrl: urlForImage(item?.author?.image?.asset?._ref),
-//       categoryImage: urlForImage(item?.image?.asset?._ref),
-//       timeAgo: calculateTimeAgo(item?._createdAt),
-//     }));
-//     const processedDataS = tagsA?.map((item) => ({
-//       ...item,
-//       timeAgo: calculateTimeAgo(item?._createdAt),
-//     }));
-//     return {
-//       props: {
-//         categories: processedData,
-//         tags: processedDataS,
-//       },
-//     };
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     return {
-//       notFound: true,
-//     };
-//   }
-// }

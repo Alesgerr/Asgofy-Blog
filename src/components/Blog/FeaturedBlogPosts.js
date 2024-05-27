@@ -8,156 +8,181 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import { Skeleton } from "@mui/material";
 import { usePostContext } from "@/context/PostContext";
+import PostPublishedDate from "../PostPublishedDate";
+import Slider from "react-slick";
 const FeaturedBlogPosts = () => {
-  const { featuredProducts } = usePostContext();
-  // useEffect(() => {
-  //   const swiper = new Swiper(".mySwiper", {
-  //     slidesPerView: 2,
-  //     spaceBetween: 28,
-  //     centeredSlides: false,
-  //     loop: true,
-  //     pagination: {
-  //       el: ".swiper-pagination",
-  //       clickable: true,
-  //     },
-  //     navigation: {
-  //       nextEl: ".swiper-button-next",
-  //       prevEl: ".swiper-button-prev",
-  //     },
-  //     breakpoints: {
-  //       0: {
-  //         slidesPerView: 1,
-  //         spaceBetween: 20,
-  //         centeredSlides: false,
-  //       },
-  //       568: {
-  //         slidesPerView: 2,
-  //         spaceBetween: 28,
-  //         centeredSlides: false,
-  //       },
-  //       768: {
-  //         slidesPerView: 2,
-  //         spaceBetween: 28,
-  //         centeredSlides: false,
-  //       },
-  //       1024: {
-  //         slidesPerView: 2,
-  //         spaceBetween: 32,
-  //       },
-  //     },
-  //     modules: [Navigation, Pagination],
-  //   });
-
-  //   return () => {
-  //     swiper.destroy();
-  //   };
-  // }, []);
+  const { featuredProducts, loading } = usePostContext();
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    initialSlide: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 0,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 1,
+        },
+      },
+    ],
+  };
   return (
     <>
-      <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-14 md:py-14 lg:py-12">
-        {/* Main Article */}
-        {featuredProducts && (
-          <h2 className="text-2xl pb-5 dark:text-white">
-            Popular <span className="text-indigo-600 font-bold ">posts</span>
-          </h2>
-        )}
-
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          <div className="lg:col-span-3 flex flex-col overflow-hidden rounded-md">
-            <div className="flex-shrink-0 mb-8 relative">
-              <Link
-                href={`/blog/${
-                  featuredProducts[featuredProducts.length - 1]?.slug
-                }`}
-              >
-                {featuredProducts[featuredProducts.length - 1]?.imageUrl ? (
-                  <div>
-                    <Image
-                      src={
-                        featuredProducts[featuredProducts.length - 1]?.imageUrl
-                      } // İlk ürünün resmini büyük olarak gösteriyoruz
-                      alt={featuredProducts[featuredProducts.length - 1]?.title}
-                      className="rounded-lg w-full"
-                      width={400}
-                      height={200}
-                      objectFit="fil"
-                      loading="lazy"
-                    />
-                    <div className="absolute h-full inset-0 bg-black opacity-50 rounded-md"></div>
-                  </div>
-                ) : (
-                  <Skeleton
-                    variant="rectangular"
-                    className="bg-gray-200 dark:bg-zinc-400"
-                    width={600}
-                    height={400}
-                  />
-                )}
-              </Link>
-
-              <div className="absolute bottom-1 p-7 lg:bottom-5 lg:p-10">
-                <h2 className="mb-4 text-[16px] text-white font-bold lg:text-2xl">
-                  {featuredProducts[featuredProducts.length - 1]?.title}
-                </h2>
-                {featuredProducts[featuredProducts.length - 1]?.slug ? (
-                  <Link
-                    href={`/blog/${
-                      featuredProducts[featuredProducts.length - 1]?.slug
-                    }`}
-                    className="mr-5 items-center rounded-md bg-black px-6 py-3 font-semibold text-white lg:mr-8"
-                  >
-                    Read More
-                  </Link>
-                ) : (
-                  ""
-                )}
+      <div className="py-12">
+        <div className="max-w-7xl mx-auto px-5 md:px-14 overflow-hidden">
+          {loading ? (
+            <div className="rounded-md">
+              <Skeleton
+                width={300}
+                height={50}
+                variant="rectangular"
+                className="rounded-md dark:bg-zinc-900 mx-auto sm:mx-0"
+              />
+            </div>
+          ) : (
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+              Our popular <span className=" text-indigo-600">posts</span>
+            </h2>
+          )}
+          {loading ? (
+            <div className="mt-3 flex">
+              <div className="sm:hidden">
+                <Skeleton
+                  width={320}
+                  height={300}
+                  style={{ minWidth: "400px", maxWidth: "calc(100% - 10px)" }} // 32px, padding değerleri için tahmini bir değer
+                  variant="rectangular"
+                  className="rounded-md dark:bg-zinc-900"
+                />
+              </div>
+              <div className="hidden sm:block mx-auto">
+                <Skeleton
+                  width={230}
+                  height={300}
+                  variant="rectangular"
+                  className="rounded-md dark:bg-zinc-900"
+                />
+              </div>
+              <div className="hidden sm:block mx-auto">
+                <Skeleton
+                  width={230}
+                  height={300}
+                  variant="rectangular"
+                  className="rounded-md dark:bg-zinc-900 "
+                />
+              </div>
+              <div className="hidden sm:block mx-auto">
+                <Skeleton
+                  width={230}
+                  height={300}
+                  variant="rectangular"
+                  className="rounded-md dark:bg-zinc-900 "
+                />
+              </div>
+              <div className="hidden md:block mx-auto">
+                <Skeleton
+                  width={230}
+                  height={300}
+                  variant="rectangular"
+                  className="rounded-md mx-auto dark:bg-zinc-900 "
+                />
               </div>
             </div>
-          </div>
-          {/* Featured Articles */}
-          <div className="lg:col-span-2 grid grid-cols-1">
-            <div className="grid grid-cols-2 gap-3">
-              {/* Loop through the rest of the latest products starting from index 1 */}
-              {featuredProducts
-                ?.slice(0, -1)
-                ?.slice(-4)
-                ?.map((product, index) => (
-                  <div
-                    className="flex flex-col rounded-lg featured-article"
-                    key={index}
-                  >
-                    <div className="img">
-                      <Link href={`/blog/${product?.slug}`}>
-                        <Image
-                          className="rounded-lg w-full h-28 sm:h-32 object-cover cursor-pointer"
-                          src={product?.imageUrl}
-                          alt={product?.title}
-                          width={350}
-                          height={200}
-                          loading="lazy"
-                          objectFit="contain"
-                        />
-                      </Link>
+          ) : (
+            <Slider arrows={false} {...settings}>
+              {/* Her bir slide için içerik doğrudan burada tanımlanıyor */}
+              {featuredProducts?.map((post, index) => (
+                <div key={index}>
+                  {loading ? (
+                    <div className="rounded-md bg-gray-100 dark:bg-zinc-900">
+                      <Skeleton
+                        width={300}
+                        height={300}
+                        variant="rectangular"
+                        className="rounded-md"
+                      />
                     </div>
-                    {/* <span className="mb-2 rounded-md bg-[#f2f2f7] my-5 px-2 py-1.5">
-                      <Link
-                        href={`/categories/${product?.categories[0]?.slug?.current}`}
-                        className="text-sm font-semibold text-[#6574f8]"
-                      >
-                        {product?.categories[0]?.title}
-                      </Link>
-                    </span> */}
-                    <Link href={`/blog/${product?.slug}`} key={index}>
-                      <h2 className="text-[13px] mt-3 font-bold">
-                        {product?.title?.length > 50
-                          ? product?.title?.slice(0, 50) + "..."
-                          : product?.title}
-                      </h2>
-                    </Link>
-                  </div>
-                ))}
-            </div>
-          </div>
+                  ) : (
+                    <div className="rounded-md mx-1">
+                      <div>
+                        <Link href={`/blog/${post?.slug}`}>
+                          <Image
+                            className="rounded-md mb-3 h-32 sm:h-72 object-cover"
+                            src={post?.imageUrl}
+                            alt={post?.title}
+                            width={400}
+                            height={100}
+                            loading="lazy"
+                          />
+                        </Link>
+
+                        <Link href={`/blog/${post?.slug}`}>
+                          <div className="flex items-center mb-2">
+                            <span className="text-gray-500 text-sm">
+                              <PostPublishedDate
+                                publishedAt={post?.publishedAt}
+                              />
+                            </span>
+                            <span className="px-1">|</span>
+                            <p className="text-gray-500 text-sm">
+                              {post?.timeAgo}
+                            </p>
+                          </div>
+                        </Link>
+                        <Link
+                          href={`/categories/${post?.categories[0]?.slug.current}/`}
+                        >
+                          <h3 className="mb-2 text-sm text-indigo-600 font-bold">
+                            {post?.categories[0]?.title}
+                          </h3>
+                        </Link>
+                        <Link href={`/blog/${post?.slug}`}>
+                          <h2 className="text-sm md:text-base font-semibold dark:text-white mb-2">
+                            {post?.title.length > 50
+                              ? post?.title.slice(0, 60) + "..."
+                              : post?.title}
+                          </h2>
+                        </Link>
+
+                        {/* <div className="text-purple-700 font-semibold hover:underline">
+                            Read More
+                          </div> */}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </Slider>
+          )}
         </div>
       </div>
     </>
