@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,14 +6,15 @@ import { Skeleton } from "@mui/material";
 import PostPublishedDate from "../PostPublishedDate";
 import Slider from "react-slick";
 
-const LatestBlogPosts = ({ latestProducts, isLoading }) => {
+const LatestBlogPosts = () => {
+  const {latestProducts, isLoading} = usePostContext()
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    initialSlide: 0,
+    initialSlide: 1,
     responsive: [
       {
         breakpoint: 1024,
@@ -66,7 +66,7 @@ const LatestBlogPosts = ({ latestProducts, isLoading }) => {
             </div>
           ) : (
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
-              Our latest <span className=" text-indigo-600">blogs</span>
+              Our latest <span className=" text-indigo-600">posts</span>
             </h2>
           )}
           {isLoading ? (
@@ -132,12 +132,12 @@ const LatestBlogPosts = ({ latestProducts, isLoading }) => {
                       <div>
                         <Link href={`/blog/${post?.slug}`}>
                           <Image
-                            className="rounded-md mb-3 h-52 object-cover"
+                            className="rounded-md mb-3 h-72 object-cover"
                             src={post?.imageUrl}
                             alt={post?.title}
                             width={400}
                             height={100}
-                            priority={true}
+                            loading="lazy"
                           />
                         </Link>
 
@@ -185,39 +185,3 @@ const LatestBlogPosts = ({ latestProducts, isLoading }) => {
   );
 };
 export default LatestBlogPosts;
-
-// const LoadingCard = () => (
-//   <>
-//     {/* Main Article */}
-//     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-//       {/* Left Section */}
-//       <div className="lg:col-span-2 flex flex-col overflow-hidden rounded-md cursor-pointer">
-//         <div className="flex-shrink-0 mb-8 relative">
-//           <div className="skeleton-image rounded-lg">
-//             <Skeleton
-//               className="dark:bg-gray-500 w-full rounded-md my-1"
-//               variant="rectangular"
-//               width={800}
-//               style={{ minWidth: "200px", maxWidth: "calc(100% - 5px)" }} // 32px, padding değerleri için tahmini bir değer
-//               height={400}
-//             />
-//           </div>
-//         </div>
-//       </div>
-//       {/* Right Section */}
-//       <div className="lg:col-span-2 flex flex-col overflow-hidden rounded-md cursor-pointer">
-//         <div className="flex-shrink-0 mb-8 relative">
-//           <div className="skeleton-image rounded-lg">
-//             <Skeleton
-//               className="dark:bg-gray-500 w-full rounded-md my-1"
-//               variant="rectangular"
-//               width={800}
-//               style={{ minWidth: "200px", maxWidth: "calc(100% - 5px)" }} // 32px, padding değerleri için tahmini bir değer
-//               height={400}
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   </>
-// );

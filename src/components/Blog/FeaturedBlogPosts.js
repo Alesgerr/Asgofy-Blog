@@ -7,7 +7,9 @@ import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import { Skeleton } from "@mui/material";
-const FeaturedBlogPosts = ({ featuredProducts }) => {
+import { usePostContext } from "@/context/PostContext";
+const FeaturedBlogPosts = () => {
+  const { featuredProducts } = usePostContext();
   // useEffect(() => {
   //   const swiper = new Swiper(".mySwiper", {
   //     slidesPerView: 2,
@@ -54,6 +56,12 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
     <>
       <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-14 md:py-14 lg:py-12">
         {/* Main Article */}
+        {featuredProducts && (
+          <h2 className="text-2xl pb-5 dark:text-white">
+            Popular <span className="text-indigo-600 font-bold ">posts</span>
+          </h2>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
           <div className="lg:col-span-3 flex flex-col overflow-hidden rounded-md">
             <div className="flex-shrink-0 mb-8 relative">
@@ -88,9 +96,9 @@ const FeaturedBlogPosts = ({ featuredProducts }) => {
               </Link>
 
               <div className="absolute bottom-1 p-7 lg:bottom-5 lg:p-10">
-                <h1 className="mb-4 text-[16px] text-white font-bold lg:text-2xl">
+                <h2 className="mb-4 text-[16px] text-white font-bold lg:text-2xl">
                   {featuredProducts[featuredProducts.length - 1]?.title}
-                </h1>
+                </h2>
                 {featuredProducts[featuredProducts.length - 1]?.slug ? (
                   <Link
                     href={`/blog/${
