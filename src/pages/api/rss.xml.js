@@ -29,7 +29,7 @@ function generateRssFeed(posts) {
     <description>Recent posts from my blog</description>
     <atom:link href="https://asgofy.com/api/rss.xml" rel="self" type="application/rss+xml"/>`;
 
-  posts.forEach((post) => {
+  posts?.forEach((post) => {
     const pubDate = new Date(post?.publishedAt);
     const formattedPubDate = format(pubDate, "EEE, dd MMM yyyy HH:mm:ss xx");
     const title = escapeXml(post?.title);
@@ -54,6 +54,7 @@ function generateRssFeed(posts) {
 
 // HTML özel karakterlerini kaçıran yardımcı işlev
 function escapeXml(unsafe) {
+  if (!unsafe) return ""; // Eğer unsafe undefined ya da null ise boş string döndür
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
       case "<":
