@@ -8,13 +8,16 @@ import Slider from "react-slick";
 
 const LatestBlogPosts = () => {
   const { latestProducts, loading } = usePostContext();
+  // const sortedProducts = [...latestProducts].sort((a, b) => {
+  //   return new Date(b?.publishedAt) - new Date(a?.publishedAt);
+  // });
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    initialSlide: 1,
+    focusOnSelect: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -26,19 +29,11 @@ const LatestBlogPosts = () => {
         },
       },
       {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 1,
+          initialSlide: 2,
         },
       },
       {
