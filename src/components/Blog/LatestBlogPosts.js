@@ -36,7 +36,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
     <>
       <div
         id="targetElement"
-        className="popular_categories rounded-md p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
+        className="popular_categories rounded-md p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
       >
         {latestProducts && (
           <h2 className="text-lg text-gray-900 dark:text-white leading-[3.25rem] mb-5">
@@ -63,7 +63,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                         className="md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
                         width={300} // Set appropriate width and height
                         height={300}
-                        loading="lazy"
+                        priority
                         src={item?.imageUrl}
                         alt={item?.title}
                       />

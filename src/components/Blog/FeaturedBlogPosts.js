@@ -9,7 +9,6 @@ import { usePostContext } from "@/context/PostContext";
 const FeaturedPosts = ({ featuredProducts }) => {
   const { loading } = usePostContext();
   const [swiperRef, setSwiperRef] = useState(null);
-  console.log(featuredProducts);
   // useEffect(() => {
   //   if (swiperRef) {
   //     swiperRef.el.swiper.resize(); // Resize Swiper after data is loaded
@@ -57,18 +56,18 @@ const FeaturedPosts = ({ featuredProducts }) => {
     };
   }, [featuredProducts]);
   return (
-    <section className="py-24 mx-auto max-w-7xl">
+    <section className="py-5 mx-auto max-w-7xl">
       <div className="flex justify-center flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between gap-8 bg-white dark:bg-gray-950 shadow-md rounded-md p-5">
         <div className="w-full flex justify-between flex-col lg:w-2/5">
           <div className="block lg:text-left text-center">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
               Our featured <span className=" text-indigo-600">blogs</span>
             </h2>
-            <p className="text-gray-500 mb-10  max-lg:max-w-xl max-lg:mx-auto">
+            {/* <p className="text-gray-500 mb-10  max-lg:max-w-xl max-lg:mx-auto">
               Welcome to our blog section, where knowledge meets inspiration.
               Explore insightful articles, expert tips, and the latest trends in
               our field.
-            </p>
+            </p> */}
             <Link
               href="/blog"
               className="cursor-pointer border border-gray-300 dark:bg-white shadow-sm rounded-full py-3.5 px-7 w-52 lg:mx-0 mx-auto flex justify-center text-gray-900 font-semibold transition-all duration-300 hover:bg-gray-100"
@@ -132,15 +131,15 @@ const FeaturedPosts = ({ featuredProducts }) => {
                   <Link href={`/blog/${post?.slug}`}>
                     <div className="flex items-center mb-9">
                       <Image
-                        className="rounded-2xl w-full h-32 object-cover"
+                        className="rounded-2xl w-full h-32 md:h-72 object-cover"
                         src={post?.imageUrl}
                         alt={post?.title}
                         width={400}
                         height={100}
-                        loading="lazy"
+                        priority
                       />
                     </div>
-                    <h3 className="text-[12px] sm:text-xl text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
+                    <h3 className="text-[12px] sm:text-lg text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
                       {post?.title}
                     </h3>
                     {/* <p className="text-gray-500 leading-6 transition-all duration-500 mb-8">

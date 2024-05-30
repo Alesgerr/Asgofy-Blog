@@ -2,7 +2,7 @@
 // import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
 // import FeaturedBlogPosts from "@/components/Blog/FeaturedBlogPosts";
 // import Newsletter from "@/components/Newsletter";
-import HomePage from "@/components/Blog/Home";
+// import HomePage from "@/components/Blog/Home";
 import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
 import Hero from "@/components/Hero";
 import dynamic from "next/dynamic";
@@ -15,6 +15,12 @@ import {
 import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 
+const HomePage = dynamic(
+  () => import("@/components/Blog/Home"),
+  {
+    ssr: false,
+  }
+);
 const Home = ({
   latestProducts,
   catPostCount,
