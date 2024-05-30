@@ -10,7 +10,7 @@ export default function HomePage() {
         <div className="w-full lg:max-w-[73%] pb-2 ">
           <LatestBlogPosts />
         </div>
-        <div className="w-full lg:w-3/12">
+        <div className="w-full lg:w-3/12 relative">
           <PopularCategories />
           <PopularTags />
         </div>

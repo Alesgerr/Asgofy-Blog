@@ -25,7 +25,7 @@ class MyDocument extends Document {
               `,
             }}
           ></script>
-          <script
+          {/* <script
             data-name="BMC-Widget"
             data-cfasync="false"
             src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
@@ -37,7 +37,7 @@ class MyDocument extends Document {
             data-x_margin="5"
             data-y_margin="5"
             async // Asenkron olarak yükleme
-          ></script>
+          ></script> */}
           {/* <Script>
             {`
               window.dataLayer = window.dataLayer || [];

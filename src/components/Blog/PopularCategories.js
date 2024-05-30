@@ -17,7 +17,7 @@ const PopularCategories = () => {
     }));
   }, [catPostCount]);
   return (
-    <div className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
+    <div className="popular_categories rounded-md p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
       {processedCategories && (
         <h2 className="text-lg text-gray-900 dark:text-white mb-5">
           Our Popular{" "}

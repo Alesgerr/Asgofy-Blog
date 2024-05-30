@@ -66,10 +66,10 @@ const TagProductsPage = ({ products, slug }) => {
                 <Image
                   src={urlForImage(item?.mainImage?.asset?._ref)}
                   alt={item?.title}
-                  className="mb-6 shadow-md rounded-lg bg-slate-50 w-full h-72 object-cover sm:w-[20rem] sm:mb-0 xl:mb-6 xl:w-full"
+                  className="mb-6 shadow-md rounded-lg bg-slate-50 h-72 object-cover sm:mb-0 xl:mb-6 "
                   width={500}
                   height={500}
-                  priority
+                  loading="lazy"
                 />
               </Link>
             </li>

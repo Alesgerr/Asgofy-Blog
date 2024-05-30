@@ -115,7 +115,7 @@ export async function getCategories() {
   try {
     return client.fetch(
       groq`
-        *[_type == "category"] {
+        *[_type == "category"]{
          _id,
           title,
           description,
@@ -132,7 +132,7 @@ export async function getProductsByCategory(slug) {
   try {
     const products = await client.fetch(
       groq`
-        *[_type == "post" && references(*[_type == "category" && slug.current == $slug]._id)] {
+        *[_type == "post" && references(*[_type == "category" && slug.current == $slug]._id)] | order(publishedAt desc) {
           _id,
           title,
           description,
@@ -181,7 +181,7 @@ export const getProductsByTag = async (tagSlug) => {
   try {
     // Etiketin slug'ına göre ilişkilendirilmiş ürünleri getiren sorgu
     const products = await client.fetch(
-      `*[_type == "post" && references(*[_type == "tags" && slug.current == $tagSlug]._id)]`,
+      `*[_type == "post" && references(*[_type == "tags" && slug.current == $tagSlug]._id)] | order(publishedAt desc)`,
       { tagSlug }
     );
     return products;

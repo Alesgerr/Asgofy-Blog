@@ -13,7 +13,7 @@ const PopularTags = () => {
     }));
   }, [tagPostCount]);
   return (
-    <div className="popular_tags rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md">
+    <div className="popular_tags rounded-md p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md">
       {processedTags && (
         <h2 className="text-lg text-gray-900 dark:text-white leading-[3.25rem] mb-5">
           Popular <span className="text-indigo-600 font-bold">tags</span>
