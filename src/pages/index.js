@@ -47,7 +47,6 @@ export async function getStaticProps() {
   const catPostCount = await getCatWithPostCount();
   const tagPostCount = await getTagsWithPostCount();
   const featuredPosts = await getFeaturedProducts();
-
   const processedData = posts?.map((product) => ({
     ...product,
     imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Burada resmin referansını kullanarak URL oluşturuyoruz

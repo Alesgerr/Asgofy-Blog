@@ -60,10 +60,10 @@ const LatestBlogPosts = ({ latestProducts }) => {
                   <div className="md:order-2 flex items-center justify-center md:justify-end">
                     <Link rel="preload" href={`/blog/${item?.slug}`}>
                       <Image
-                        className="md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
-                        width={300} // Set appropriate width and height
-                        height={300}
-                        priority
+                        className="w-full md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
+                        width={250} // Set appropriate width and height
+                        height={100}
+                        // priority
                         src={item?.imageUrl}
                         alt={item?.title}
                       />

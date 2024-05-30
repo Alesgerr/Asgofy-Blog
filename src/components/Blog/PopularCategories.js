@@ -2,34 +2,20 @@ import { usePostContext } from "@/context/PostContext";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { LiaArrowRightSolid } from "react-icons/lia";
-import { urlForImage } from "../../../sanity/lib/image";
-import { calculateTimeAgo } from "../calculateTimeAgo";
 
 const PopularCategories = ({ catPostCount }) => {
-  const [categories, setCategories] = useState();
-  const {loadingCatCount } = usePostContext();
-  const processedCategories = useMemo(() => {
-    return catPostCount?.map((item) => ({
-      ...item,
-      imageUrl: urlForImage(item?.author?.image?.asset?._ref),
-      // categoryImage: urlForImage(item?.image?.asset?._ref),
-      timeAgo: calculateTimeAgo(item?._createdAt),
-    }));
-  }, [catPostCount]);
   return (
     <div className="popular_categories rounded-md p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
-      {processedCategories && (
+      {catPostCount && (
         <h2 className="text-lg text-gray-900 dark:text-white mb-5">
           Our Popular{" "}
           <span className="lg:ml-2 text-indigo-600 font-bold">Categories</span>
         </h2>
       )}
-      {loadingCatCount ? (
-        <span className="loader"></span>
-      ) : (
+      {catPostCount ? (
         <ul>
           {/* Etiketlerin listesi */}
-          {processedCategories?.slice(0, 6).map((item, index) => (
+          {catPostCount?.slice(0, 6).map((item, index) => (
             <li key={index}>
               <Link
                 href={`/categories/${item?.slug?.current}`}
@@ -43,6 +29,8 @@ const PopularCategories = ({ catPostCount }) => {
             </li>
           ))}
         </ul>
+      ) : (
+        <span className="loader"></span>
       )}
     </div>
   );

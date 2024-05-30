@@ -26,6 +26,7 @@ export default function HomePage({
   catPostCount,
   tagPostCount,
   featuredProducts,
+  loadingCatCount,
 }) {
   return (
     <>
@@ -38,7 +39,10 @@ export default function HomePage({
             <LatestBlogPosts latestProducts={latestProducts} />
           </div>
           <div className="w-full lg:w-3/12 hidden md:block">
-            <PopularCategories catPostCount={catPostCount} />
+            <PopularCategories
+              catPostCount={catPostCount}
+              loadingCatCount={loadingCatCount}
+            />
             <PopularTags tagPostCount={tagPostCount} />
           </div>
         </div>

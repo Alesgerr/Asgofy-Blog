@@ -134,9 +134,9 @@ const FeaturedPosts = ({ featuredProducts }) => {
                         className="rounded-2xl w-full h-32 md:h-72 object-cover"
                         src={post?.imageUrl}
                         alt={post?.title}
-                        width={400}
+                        width={250}
                         height={100}
-                        priority
+                        // priority
                       />
                     </div>
                     <h3 className="text-[12px] sm:text-lg text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
