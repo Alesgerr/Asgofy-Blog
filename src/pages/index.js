@@ -1,17 +1,17 @@
 // pages/index.js
-import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
-import FeaturedBlogPosts from "@/components/Blog/FeaturedBlogPosts";
+// import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
+// import FeaturedBlogPosts from "@/components/Blog/FeaturedBlogPosts";
 // import Newsletter from "@/components/Newsletter";
+import HomePage from "@/components/Blog/Home";
 import Hero from "@/components/Hero";
-import CategoryArticles from "@/components/Blog/CategoryArticles";
+import dynamic from "next/dynamic";
 
 const Home = () => {
   return (
     <div>
-      <Hero />
-      {/* <CategoryArticles /> */}
-      <LatestBlogPosts />
-      <FeaturedBlogPosts />
+      <HomePage />
+      {/* <LatestBlogPosts /> */}
+      {/* <FeaturedBlogPosts /> */}
       {/* <Newsletter /> */}
     </div>
   );

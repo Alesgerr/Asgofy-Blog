@@ -120,7 +120,7 @@ const FeaturedBlogPosts = () => {
           ) : (
             <Slider arrows={false} {...settings}>
               {/* Her bir slide için içerik doğrudan burada tanımlanıyor */}
-              {featuredProducts?.map((post, index) => (
+              {featuredProducts?.slice(0, 20)?.map((post, index) => (
                 <div key={index}>
                   {loading ? (
                     <div className="rounded-md bg-gray-100 dark:bg-zinc-900">
@@ -141,7 +141,7 @@ const FeaturedBlogPosts = () => {
                             alt={post?.title}
                             width={400}
                             height={100}
-                            loading="lazy"
+                            priority={index < 3} // Pre-render first
                           />
                         </Link>
 

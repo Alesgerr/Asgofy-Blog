@@ -3,176 +3,124 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePostContext } from "@/context/PostContext";
 import { Skeleton } from "@mui/material";
-import PostPublishedDate from "../PostPublishedDate";
-import Slider from "react-slick";
-
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 const LatestBlogPosts = () => {
   const { latestProducts, loading } = usePostContext();
-  // const sortedProducts = [...latestProducts].sort((a, b) => {
-  //   return new Date(b?.publishedAt) - new Date(a?.publishedAt);
-  // });
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    focusOnSelect: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 1,
-        },
-      },
-    ],
+  const [page, setPage] = useState(1); // Başlangıçta varsayılan olarak ilk sayfa
+  const itemsPerPage = 10; // Sayfa başına gösterilecek öğe sayısı
+  // Anlık sayfa numarasına bağlı olarak görüntülenecek makaleleri hesaplar
+  const startIndex = (page - 1) * itemsPerPage;
+  const visibleArticles = latestProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  // Toplam sayfa sayısını hesaplar
+  const totalPages = Math.ceil(latestProducts.length / itemsPerPage);
+  // Sayfa değiştirme işlevi
+  const handleChange = (event, value) => {
+    setPage(value); // Sayfa değiştiğinde sayfa numarasını güncelle
+
+    // Sayfanın belirli bir yere kaydırılması için bir referans alınabilir.
+    // Örneğin, bir bileşenin referansı alınabilir ve bu bileşenin yüksekliği kullanılabilir.
+    const targetRef = document.getElementById("targetElement"); // Kaydırılacak hedef bileşenin id'si
+
+    // Eğer hedef bileşen varsa ve yüksekliği alınabiliyorsa, sayfa bu yüksekliğe kaydırılır.
+    if (targetRef) {
+      const targetPosition = targetRef.offsetTop; // Hedef bileşenin sayfanın başlangıcından itibaren yüksekliği
+      window.scrollTo({ top: targetPosition, behavior: "smooth" }); // Hedef bileşenin bulunduğu yere kaydır
+    }
   };
   return (
     <>
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto px-5 md:px-14 overflow-hidden">
+      <div
+        id="targetElement"
+        className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
+      >
+        {latestProducts && (
+          <h2 className="text-lg  text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+            Recent <span className=" text-indigo-600 font-bold">Posts</span>
+          </h2>
+        )}
+        <div>
           {loading ? (
-            <div className="rounded-md">
-              <Skeleton
-                width={300}
-                height={50}
-                variant="rectangular"
-                className="rounded-md dark:bg-zinc-900 mx-auto sm:mx-0"
-              />
-            </div>
-          ) : (
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
-              Our latest <span className=" text-indigo-600">posts</span>
-            </h2>
-          )}
-          {loading ? (
-            <div className="mt-3 flex">
-              <div className="sm:hidden">
-                <Skeleton
-                  width={320}
-                  height={300}
-                  style={{ minWidth: "400px", maxWidth: "calc(100% - 10px)" }} // 32px, padding değerleri için tahmini bir değer
-                  variant="rectangular"
-                  className="rounded-md dark:bg-zinc-900"
-                />
-              </div>
-              <div className="hidden sm:block mx-auto">
-                <Skeleton
-                  width={230}
-                  height={300}
-                  variant="rectangular"
-                  className="rounded-md dark:bg-zinc-900"
-                />
-              </div>
-              <div className="hidden sm:block mx-auto">
-                <Skeleton
-                  width={230}
-                  height={300}
-                  variant="rectangular"
-                  className="rounded-md dark:bg-zinc-900 "
-                />
-              </div>
-              <div className="hidden sm:block mx-auto">
-                <Skeleton
-                  width={230}
-                  height={300}
-                  variant="rectangular"
-                  className="rounded-md dark:bg-zinc-900 "
-                />
-              </div>
-              <div className="hidden md:block mx-auto">
-                <Skeleton
-                  width={230}
-                  height={300}
-                  variant="rectangular"
-                  className="rounded-md mx-auto dark:bg-zinc-900 "
-                />
+            <div className="grid md:grid-cols-2 overflow-hidden">
+              <div className="md:order-2 flex md:justify-end">
+                <span className="loader"></span>
               </div>
             </div>
           ) : (
-            <Slider arrows={false} {...settings}>
-              {/* Her bir slide için içerik doğrudan burada tanımlanıyor */}
-              {latestProducts?.map((post, index) => (
-                <div key={index}>
-                  {loading ? (
-                    <div className="rounded-md bg-gray-100 dark:bg-zinc-900">
-                      <Skeleton
-                        width={300}
-                        height={300}
-                        variant="rectangular"
-                        className="rounded-md"
+            <div>
+              {visibleArticles?.map((item, i) => (
+                <div
+                  key={i}
+                  className={`grid md:grid-cols-2 ${i !== visibleArticles.length - 1 ? "border-b-2" : ""} dark:border-gray-900 gap-2 mb-5`}
+                >
+                  <div className="md:order-2 flex items-center justify-center md:justify-end">
+                    <Link rel="preload" href={`/blog/${item?.slug}`}>
+                      <Image
+                        className="md:w-32 w-full h-52 md:h-32 object-cover rounded-md mb-3"
+                        width={500} // Set appropriate width and height
+                        height={200}
+                        loading="lazy"
+                        src={item?.imageUrl}
+                        alt={item?.title}
                       />
-                    </div>
-                  ) : (
-                    <div className="rounded-md mx-1">
-                      <div>
-                        <Link href={`/blog/${post?.slug}`}>
-                          <Image
-                            className="rounded-md mb-3 h-32 sm:h-72 object-cover"
-                            src={post?.imageUrl}
-                            alt={post?.title}
-                            width={400}
-                            height={100}
-                            loading="lazy"
-                          />
-                        </Link>
+                    </Link>
+                  </div>
+                  <div className="md:order-1 flex-1">
+                    <Link href={`/blog/${item.slug}`}>
+                      <div className="mb-3">
+                        {loading ? (
+                          <div>Loading...</div>
+                        ) : (
+                          <span className="text-sm">
+                            {/* <PostPublishedDate
+                                  publishedAt={item?.publishedAt}
+                                /> */}
+                          </span>
+                        )}
 
-                        <Link href={`/blog/${post?.slug}`}>
-                          <div className="flex items-center mb-2">
-                            <span className="text-gray-500 text-sm">
-                              <PostPublishedDate
-                                publishedAt={post?.publishedAt}
-                              />
-                            </span>
-                            <span className="px-1">|</span>
-                            <p className="text-gray-500 text-sm">
-                              {post?.timeAgo}
-                            </p>
-                          </div>
-                        </Link>
-                        <Link
-                          href={`/categories/${post?.categories[0]?.slug.current}/`}
-                        >
-                          <h3 className="mb-2 text-sm text-indigo-600 font-bold">
-                            {post?.categories[0]?.title}
-                          </h3>
-                        </Link>
-                        <Link href={`/blog/${post?.slug}`}>
-                          <h2 className="text-sm md:text-base font-semibold dark:text-white mb-2">
-                            {post?.title.length > 50
-                              ? post?.title.slice(0, 50) + "..."
-                              : post?.title}
-                          </h2>
-                        </Link>
-
-                        {/* <div className="text-purple-700 font-semibold hover:underline">
-                            Read More
-                          </div> */}
+                        {/* <span className="pr-1">,</span> */}
+                        <span className="text-sm">{item?.timeAgo}</span>
                       </div>
-                    </div>
-                  )}
+                      <h2 className="sm:text-lg mb-4 font-semibold">
+                        {item?.title}
+                      </h2>
+                      <div className="mb-4">
+                        {/* <Link
+                              href={`/categories/${item?.categories[0]?.slug?.current}`}
+                            >
+                              <span className="bg-gray-200 dark:bg-white rounded-md p-2 px-3 text-black">
+                                {item?.categories[0]?.title}
+                              </span>
+                            </Link> */}
+                        <span className="text-black dark:text-gray-300 dark:hover:text-white">
+                          Read More
+                        </span>
+                      </div>
+                    </Link>
+                    {/* <p className="text-sm mb-5">
+                          {item?.description.length > 100
+                            ? item?.description.slice(0, 120) + "..."
+                            : item?.description}
+                        </p> */}
+                  </div>
                 </div>
               ))}
-            </Slider>
+              {visibleArticles && (
+                <Stack spacing={2}>
+                  <Pagination
+                    count={totalPages} // Toplam sayfa sayısı
+                    page={page} // Şu anki sayfa
+                    onChange={handleChange} // Sayfa değiştiğinde çalışacak fonksiyon
+                    color="standard" // Sayfa numaralarının rengi
+                    size="large" // Büyük boyut
+                    className="rounded-md"
+                  />
+                </Stack>
+              )}
+            </div>
           )}
         </div>
       </div>

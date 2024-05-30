@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useMemo, useState } from "react";
 import { urlForImage } from "../../../sanity/lib/image";
 import { calculateTimeAgo } from "../calculateTimeAgo";
@@ -9,228 +10,218 @@ import {
   getTagsWithPostCount,
 } from "../../../sanity/lib/client";
 import { Skeleton } from "@mui/material";
+import AnimationWrapper from "../AnimationWrapper";
+import PostPublishedDate from "../PostPublishedDate";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import { usePostContext } from "@/context/PostContext";
 
 export default function CategoryArticles() {
+  const {
+    featuredProducts,
+    latestProducts,
+    loading,
+    loadingCatCount,
+    loadingTagCount,
+  } = usePostContext();
   const [categories, setCategories] = useState();
   const [tags, setTags] = useState();
+  const [page, setPage] = useState(1); // Başlangıçta varsayılan olarak ilk sayfa
+  const itemsPerPage = 10; // Sayfa başına gösterilecek öğe sayısı
+  const { catPostCount, tagPostCount } = usePostContext();
+  // Anlık sayfa numarasına bağlı olarak görüntülenecek makaleleri hesaplar
+  const startIndex = (page - 1) * itemsPerPage;
+  const visibleArticles = latestProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  // Toplam sayfa sayısını hesaplar
+  const totalPages = Math.ceil(latestProducts.length / itemsPerPage);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await getCatWithPostCount();
-      setCategories(res);
-    };
+  // Sayfa değiştirme işlevi
+  const handleChange = (event, value) => {
+    setPage(value); // Sayfa değiştiğinde sayfa numarasını güncelle
 
-    const fetchTags = async () => {
-      const res = await getTagsWithPostCount();
-      setTags(res);
-    };
-    fetchCategories();
-    fetchTags();
-  }, []);
+    // Sayfanın belirli bir yere kaydırılması için bir referans alınabilir.
+    // Örneğin, bir bileşenin referansı alınabilir ve bu bileşenin yüksekliği kullanılabilir.
+    const targetRef = document.getElementById("targetElement"); // Kaydırılacak hedef bileşenin id'si
 
-  // useMemo kullanarak önbelleğe alma
+    // Eğer hedef bileşen varsa ve yüksekliği alınabiliyorsa, sayfa bu yüksekliğe kaydırılır.
+    if (targetRef) {
+      const targetPosition = targetRef.offsetTop; // Hedef bileşenin sayfanın başlangıcından itibaren yüksekliği
+      window.scrollTo({ top: targetPosition, behavior: "smooth" }); // Hedef bileşenin bulunduğu yere kaydır
+    }
+  };
+
   const processedCategories = useMemo(() => {
-    return categories?.map((item) => ({
+    return catPostCount?.map((item) => ({
       ...item,
       imageUrl: urlForImage(item?.author?.image?.asset?._ref),
-      categoryImage: urlForImage(item?.image?.asset?._ref),
+      // categoryImage: urlForImage(item?.image?.asset?._ref),
       timeAgo: calculateTimeAgo(item?._createdAt),
     }));
-  }, [categories]);
+  }, [catPostCount]);
+
   const processedTags = useMemo(() => {
-    return tags?.map((item) => ({
+    return tagPostCount?.map((item) => ({
       ...item,
       timeAgo: calculateTimeAgo(item?._createdAt),
     }));
-  }, [tags]);
+  }, [tagPostCount]);
+
   return (
     <>
-      <div className="px-5 max-w-7xl py-10 md:px-14 lg:py-14 mx-auto flex justify-between flex-wrap">
-        <div className="w-full lg:max-w-[73%] pb-2">
-          <div className="popular_categories md:p-3 md:border md:dark:border-gray-900">
-            <div className="">
-              {processedCategories && (
-                <h2 className="text-2xl font-bold pb-5 dark:text-white">
-                  Popular Categories
-                </h2>
-              )}
-              <div className="grid sm:grid-cols-2 gap-5 md:gap-3">
-                {processedCategories ? (
-                  processedCategories?.slice(0, 4)?.map((cat, index) => (
-                    <Link
-                      key={index}
-                      className="group relative block rounded-xl"
-                      href={`/categories/${cat?.slug?.current}`}
+      <div className="home_article px-5 max-w-7xl py-10 md:px-14 lg:py-14 overflow-hidden mx-auto flex justify-between flex-wrap">
+        <div className="w-full lg:max-w-[73%] pb-2 ">
+          <div
+            id="targetElement"
+            className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
+          >
+            {latestProducts && (
+              <h2 className="text-lg  text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+                Recent <span className=" text-indigo-600 font-bold">Posts</span>
+              </h2>
+            )}
+            <div>
+              {loading ? (
+                <div className="grid md:grid-cols-2 overflow-hidden">
+                  <div className="md:order-2 flex md:justify-end">
+                    <span className="loader"></span>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  {visibleArticles?.map((item, i) => (
+                    <div
+                      key={i}
+                      className={`grid md:grid-cols-2 ${i !== visibleArticles.length - 1 ? "border-b-2" : ""} dark:border-gray-900 gap-2 mb-5`}
                     >
-                      <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-72 before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
-                        <Image
-                          className="w-full h-72 absolute top-0 start-0 object-cover"
-                          src={cat?.categoryImage}
-                          width={300}
-                          height={100}
-                          loading="lazy"
-                          quality={50}
-                          alt={cat?.title}
-                        />
-                        <div className="absolute h-96 inset-0 bg-black opacity-60 rounded-md"></div>
+                      <div className="md:order-2 flex items-center justify-center md:justify-end">
+                        <Link rel="preload" href={`/blog/${item?.slug}`}>
+                          <Image
+                            className="md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
+                            width={300} // Set appropriate width and height
+                            height={300}
+                            loading="lazy"
+                            src={item?.imageUrl}
+                            alt={item?.title}
+                          />
+                        </Link>
                       </div>
+                      <div className="md:order-1 flex-1">
+                        <Link href={`/blog/${item.slug}`}>
+                          <div className="mb-3">
+                            {loading ? (
+                              <div>Loading...</div>
+                            ) : (
+                              <span className="text-sm">
+                                {/* <PostPublishedDate
+                                  publishedAt={item?.publishedAt}
+                                /> */}
+                              </span>
+                            )}
 
-                      {/* <div className="absolute top-0 inset-x-0 z-10">
-                        <div className="p-4 flex flex-col h-full sm:p-6">
-                          <div className="flex items-center">
-                            <div className="flex-shrink-0">
-                              <Image
-                                className="size-[46px] border-2 border-white rounded-full"
-                                src={cat.imageUrl}
-                                width={100}
-                                height={100}
-                                alt="Image Description"
-                              />
-                            </div>
-                            <div className="ms-2.5 sm:ms-4">
-                              <h4 className="font-semibold text-purple-700">
-                                {cat?.author?.name}
-                              </h4>
-                              <p className="text-xs text-white/[.8]">
-                                {cat?.timeAgo}
-                              </p>
-                            </div>
+                            {/* <span className="pr-1">,</span> */}
+                            <span className="text-sm">{item?.timeAgo}</span>
                           </div>
-                        </div>
-                      </div> */}
-
-                      <div className="absolute bottom-0 inset-x-0 z-10">
-                        <div className="flex flex-col h-full p-4 sm:p-6">
-                          <h3 className="text-2xl font-bold text-white group-hover:text-white/[.8]">
-                            {cat?.title}
-                          </h3>
-                          <p className="mt-2 text-white/[.8]">
-                            {cat?.description?.length > 50
-                              ? cat?.description.slice(0, 80) + "..."
-                              : cat?.description}
-                          </p>
-                        </div>
+                          <h2 className="sm:text-lg mb-4 font-semibold">
+                            {item?.title}
+                          </h2>
+                          <div className="mb-4">
+                            {/* <Link
+                              href={`/categories/${item?.categories[0]?.slug?.current}`}
+                            >
+                              <span className="bg-gray-200 dark:bg-white rounded-md p-2 px-3 text-black">
+                                {item?.categories[0]?.title}
+                              </span>
+                            </Link> */}
+                            <span className="text-black dark:text-gray-300 dark:hover:text-white">
+                              Read More
+                            </span>
+                          </div>
+                        </Link>
+                        {/* <p className="text-sm mb-5">
+                          {item?.description.length > 100
+                            ? item?.description.slice(0, 120) + "..."
+                            : item?.description}
+                        </p> */}
                       </div>
-                    </Link>
-                  ))
-                ) : (
-                  <>
-                    <Skeleton
-                      className="dark:bg-zinc-900"
-                      width={400}
-                      style={{
-                        minWidth: "200px",
-                        maxWidth: "calc(100% - 32px)",
-                      }}
-                      height={450}
-                    />
-                    <Skeleton
-                      className="dark:bg-zinc-900"
-                      width={400}
-                      style={{
-                        minWidth: "200px",
-                        maxWidth: "calc(100% - 32px)",
-                      }}
-                      height={450}
-                    />
-                    <Skeleton
-                      className="dark:bg-zinc-900"
-                      width={400}
-                      style={{
-                        minWidth: "200px",
-                        maxWidth: "calc(100% - 32px)",
-                      }}
-                      height={450}
-                    />
-                    <Skeleton
-                      className="dark:bg-zinc-900"
-                      width={400}
-                      style={{
-                        minWidth: "200px",
-                        maxWidth: "calc(100% - 32px)",
-                      }}
-                      height={450}
-                    />
-                  </>
-                )}
-
-                {/* <a className="group relative block rounded-xl" href="#">
-          <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
-            <img
-              className="size-full absolute top-0 start-0 object-cover"
-              src="https://images.unsplash.com/photo-1611625618313-68b87aaa0626?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80"
-              alt="Image Description"
-            />
-          </div>
-
-          <div className="absolute top-0 inset-x-0 z-10">
-            <div className="p-4 flex flex-col h-full sm:p-6">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <img
-                    className="size-[46px] border-2 border-white rounded-full"
-                    src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-                    alt="Image Description"
-                  />
+                    </div>
+                  ))}
+                  {visibleArticles && (
+                    <Stack spacing={2}>
+                      <Pagination
+                        count={totalPages} // Toplam sayfa sayısı
+                        page={page} // Şu anki sayfa
+                        onChange={handleChange} // Sayfa değiştiğinde çalışacak fonksiyon
+                        color="standard" // Sayfa numaralarının rengi
+                        size="large" // Büyük boyut
+                        className="rounded-md"
+                      />
+                    </Stack>
+                  )}
                 </div>
-                <div className="ms-2.5 sm:ms-4">
-                  <h4 className="font-semibold text-white">Gloria</h4>
-                  <p className="text-xs text-white/[.8]">May 30, 2021</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute bottom-0 inset-x-0 z-10">
-            <div className="flex flex-col h-full p-4 sm:p-6">
-              <h3 className="text-lg sm:text-3xl font-semibold text-white group-hover:text-white/[.8]">
-                What CFR (Conversations, Feedback, Recognition) really is about
-              </h3>
-              <p className="mt-2 text-white/[.8]">
-                For a lot of people these days, Measure What Matters.
-              </p>
-            </div>
-          </div>
-        </a> */}
-              </div>
+              )}
             </div>
           </div>
         </div>
-        <div className="w-full lg:w-3/12 hidden md:block">
-          <div className="popular_tags p-3 border dark:border-gray-900">
-            {processedTags && (
-              <h2 className="text-2xl font-bold pb-5 dark:text-white">
-                Popular Tags
+        <div className="w-full lg:w-3/12">
+          <div className="popular_categories rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
+            {processedCategories && (
+              <h2 className="text-lg text-gray-900 dark:text-white mb-5">
+                Our Popular{" "}
+                <span className="lg:ml-2 text-indigo-600 font-bold">
+                  Categories
+                </span>
               </h2>
             )}
-            <ul>
-              {/* Etiketlerin listesi */}
-              {processedTags ? (
-                processedTags?.slice(0, 6).map((item, index) => (
+            {loadingCatCount ? (
+              <span className="loader"></span>
+            ) : (
+              <ul>
+                {/* Etiketlerin listesi */}
+                {processedCategories?.slice(0, 6).map((item, index) => (
                   <li key={index}>
                     <Link
-                      href={`/tag/${item?.slug?.current}`}
-                      className="dark:text-white hover:text-purple-700 hover:underline my-2 flex flex-wrap justify-between"
+                      href={`/categories/${item?.slug?.current}`}
+                      className="dark:text-white hover:text-indigo-600 hover:underline my-3 flex flex-wrap justify-between"
                     >
-                      {item.tag}
+                      {item?.title?.length > 20
+                        ? item?.title?.slice(0, 17) + "..."
+                        : item?.title}
                       <LiaArrowRightSolid className="ml-5" />
                     </Link>
                   </li>
-                ))
-              ) : (
-                <>
-                  <Skeleton
-                    className="dark:bg-zinc-900"
-                    width={400}
-                    style={{
-                      minWidth: "200px",
-                      maxWidth: "calc(100% - 10px)",
-                    }}
-                    height={450}
-                  />
-                </>
-              )}
-            </ul>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className="popular_tags rounded-md md:p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md">
+            {processedTags && (
+              <h2 className="text-lg text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+                Popular <span className="text-indigo-600 font-bold">tags</span>
+              </h2>
+            )}
+            {loadingTagCount ? (
+              <span className="loader"></span>
+            ) : (
+              <ul>
+                {/* Etiketlerin listesi */}
+                {processedTags?.slice(0, 6).map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      href={`/tag/${item?.slug?.current}`}
+                      className="dark:text-white hover:text-indigo-600 hover:underline my-3 flex flex-wrap justify-between"
+                    >
+                      {item?.tag?.length > 20
+                        ? item?.tag?.slice(0, 17) + "..."
+                        : item?.tag}
+                      <LiaArrowRightSolid className="ml-5" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>
