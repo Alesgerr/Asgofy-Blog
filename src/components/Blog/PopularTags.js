@@ -4,8 +4,8 @@ import React, { useMemo } from "react";
 import { calculateTimeAgo } from "../calculateTimeAgo";
 import { LiaArrowRightSolid } from "react-icons/lia";
 
-const PopularTags = () => {
-  const { tagPostCount, loadingTagCount } = usePostContext();
+const PopularTags = ({ tagPostCount }) => {
+  const { loadingTagCount } = usePostContext();
   const processedTags = useMemo(() => {
     return tagPostCount?.map((item) => ({
       ...item,

@@ -5,9 +5,9 @@ import { LiaArrowRightSolid } from "react-icons/lia";
 import { urlForImage } from "../../../sanity/lib/image";
 import { calculateTimeAgo } from "../calculateTimeAgo";
 
-const PopularCategories = () => {
+const PopularCategories = ({ catPostCount }) => {
   const [categories, setCategories] = useState();
-  const { catPostCount, loadingCatCount } = usePostContext();
+  const {loadingCatCount } = usePostContext();
   const processedCategories = useMemo(() => {
     return catPostCount?.map((item) => ({
       ...item,
