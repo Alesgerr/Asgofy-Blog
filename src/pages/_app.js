@@ -5,17 +5,16 @@ import { ThemeProvider } from "next-themes";
 import { PostProvider } from "@/context/PostContext";
 import { AuthContextProvider } from "@/context/authContext";
 import { Footer } from "@/components/Footer";
-import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import PageLoader from "@/components/PageLoader";
+// import PageLoader from "@/components/PageLoader";
 import dynamic from "next/dynamic";
 const Header = dynamic(() => import("@/components/Header"), {
   ssr: false,
 });
-
+const PageLoader = dynamic(() => import("@/components/PageLoader"), {
+  ssr: false,
+});
 // import { Toaster } from "react-hot-toast";
 function MyApp({ Component, pageProps }) {
   return (
@@ -68,7 +67,6 @@ function MyApp({ Component, pageProps }) {
           <ThemeProvider enableSystem={true} attribute="class">
             <Header />
             <main>
-              <PageLoader />
               <Component {...pageProps} />
             </main>
             <Toaster

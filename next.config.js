@@ -6,4 +6,5 @@ module.exports = {
       "lh3.googleusercontent.com",
     ], // Resimlerin alınabileceği ana bilgisayarları belirtin
   },
+  
 };

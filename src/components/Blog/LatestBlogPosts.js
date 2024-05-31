@@ -5,33 +5,34 @@ import { usePostContext } from "@/context/PostContext";
 import { Skeleton } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+
 const LatestBlogPosts = ({ latestProducts }) => {
   const { loading } = usePostContext();
-    const [page, setPage] = useState(1); // Başlangıçta varsayılan olarak ilk sayfa
-    const itemsPerPage = 10; // Sayfa başına gösterilecek öğe sayısı
-    // Anlık sayfa numarasına bağlı olarak görüntülenecek makaleleri hesaplar
-    const startIndex = (page - 1) * itemsPerPage;
-    const visibleArticles = latestProducts.slice(
-      startIndex,
-      startIndex + itemsPerPage
-    );
-    // Toplam sayfa sayısını hesaplar
-    const totalPages = Math.ceil(latestProducts.length / itemsPerPage);
+  const [page, setPage] = useState(1); // Başlangıçta varsayılan olarak ilk sayfa
+  const itemsPerPage = 10; // Sayfa başına gösterilecek öğe sayısı
+  // Anlık sayfa numarasına bağlı olarak görüntülenecek makaleleri hesaplar
+  const startIndex = (page - 1) * itemsPerPage;
+  const visibleArticles = latestProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  // Toplam sayfa sayısını hesaplar
+  const totalPages = Math.ceil(latestProducts.length / itemsPerPage);
 
-    // Sayfa değiştirme işlevi
-    const handleChange = (event, value) => {
-      setPage(value); // Sayfa değiştiğinde sayfa numarasını güncelle
+  // Sayfa değiştirme işlevi
+  const handleChange = (event, value) => {
+    setPage(value); // Sayfa değiştiğinde sayfa numarasını güncelle
 
-      // Sayfanın belirli bir yere kaydırılması için bir referans alınabilir.
-      // Örneğin, bir bileşenin referansı alınabilir ve bu bileşenin yüksekliği kullanılabilir.
-      const targetRef = document.getElementById("targetElement"); // Kaydırılacak hedef bileşenin id'si
+    // Sayfanın belirli bir yere kaydırılması için bir referans alınabilir.
+    // Örneğin, bir bileşenin referansı alınabilir ve bu bileşenin yüksekliği kullanılabilir.
+    const targetRef = document.getElementById("targetElement"); // Kaydırılacak hedef bileşenin id'si
 
-      // Eğer hedef bileşen varsa ve yüksekliği alınabiliyorsa, sayfa bu yüksekliğe kaydırılır.
-      if (targetRef) {
-        const targetPosition = targetRef.offsetTop; // Hedef bileşenin sayfanın başlangıcından itibaren yüksekliği
-        window.scrollTo({ top: targetPosition, behavior: "smooth" }); // Hedef bileşenin bulunduğu yere kaydır
-      }
-    };
+    // Eğer hedef bileşen varsa ve yüksekliği alınabiliyorsa, sayfa bu yüksekliğe kaydırılır.
+    if (targetRef) {
+      const targetPosition = targetRef.offsetTop; // Hedef bileşenin sayfanın başlangıcından itibaren yüksekliği
+      window.scrollTo({ top: targetPosition, behavior: "smooth" }); // Hedef bileşenin bulunduğu yere kaydır
+    }
+  };
   return (
     <>
       <div

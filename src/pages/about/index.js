@@ -1,6 +1,7 @@
 import AnimationWrapper from "@/components/AnimationWrapper";
 import Head from "next/head";
 import React from "react";
+import { MdOutlineEmail } from "react-icons/md";
 
 const AboutPage = () => {
   const handleEmailClick = () => {
@@ -61,11 +62,8 @@ const AboutPage = () => {
                     onClick={handleEmailClick}
                     className="flex items-center gap-4 rounded-md bg-black px-6 py-3 text-white"
                   >
-                    <img
-                      src="https://assets.website-files.com/6458c625291a94a195e6cf3a/64b147043fe6ab404e65635e_Envelope.svg"
-                      alt=""
-                      className="inline-block"
-                    />
+                    <MdOutlineEmail size={25} />
+
                     <p>Email Me</p>
                   </button>
                   {/* <a
