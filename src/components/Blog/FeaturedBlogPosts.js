@@ -6,6 +6,7 @@ import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import { usePostContext } from "@/context/PostContext";
+import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 const FeaturedPosts = ({ featuredProducts }) => {
   const { loading } = usePostContext();
   const [swiperRef, setSwiperRef] = useState(null);
@@ -82,40 +83,14 @@ const FeaturedPosts = ({ featuredProducts }) => {
               className="swiper-button-prev group flex justify-center items-center border border-solid border-indigo-600 w-11 h-11 transition-all duration-500 rounded-full hover:bg-indigo-600"
               data-carousel-prev
             >
-              <svg
-                className="h-6 w-6 text-indigo-600 group-hover:text-white"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20.9999 12L4.99992 12M9.99992 6L4.70703 11.2929C4.3737 11.6262 4.20703 11.7929 4.20703 12C4.20703 12.2071 4.3737 12.3738 4.70703 12.7071L9.99992 18"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <FaLongArrowAltLeft className="text-indigo-600 hover:text-white duration-200" />
             </button>
             <button
               id="slider-button-right"
               className="swiper-button-next group flex justify-center items-center border border-solid border-indigo-600 w-11 h-11 transition-all duration-500 rounded-full hover:bg-indigo-600"
               data-carousel-next
             >
-              <svg
-                className="h-6 w-6 text-indigo-600 group-hover:text-white"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 12L19 12M14 18L19.2929 12.7071C19.6262 12.3738 19.7929 12.2071 19.7929 12C19.7929 11.7929 19.6262 11.6262 19.2929 11.2929L14 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <FaLongArrowAltRight className="text-indigo-600 hover:text-white duration-200" />
             </button>
           </div>
         </div>
@@ -148,23 +123,9 @@ const FeaturedPosts = ({ featuredProducts }) => {
                             ? post?.description?.slice(0, 100) + "..."
                             : post?.description}
                         </p> */}
-                    <div className="cursor-pointer flex items-center gap-2 text-lg text-indigo-700 font-semibold">
+                    <div className="cursor-pointer flex items-center gap-2 text-sm sm:text-md text-indigo-700 font-semibold">
                       Read more
-                      <svg
-                        width="15"
-                        height="12"
-                        viewBox="0 0 15 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1.25 6L13.25 6M9.5 10.5L13.4697 6.53033C13.7197 6.28033 13.8447 6.15533 13.8447 6C13.8447 5.84467 13.7197 5.71967 13.4697 5.46967L9.5 1.5"
-                          stroke="#4338CA"
-                          strokeWidth="1.8"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                      <FaLongArrowAltRight />
                     </div>
                   </Link>
                 </div>

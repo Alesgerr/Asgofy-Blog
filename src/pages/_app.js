@@ -7,6 +7,7 @@ import { AuthContextProvider } from "@/context/authContext";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 // import PageLoader from "@/components/PageLoader";
 import dynamic from "next/dynamic";
 const Header = dynamic(() => import("@/components/Header"), {
@@ -16,6 +17,8 @@ const PageLoader = dynamic(() => import("@/components/PageLoader"), {
   ssr: false,
 });
 // import { Toaster } from "react-hot-toast";
+  const inter = Inter({ subsets: ["latin"] });
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -66,7 +69,8 @@ function MyApp({ Component, pageProps }) {
         <AuthContextProvider>
           <ThemeProvider enableSystem={true} attribute="class">
             <Header />
-            <main>
+            <PageLoader />
+            <main className={inter.className}>
               <Component {...pageProps} />
             </main>
             <Toaster

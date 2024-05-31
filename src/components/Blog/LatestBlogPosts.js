@@ -5,6 +5,7 @@ import { usePostContext } from "@/context/PostContext";
 import { Skeleton } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 const LatestBlogPosts = ({ latestProducts }) => {
   const { loading } = usePostContext();
@@ -40,7 +41,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
         className="popular_categories rounded-md p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
       >
         {latestProducts && (
-          <h2 className="text-lg text-gray-900 dark:text-white leading-[3.25rem] mb-5">
+          <h2 className="text-lg text-gray-900 dark:text-white  mb-5">
             Recent <span className=" text-indigo-600 font-bold">Posts</span>
           </h2>
         )}
@@ -97,7 +98,8 @@ const LatestBlogPosts = ({ latestProducts }) => {
                                 {item?.categories[0]?.title}
                               </span>
                             </Link> */}
-                        <span className="text-black dark:text-gray-300 dark:hover:text-white">
+                        <span className="text-black flex items-center dark:text-gray-300 dark:hover:text-white">
+                          <FaLongArrowAltRight className="mr-1 text-indigo-600 hover:text-black duration-200" />
                           Read More
                         </span>
                       </div>

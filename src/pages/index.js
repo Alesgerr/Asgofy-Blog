@@ -15,8 +15,8 @@ import {
 } from "../../sanity/lib/client";
 import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
-import PopularCategories from "@/components/Blog/PopularCategories";
-import PopularTags from "@/components/Blog/PopularTags";
+// import PopularCategories from "@/components/Blog/PopularCategories";
+// import PopularTags from "@/components/Blog/PopularTags";
 
 const HomePage = dynamic(() => import("@/components/Blog/Home"), {
   ssr: false,
@@ -58,8 +58,8 @@ const Home = ({
           <LatestBlogPosts latestProducts={latestProducts} />
         </div>
         <div className="w-full lg:w-3/12 hidden md:block">
-          <PopularCategories catPostCount={catPostCount} />
-          <PopularTags tagPostCount={tagPostCount} />
+          <PopularCategory catPostCount={catPostCount} />
+          <PopularTag tagPostCount={tagPostCount} />
         </div>
       </div>
       {/* <Newsletter /> */}

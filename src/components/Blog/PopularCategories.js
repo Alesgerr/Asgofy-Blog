@@ -8,7 +8,7 @@ const PopularCategories = ({ catPostCount }) => {
     <div className="popular_categories rounded-md p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
       {catPostCount && (
         <h2 className="text-lg text-gray-900 dark:text-white mb-5">
-          Our Popular{" "}
+          Our Popular
           <span className="lg:ml-2 text-indigo-600 font-bold">Categories</span>
         </h2>
       )}
