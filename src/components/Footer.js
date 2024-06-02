@@ -14,7 +14,7 @@ export const Footer = () => {
   ];
   return (
     <>
-      <footer className="block">
+      <footer className="">
         <div className="mx-auto w-full max-w-7xl px-5 md:px-14 py-5 md:py-10 border-t-1">
           <div className="flex flex-row justify-between max-[767px]:flex-col max-[767px]:items-start">
             <div className="max-[767px]: w-full max-w-[560px] max-[991px]:mr-4 max-[991px]:flex-initial">

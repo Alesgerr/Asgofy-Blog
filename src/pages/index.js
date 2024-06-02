@@ -1,11 +1,4 @@
 // pages/index.js
-// import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
-// import FeaturedBlogPosts from "@/components/Blog/FeaturedBlogPosts";
-// import Newsletter from "@/components/Newsletter";
-// import HomePage from "@/components/Blog/Home";
-// import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
-// import LatestBlogPosts, { getStaticProps as getLatestPostsProps } from "@/components/Blog/LatestBlogPosts";
-import Hero from "@/components/Hero";
 import dynamic from "next/dynamic";
 import {
   getCatWithPostCount,
@@ -17,10 +10,11 @@ import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 // import PopularCategories from "@/components/Blog/PopularCategories";
 // import PopularTags from "@/components/Blog/PopularTags";
+// import Hero from "@/components/Hero";
 
-const HomePage = dynamic(() => import("@/components/Blog/Home"), {
-  ssr: false,
-});
+// const HomePage = dynamic(() => import("@/components/Blog/Home"), {
+//   ssr: false,
+// });
 const LatestBlogPosts = dynamic(
   () => import("@/components/Blog/LatestBlogPosts"),
   {
@@ -49,7 +43,7 @@ const Home = ({
   featuredProducts,
 }) => {
   return (
-    <div className="px-5 max-w-7xl md:px-14 lg:py-14 flex flex-col overflow-hidden mx-auto">
+    <div className="px-5 max-w-7xl md:px-14 lg:py-10 flex flex-col overflow-hidden mx-auto">
       <div className="md:order-2">
         <FeaturedBlogPosts featuredProducts={featuredProducts} />
       </div>

@@ -6,9 +6,8 @@ import { Skeleton } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { FaLongArrowAltRight } from "react-icons/fa";
-
 const LatestBlogPosts = ({ latestProducts }) => {
-  const { loading } = usePostContext();
+  const { loadingGetPosts } = usePostContext();
   const [page, setPage] = useState(1); // Başlangıçta varsayılan olarak ilk sayfa
   const itemsPerPage = 10; // Sayfa başına gösterilecek öğe sayısı
   // Anlık sayfa numarasına bağlı olarak görüntülenecek makaleleri hesaplar
@@ -38,15 +37,13 @@ const LatestBlogPosts = ({ latestProducts }) => {
     <>
       <div
         id="targetElement"
-        className="popular_categories rounded-md p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
+        className="latest_posts rounded-md p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
       >
-        {latestProducts && (
-          <h2 className="text-lg text-gray-900 dark:text-white  mb-5">
-            Recent <span className=" text-indigo-600 font-bold">Posts</span>
-          </h2>
-        )}
+        <h2 className="text-lg text-gray-900 dark:text-white  mb-5">
+          Recent <span className=" text-indigo-600 font-bold">Posts</span>
+        </h2>
         <div>
-          {loading ? (
+          {loadingGetPosts ? (
             <div className="grid md:grid-cols-2 overflow-hidden">
               <div className="md:order-2 flex md:justify-end">
                 <span className="loader"></span>
@@ -74,7 +71,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                   <div className="md:order-1 flex-1">
                     <Link href={`/blog/${item.slug}`}>
                       <div className="mb-3">
-                        {loading ? (
+                        {loadingGetPosts ? (
                           <div>Loading...</div>
                         ) : (
                           <span className="text-sm">

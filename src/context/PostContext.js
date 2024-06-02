@@ -19,6 +19,7 @@ export const PostProvider = ({ children }) => {
   const [latestProducts, setLatestProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingGetPosts, setLoadingGetPosts] = useState(true);
   const [loadingCatCount, setLoadingCatCount] = useState(true);
   const [loadingTagCount, setLoadingTagCount] = useState(true);
   const fetchFeaturedPosts = async () => {
@@ -46,9 +47,9 @@ export const PostProvider = ({ children }) => {
         timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
       }));
       setLatestProducts(processedData);
-      setLoading(false);
+      setLoadingGetPosts(false);
     } catch (error) {
-      setLoading(true);
+      setLoadingGetPosts(true);
       console.error("Error fetching featured products:", error);
     }
   };
@@ -92,6 +93,7 @@ export const PostProvider = ({ children }) => {
     tagPostCount,
     categories,
     loading,
+    loadingGetPosts,
     loadingCatCount,
     loadingTagCount
   };

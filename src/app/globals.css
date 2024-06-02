@@ -38,12 +38,13 @@ body {
   margin: auto;
   animation: rotation 1s linear infinite;
 }
-.dark .home_article .MuiButtonBase-root {
-  color: #fff;
+.dark .latest_posts .MuiButtonBase-root {
+  color: #fff !important;
 }
 .dark .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background-color: #fff;
-  color: #000;
+  color: #000 !important;
+  font-weight: 500;
 }
 @keyframes rotation {
   0% {

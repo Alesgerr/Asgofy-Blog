@@ -7,6 +7,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import { usePostContext } from "@/context/PostContext";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
+import { Skeleton } from "@mui/material";
 const FeaturedPosts = ({ featuredProducts }) => {
   const { loading } = usePostContext();
   const [swiperRef, setSwiperRef] = useState(null);
@@ -64,6 +65,7 @@ const FeaturedPosts = ({ featuredProducts }) => {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
               Our featured <span className=" text-indigo-600">blogs</span>
             </h2>
+
             {/* <p className="text-gray-500 mb-10  max-lg:max-w-xl max-lg:mx-auto">
               Welcome to our blog section, where knowledge meets inspiration.
               Explore insightful articles, expert tips, and the latest trends in
@@ -105,18 +107,30 @@ const FeaturedPosts = ({ featuredProducts }) => {
                 >
                   <Link href={`/blog/${post?.slug}`}>
                     <div className="flex items-center mb-9">
-                      <Image
-                        className="rounded-2xl w-full h-32 md:h-72 object-cover"
-                        src={post?.imageUrl}
-                        alt={post?.title}
-                        width={250}
-                        height={100}
-                        // priority
-                      />
+                      {loading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={210}
+                          height={118}
+                        />
+                      ) : (
+                        <Image
+                          className="rounded-2xl w-full h-32 md:h-72 object-cover"
+                          src={post?.imageUrl}
+                          alt={post?.title}
+                          width={250}
+                          height={100}
+                        />
+                      )}
                     </div>
-                    <h3 className="text-[12px] sm:text-lg text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
-                      {post?.title}
-                    </h3>
+                    {loading ? (
+                      <Skeleton variant="rectangular" width={150} height={30} />
+                    ) : (
+                      <h3 className="text-[12px] sm:text-lg text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
+                        {post?.title}
+                      </h3>
+                    )}
+
                     {/* <p className="text-gray-500 leading-6 transition-all duration-500 mb-8">
                           {post?.description.length > 100
                           {post?.description?.length > 100
