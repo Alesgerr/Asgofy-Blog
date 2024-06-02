@@ -15,6 +15,9 @@ import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 // const HomePage = dynamic(() => import("@/components/Blog/Home"), {
 //   ssr: false,
 // });
+const Hero = dynamic(() => import("@/components/Hero"), {
+  ssr: false,
+});
 const LatestBlogPosts = dynamic(
   () => import("@/components/Blog/LatestBlogPosts"),
   {
@@ -44,6 +47,7 @@ const Home = ({
 }) => {
   return (
     <div className="px-5 max-w-7xl md:px-14 lg:py-10 flex flex-col overflow-hidden mx-auto">
+      {/* <Hero /> */}
       <div className="md:order-2">
         <FeaturedBlogPosts featuredProducts={featuredProducts} />
       </div>

@@ -43,21 +43,34 @@ const LatestBlogPosts = ({ latestProducts }) => {
           Recent <span className=" text-indigo-600 font-bold">Posts</span>
         </h2>
         <div>
-          {loadingGetPosts ? (
-            <div className="grid md:grid-cols-2 overflow-hidden">
-              <div className="md:order-2 flex md:justify-end">
-                <span className="loader"></span>
-              </div>
-            </div>
-          ) : (
-            <div>
-              {visibleArticles?.map((item, i) => (
-                <div
-                  key={i}
-                  className={`grid md:grid-cols-2 ${i !== visibleArticles.length - 1 ? "border-b-2" : ""} dark:border-gray-900 gap-2 mb-5`}
-                >
-                  <div className="md:order-2 flex items-center justify-center md:justify-end">
-                    <Link rel="preload" href={`/blog/${item?.slug}`}>
+          <div>
+            {visibleArticles?.map((item, i) => (
+              <div
+                key={i}
+                className={`grid md:grid-cols-2 ${i !== visibleArticles.length - 1 ? "border-b-2" : ""} dark:border-gray-900 gap-2 mb-5`}
+              >
+                <div className={`md:order-2 flex items-center ${loadingGetPosts ? "" : "justify-center"} md:justify-end`}>
+                  <Link rel="preload" href={`/blog/${item?.slug}`}>
+                    {loadingGetPosts ? (
+                      <>
+                        <div className="hidden md:block">
+                          <Skeleton
+                            variant="rectangular"
+                            width={150}
+                            height={100}
+                            className="dark:bg-gray-800"
+                          />
+                        </div>
+                        <div className="md:hidden">
+                          <Skeleton
+                            variant="rectangular"
+                            width={350}
+                            height={250}
+                            className="dark:bg-gray-800"
+                          />
+                        </div>
+                      </>
+                    ) : (
                       <Image
                         className="w-full md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
                         width={250} // Set appropriate width and height
@@ -66,63 +79,86 @@ const LatestBlogPosts = ({ latestProducts }) => {
                         src={item?.imageUrl}
                         alt={item?.title}
                       />
-                    </Link>
-                  </div>
-                  <div className="md:order-1 flex-1">
-                    <Link href={`/blog/${item.slug}`}>
-                      <div className="mb-3">
-                        {loadingGetPosts ? (
-                          <div>Loading...</div>
-                        ) : (
-                          <span className="text-sm">
-                            {/* <PostPublishedDate
+                    )}
+                  </Link>
+                </div>
+                <div className="md:order-1 flex-1">
+                  <Link href={`/blog/${item.slug}`}>
+                    <div className="mb-3">
+                      <span className="text-sm">
+                        {/* <PostPublishedDate
                                   publishedAt={item?.publishedAt}
                                 /> */}
-                          </span>
-                        )}
-
-                        {/* <span className="pr-1">,</span> */}
+                      </span>
+                      {/* <span className="pr-1">,</span> */}
+                      {loadingGetPosts ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={100}
+                          height={30}
+                          className="dark:bg-gray-800"
+                        />
+                      ) : (
                         <span className="text-sm">{item?.timeAgo}</span>
-                      </div>
+                      )}
+                    </div>
+                    {loadingGetPosts ? (
+                      <Skeleton
+                        variant="rectangular"
+                        width={200}
+                        height={50}
+                        className="dark:bg-gray-800"
+                      />
+                    ) : (
                       <h2 className="sm:text-lg mb-4 font-semibold">
                         {item?.title}
                       </h2>
-                      <div className="mb-4">
-                        {/* <Link
+                    )}
+
+                    <div className="mb-4 mt-4">
+                      {/* <Link
                               href={`/categories/${item?.categories[0]?.slug?.current}`}
                             >
                               <span className="bg-gray-200 dark:bg-white rounded-md p-2 px-3 text-black">
                                 {item?.categories[0]?.title}
                               </span>
                             </Link> */}
+                      {loadingGetPosts ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={130}
+                          height={30}
+                          className="dark:bg-gray-800"
+                        />
+                      ) : (
                         <span className="text-black flex items-center dark:text-gray-300 dark:hover:text-white">
                           <FaLongArrowAltRight className="mr-1 text-indigo-600 hover:text-black duration-200" />
                           Read More
                         </span>
-                      </div>
-                    </Link>
-                    {/* <p className="text-sm mb-5">
+                      )}
+                    </div>
+                  </Link>
+                  {/* <p className="text-sm mb-5">
                           {item?.description.length > 100
                             ? item?.description.slice(0, 120) + "..."
                             : item?.description}
                         </p> */}
-                  </div>
                 </div>
-              ))}
-              {visibleArticles && (
-                <Stack spacing={2}>
-                  <Pagination
-                    count={totalPages} // Toplam sayfa sayısı
-                    page={page} // Şu anki sayfa
-                    onChange={handleChange} // Sayfa değiştiğinde çalışacak fonksiyon
-                    color="standard" // Sayfa numaralarının rengi
-                    size="large" // Büyük boyut
-                    className="rounded-md"
-                  />
-                </Stack>
-              )}
-            </div>
-          )}
+              </div>
+            ))}
+            {visibleArticles && (
+              <Stack spacing={2}>
+                <Pagination
+                  count={totalPages} // Toplam sayfa sayısı
+                  page={page} // Şu anki sayfa
+                  onChange={handleChange} // Sayfa değiştiğinde çalışacak fonksiyon
+                  color="standard" // Sayfa numaralarının rengi
+                  size="large" // Büyük boyut
+                  className="rounded-md"
+                />
+              </Stack>
+            )}
+          </div>
         </div>
       </div>
     </>

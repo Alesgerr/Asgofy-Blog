@@ -108,11 +108,17 @@ const FeaturedPosts = ({ featuredProducts }) => {
                   <Link href={`/blog/${post?.slug}`}>
                     <div className="flex items-center mb-9">
                       {loading ? (
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={118}
-                        />
+                        <>
+                          <div className="md:hidden">
+                            <Skeleton
+                              variant="rectangular"
+                              width={130}
+                              height={118}
+                              className="dark:bg-gray-800"
+                            />
+                          </div>
+                         
+                        </>
                       ) : (
                         <Image
                           className="rounded-2xl w-full h-32 md:h-72 object-cover"
@@ -124,7 +130,12 @@ const FeaturedPosts = ({ featuredProducts }) => {
                       )}
                     </div>
                     {loading ? (
-                      <Skeleton variant="rectangular" width={150} height={30} />
+                      <Skeleton
+                        variant="rectangular"
+                        width={130}
+                        height={30}
+                        className="dark:bg-gray-800 mb-4"
+                      />
                     ) : (
                       <h3 className="text-[12px] sm:text-lg text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
                         {post?.title}
