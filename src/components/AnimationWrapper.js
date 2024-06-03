@@ -6,7 +6,7 @@ const AnimationWrapper = ({
   animate = {
     opacity: 1,
   },
-  transition = {duration: 5.5},
+  transition = {duration: 1.5},
 }) => {
   return (
     <motion.div initial={initial} animate={animate} transition={transition}>

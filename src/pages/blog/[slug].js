@@ -63,7 +63,11 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
         <meta name="twitter:description" content={post?.metaDescription} />
         <meta name="twitter:image" content={postImage} />
       </Head>
-      <AnimationWrapper>
+      <AnimationWrapper
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
         <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
           {/* <!-- Blog Article --> */}
           <Breadcrumb />
