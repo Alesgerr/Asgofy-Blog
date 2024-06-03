@@ -49,7 +49,9 @@ const LatestBlogPosts = ({ latestProducts }) => {
                 key={i}
                 className={`grid md:grid-cols-2 ${i !== visibleArticles.length - 1 ? "border-b-2" : ""} dark:border-gray-900 gap-2 mb-5`}
               >
-                <div className={`md:order-2 flex items-center ${loadingGetPosts ? "" : "justify-center"} md:justify-end`}>
+                <div
+                  className={`md:order-2 flex items-center ${loadingGetPosts ? "" : "justify-center"} md:justify-end`}
+                >
                   <Link rel="preload" href={`/blog/${item?.slug}`}>
                     {loadingGetPosts ? (
                       <>

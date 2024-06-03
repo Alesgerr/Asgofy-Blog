@@ -9,7 +9,7 @@ const PopularCategories = ({ catPostCount }) => {
       {catPostCount && (
         <h2 className="text-lg text-gray-900 dark:text-white mb-5">
           Our Popular
-          <span className="lg:ml-2 text-indigo-600 font-bold">Categories</span>
+          <span className="ml-2 text-indigo-600 font-bold">Categories</span>
         </h2>
       )}
       {catPostCount ? (

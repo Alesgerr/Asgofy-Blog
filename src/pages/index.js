@@ -8,6 +8,7 @@ import {
 } from "../../sanity/lib/client";
 import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
+// import AnimationWrapper from "@/components/AnimationWrapper";
 // import PopularCategories from "@/components/Blog/PopularCategories";
 // import PopularTags from "@/components/Blog/PopularTags";
 // import Hero from "@/components/Hero";
@@ -39,27 +40,52 @@ const PopularCategory = dynamic(
 const PopularTag = dynamic(() => import("@/components/Blog/PopularTags"), {
   ssr: false,
 });
+const AnimationWrapper = dynamic(
+  () => import("@/components/AnimationWrapper"),
+  {
+    ssr: false,
+  }
+);
 const Home = ({
   latestProducts,
   catPostCount,
   tagPostCount,
-  featuredProducts,
+  // featuredProducts,
 }) => {
   return (
     <div className="px-5 max-w-7xl md:px-14 lg:py-10 flex flex-col overflow-hidden mx-auto">
       {/* <Hero /> */}
-      <div className="md:order-2">
-        <FeaturedBlogPosts featuredProducts={featuredProducts} />
-      </div>
       <div className="md:order-1 flex flex-wrap justify-between ">
         <div className="w-full lg:max-w-[73%] pb-2 ">
-          <LatestBlogPosts latestProducts={latestProducts} />
+          <AnimationWrapper
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <LatestBlogPosts latestProducts={latestProducts} />
+          </AnimationWrapper>
         </div>
-        <div className="w-full lg:w-3/12 hidden md:block">
-          <PopularCategory catPostCount={catPostCount} />
-          <PopularTag tagPostCount={tagPostCount} />
+        <div className="w-full lg:w-3/12">
+          <AnimationWrapper
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2 }}
+          >
+            <PopularCategory catPostCount={catPostCount} />
+          </AnimationWrapper>
+          <AnimationWrapper
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+          >
+            <PopularTag tagPostCount={tagPostCount} />
+          </AnimationWrapper>
         </div>
       </div>
+      {/* <div className="md:order-2">
+        <FeaturedBlogPosts featuredProducts={featuredProducts} />
+      </div> */}
+
       {/* <Newsletter /> */}
     </div>
   );
@@ -70,7 +96,7 @@ export async function getStaticProps() {
     getPosts(),
     getCatWithPostCount(),
     getTagsWithPostCount(),
-    getFeaturedProducts(),
+    // getFeaturedProducts(),
   ]);
 
   const processedData = posts?.map((product) => ({
@@ -79,16 +105,16 @@ export async function getStaticProps() {
     timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
   }));
 
-  const processedFeaturedData = featuredPosts?.map((product) => ({
-    ...product,
-    imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Resim URL'lerini oluştur
-    timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
-  }));
+  // const processedFeaturedData = featuredPosts?.map((product) => ({
+  //   ...product,
+  //   imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Resim URL'lerini oluştur
+  //   timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
+  // }));
 
   return {
     props: {
       latestProducts: processedData,
-      featuredProducts: processedFeaturedData,
+      // featuredProducts: processedFeaturedData,
       catPostCount,
       tagPostCount,
     },

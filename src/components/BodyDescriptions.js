@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const BodyDescription = ({ body, title, table }) => {
   let previousHeading = "";
+  
   return (
     <div>
       {table && (
