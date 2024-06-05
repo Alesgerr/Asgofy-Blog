@@ -8,6 +8,7 @@ import {
 } from "../../sanity/lib/client";
 import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
+// import CategoryArticles from "@/components/Blog/CategoryArticles";
 // import AnimationWrapper from "@/components/AnimationWrapper";
 // import PopularCategories from "@/components/Blog/PopularCategories";
 // import PopularTags from "@/components/Blog/PopularTags";
@@ -40,6 +41,12 @@ const PopularCategory = dynamic(
 const PopularTag = dynamic(() => import("@/components/Blog/PopularTags"), {
   ssr: false,
 });
+const CategoryArticles = dynamic(
+  () => import("@/components/Blog/CategoryArticles"),
+  {
+    ssr: false,
+  }
+);
 const AnimationWrapper = dynamic(
   () => import("@/components/AnimationWrapper"),
   {
@@ -53,9 +60,14 @@ const Home = ({
   // featuredProducts,
 }) => {
   return (
-    <div className="px-5 max-w-7xl md:px-14 lg:py-10 flex flex-col overflow-hidden mx-auto">
-      {/* <Hero /> */}
-      <div className="md:order-1 flex flex-wrap justify-between ">
+    <div>
+      <Hero />
+      <CategoryArticles
+        latestProducts={latestProducts}
+        catPostCount={catPostCount}
+        tagPostCount={tagPostCount}
+      />
+      {/* <div className="md:order-1 flex flex-wrap justify-between ">
         <div className="w-full lg:max-w-[73%] pb-2 ">
           <AnimationWrapper
             initial={{ opacity: 0, y: 100 }}
@@ -81,7 +93,7 @@ const Home = ({
             <PopularTag tagPostCount={tagPostCount} />
           </AnimationWrapper>
         </div>
-      </div>
+      </div> */}
       {/* <div className="md:order-2">
         <FeaturedBlogPosts featuredProducts={featuredProducts} />
       </div> */}

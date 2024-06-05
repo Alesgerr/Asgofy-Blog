@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Asgofy - Latest Blog Posts and Articles</title>
+        <title>Latest Blog Posts and Articles - Asgofy</title>
         <meta
           name="description"
           content="Asgofy offers guides, tips and updates on the latest blog posts and articles."
