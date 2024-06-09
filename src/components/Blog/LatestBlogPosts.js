@@ -34,14 +34,14 @@ const LatestBlogPosts = ({ latestProducts }) => {
     }
   };
   return (
-    <>
-      <div
-        id="targetElement"
-        className="latest_posts rounded-md p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
-      >
-        <h2 className="text-lg text-gray-900 dark:text-white  mb-5">
-          Recent <span className=" text-indigo-600 font-bold">Posts</span>
-        </h2>
+    <div
+      id="targetElement"
+      className="latest_posts rounded-md p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
+    >
+      <h2 className="text-lg text-gray-900 dark:text-white mb-5">
+        Recent <span className=" text-indigo-600 font-bold">Posts</span>
+      </h2>
+      {latestProducts && (
         <div>
           <div>
             {visibleArticles?.map((item, i) => (
@@ -60,7 +60,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                             variant="rectangular"
                             width={150}
                             height={100}
-                            className="dark:bg-gray-800"
+                            className="dark:bg-gray-800 rounded-md"
                           />
                         </div>
                         <div className="md:hidden">
@@ -68,7 +68,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                             variant="rectangular"
                             width={350}
                             height={250}
-                            className="dark:bg-gray-800"
+                            className="dark:bg-gray-800 rounded-md"
                           />
                         </div>
                       </>
@@ -98,7 +98,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                           variant="rectangular"
                           width={100}
                           height={30}
-                          className="dark:bg-gray-800"
+                          className="dark:bg-gray-800 rounded-md"
                         />
                       ) : (
                         <span className="text-sm">{item?.timeAgo}</span>
@@ -109,7 +109,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                         variant="rectangular"
                         width={200}
                         height={50}
-                        className="dark:bg-gray-800"
+                        className="dark:bg-gray-800 rounded-md"
                       />
                     ) : (
                       <h2 className="sm:text-lg mb-4 font-semibold">
@@ -130,7 +130,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                           variant="rectangular"
                           width={130}
                           height={30}
-                          className="dark:bg-gray-800"
+                          className="dark:bg-gray-800 rounded-md"
                         />
                       ) : (
                         <span className="text-black flex items-center dark:text-gray-300 dark:hover:text-white">
@@ -162,8 +162,8 @@ const LatestBlogPosts = ({ latestProducts }) => {
             )}
           </div>
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 export default LatestBlogPosts;

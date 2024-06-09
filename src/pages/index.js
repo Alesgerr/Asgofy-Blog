@@ -8,6 +8,9 @@ import {
 } from "../../sanity/lib/client";
 import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
+import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
+import CategoryArticles from "@/components/Blog/CategoryArticles";
+import Hero from "@/components/Hero";
 // import CategoryArticles from "@/components/Blog/CategoryArticles";
 // import AnimationWrapper from "@/components/AnimationWrapper";
 // import PopularCategories from "@/components/Blog/PopularCategories";
@@ -17,42 +20,21 @@ import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 // const HomePage = dynamic(() => import("@/components/Blog/Home"), {
 //   ssr: false,
 // });
-const Hero = dynamic(() => import("@/components/Hero"), {
-  ssr: false,
-});
-const LatestBlogPosts = dynamic(
-  () => import("@/components/Blog/LatestBlogPosts"),
-  {
-    ssr: false,
-  }
-);
-const FeaturedBlogPosts = dynamic(
-  () => import("@/components/Blog/FeaturedBlogPosts"),
-  {
-    ssr: false,
-  }
-);
-const PopularCategory = dynamic(
-  () => import("@/components/Blog/PopularCategories"),
-  {
-    ssr: false,
-  }
-);
-const PopularTag = dynamic(() => import("@/components/Blog/PopularTags"), {
-  ssr: false,
-});
-const CategoryArticles = dynamic(
-  () => import("@/components/Blog/CategoryArticles"),
-  {
-    ssr: false,
-  }
-);
-const AnimationWrapper = dynamic(
-  () => import("@/components/AnimationWrapper"),
-  {
-    ssr: false,
-  }
-);
+// const Hero = dynamic(() => import("@/components/Hero"), {
+//   ssr: false,
+// });
+// const LatestBlogPosts = dynamic(
+//   () => import("@/components/Blog/LatestBlogPosts"),
+//   {
+//     ssr: false,
+//   }
+// );
+// const FeaturedBlogPosts = dynamic(
+//   () => import("@/components/Blog/FeaturedBlogPosts"),
+//   {
+//     ssr: false,
+//   }
+// );
 const Home = ({
   latestProducts,
   catPostCount,
@@ -67,6 +49,8 @@ const Home = ({
         catPostCount={catPostCount}
         tagPostCount={tagPostCount}
       />
+      {/* <LatestBlogPosts latestProducts={latestProducts} /> */}
+
       {/* <div className="md:order-1 flex flex-wrap justify-between ">
         <div className="w-full lg:max-w-[73%] pb-2 ">
           <AnimationWrapper

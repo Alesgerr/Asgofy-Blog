@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { urlForImage } from "../../../sanity/lib/image";
 import { calculateTimeAgo } from "../calculateTimeAgo";
 import { LiaArrowRightSolid } from "react-icons/lia";
@@ -10,16 +10,37 @@ import {
   getTagsWithPostCount,
 } from "../../../sanity/lib/client";
 import { Skeleton } from "@mui/material";
-import AnimationWrapper from "../AnimationWrapper";
 import PostPublishedDate from "../PostPublishedDate";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { usePostContext } from "@/context/PostContext";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import AnimationWrapper from "../AnimationWrapper";
 import LatestBlogPosts from "./LatestBlogPosts";
 import PopularCategories from "./PopularCategories";
 import PopularTags from "./PopularTags";
-
+import dynamic from "next/dynamic";
+// const LatestBlogPosts = dynamic(
+//   () => import("@/components/Blog/LatestBlogPosts"),
+//   {
+//     ssr: false,
+//   }
+// );
+// const PopularCategories = dynamic(
+//   () => import("@/components/Blog/PopularCategories"),
+//   {
+//     ssr: false,
+//   }
+// );
+// const PopularTags = dynamic(() => import("@/components/Blog/PopularTags"), {
+//   ssr: false,
+// });
+// const AnimationWrapper = dynamic(
+//   () => import("@/components/AnimationWrapper"),
+//   {
+//     ssr: false,
+//   }
+// );
 export default function CategoryArticles({
   latestProducts,
   catPostCount,

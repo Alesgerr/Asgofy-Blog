@@ -2,8 +2,11 @@ import Link from "next/link";
 import React, { useMemo } from "react";
 import { calculateTimeAgo } from "../calculateTimeAgo";
 import { LiaArrowRightSolid } from "react-icons/lia";
+import { Skeleton } from "@mui/material";
+import { usePostContext } from "@/context/PostContext";
 
 const PopularTags = ({ tagPostCount }) => {
+  const { loadingTagCount } = usePostContext();
   const processedTags = useMemo(() => {
     return tagPostCount?.map((item) => ({
       ...item,
@@ -17,7 +20,20 @@ const PopularTags = ({ tagPostCount }) => {
           Popular <span className="text-indigo-600 font-bold">tags</span>
         </h2>
       )}
-      {tagPostCount ? (
+      {loadingTagCount ? (
+        <>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i}>
+              <Skeleton
+                variant="rectangular"
+                width={200}
+                height={25}
+                className="dark:bg-gray-800 rounded-sm mb-2"
+              />
+            </div>
+          ))}
+        </>
+      ) : (
         <ul>
           {/* Etiketlerin listesi */}
           {processedTags?.slice(0, 6).map((item, index) => (
@@ -34,8 +50,6 @@ const PopularTags = ({ tagPostCount }) => {
             </li>
           ))}
         </ul>
-      ) : (
-        <span className="loader"></span>
       )}
     </div>
   );

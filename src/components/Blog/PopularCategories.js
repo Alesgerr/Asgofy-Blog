@@ -1,9 +1,11 @@
 import { usePostContext } from "@/context/PostContext";
+import { Skeleton } from "@mui/material";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { LiaArrowRightSolid } from "react-icons/lia";
 
 const PopularCategories = ({ catPostCount }) => {
+  const { loadingCatCount } = usePostContext();
   return (
     <div className="popular_categories rounded-md p-3 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md mb-3">
       {catPostCount && (
@@ -12,7 +14,20 @@ const PopularCategories = ({ catPostCount }) => {
           <span className="ml-2 text-indigo-600 font-bold">Categories</span>
         </h2>
       )}
-      {catPostCount ? (
+      {loadingCatCount ? (
+        <>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i}>
+              <Skeleton
+                variant="rectangular"
+                width={200}
+                height={25}
+                className="dark:bg-gray-800 rounded-sm mb-2"
+              />
+            </div>
+          ))}
+        </>
+      ) : (
         <ul>
           {/* Etiketlerin listesi */}
           {catPostCount?.slice(0, 6).map((item, index) => (
@@ -29,8 +44,6 @@ const PopularCategories = ({ catPostCount }) => {
             </li>
           ))}
         </ul>
-      ) : (
-        <span className="loader"></span>
       )}
     </div>
   );
