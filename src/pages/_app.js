@@ -9,14 +9,14 @@ import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 import { Ubuntu } from "next/font/google";
 // import PageLoader from "@/components/PageLoader";
+import Header from "@/components/Header";
 import dynamic from "next/dynamic";
-const Header = dynamic(() => import("@/components/Header"), {
-  ssr: false,
-});
+// const Header = dynamic(() => import("@/components/Header"), {
+//   ssr: false,
+// });
 const PageLoader = dynamic(() => import("@/components/PageLoader"), {
   ssr: false,
 });
-// import { Toaster } from "react-hot-toast";
 const inter = Ubuntu({ weight: "400", subsets: ["latin"] });
 
 function MyApp({ Component, pageProps }) {

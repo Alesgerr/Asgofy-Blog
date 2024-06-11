@@ -28,7 +28,7 @@ const PostDetail = ({ post, relatedProducts }) => {
     <AnimationWrapper
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: .5 }}
     >
       <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
         {/* <!-- Blog Article --> */}

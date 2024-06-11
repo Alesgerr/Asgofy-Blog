@@ -36,7 +36,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
   return (
     <div
       id="targetElement"
-      className="latest_posts rounded-md p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
+      className="latest_posts rounded-md md:p-3 py-5 bg-white md:dark:bg-gray-950 dark:bg-black md:shadow-md"
     >
       <h2 className="text-lg text-gray-900 dark:text-white mb-5">
         Recent <span className=" text-indigo-600 font-bold">Posts</span>
@@ -50,7 +50,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                 className={`grid md:grid-cols-2 ${i !== visibleArticles.length - 1 ? "border-b-2" : ""} dark:border-gray-900 gap-2 mb-5`}
               >
                 <div
-                  className={`md:order-2 flex items-center ${loadingGetPosts ? "" : "justify-center"} md:justify-end`}
+                  className={`md:order-2 md:flex md:items-center ${loadingGetPosts ? "" : "justify-between"} md:justify-end`}
                 >
                   <Link rel="preload" href={`/blog/${item?.slug}`}>
                     {loadingGetPosts ? (
@@ -74,8 +74,8 @@ const LatestBlogPosts = ({ latestProducts }) => {
                       </>
                     ) : (
                       <Image
-                        className="w-full md:w-32 h-80 md:h-32 object-cover rounded-md mb-3"
-                        width={250} // Set appropriate width and height
+                        className="w-full md:w-32 md:h-32 object-cover rounded-md mb-3"
+                        width={350} // Set appropriate width and height
                         height={100}
                         // priority
                         src={item?.imageUrl}

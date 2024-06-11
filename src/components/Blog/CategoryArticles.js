@@ -56,7 +56,7 @@ export default function CategoryArticles({
   return (
     <>
       <div className="home_article px-5 max-w-7xl py-10 md:px-14 lg:py-14 overflow-hidden mx-auto flex justify-between flex-wrap">
-        <div className="w-full lg:max-w-[70%] pb-2 ">
+        <div className="w-full lg:w-9/12 pb-2 lg:pr-4">
           <AnimationWrapper
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,6 +77,7 @@ export default function CategoryArticles({
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5 }}
+            className="mt-4" // Margin-top ekleyerek boşluk yaratıyoruz
           >
             <PopularTags tagPostCount={tagPostCount} />
           </AnimationWrapper>

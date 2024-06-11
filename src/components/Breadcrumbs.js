@@ -34,7 +34,7 @@ const Breadcrumb = () => {
         <div className="breadcrumbs-container">
           <div className="breadcrumbs-scroll" ref={breadcrumbsRef}>
             <Breadcrumbs
-              className="bg-gray-100 dark:bg-zinc-900 py-2 sm:py-3 md:px-14 px-5"
+              className="bg-gray-100 rounded-sm dark:bg-zinc-900 py-2 sm:py-3 md:px-14 px-5"
               aria-label="breadcrumb"
               maxItems={2}
             >
@@ -70,7 +70,7 @@ const Breadcrumb = () => {
         </div>
       ) : (
         <Breadcrumbs
-          className="bg-gray-100 dark:bg-zinc-900 py-3 md:px-2"
+          className="bg-gray-100 rounded-sm dark:bg-zinc-900 py-3 md:px-2"
           aria-label="breadcrumb"
         >
           <Link
@@ -84,7 +84,12 @@ const Breadcrumb = () => {
           {pathSegments.map((segment, index) => (
             <span key={index} className="dark:text-white">
               {index === pathSegments.length - 1 ? (
-                <span style={{ fontWeight: 500 }} className="text-black dark:text-white">{capitalize(segment)}</span>
+                <span
+                  style={{ fontWeight: 500 }}
+                  className="text-black dark:text-white"
+                >
+                  {capitalize(segment)}
+                </span>
               ) : (
                 <Link
                   underline="hover"
