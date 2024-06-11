@@ -47,7 +47,7 @@ export const PostProvider = ({ children }) => {
         timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
       }));
       setLatestProducts(processedData);
-      setLoadingGetPosts(false);
+      setLoadingGetPosts(true);
     } catch (error) {
       setLoadingGetPosts(true);
       console.error("Error fetching featured products:", error);

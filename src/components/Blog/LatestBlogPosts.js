@@ -66,7 +66,7 @@ const LatestBlogPosts = ({ latestProducts }) => {
                         <div className="md:hidden">
                           <Skeleton
                             variant="rectangular"
-                            width={350}
+                            width={330}
                             height={250}
                             className="dark:bg-gray-800 rounded-md"
                           />
