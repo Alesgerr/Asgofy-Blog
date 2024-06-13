@@ -80,13 +80,19 @@ const BlogPage = () => {
           Stay in the know with insights from industry experts.https://asgofy.com/blog
         </p>
       </div> */}
+      <div className="flex justify-center mt-5">
+        <h1 className="text-2x1 md:text-3xl font-semibold">All Blog Posts</h1>
+      </div>
       <AnimationWrapper>
         {/* Filter Search && Category */}
         <div className="flex flex-wrap items-center gap-1 md:gap-5 py-5">
           {/* Kategori seçimi buraya gelebilir */}
+
           <div className="md:mb-6 mb-3 md:order-2 w-full md:w-72">
             <FormControl className="w-full dark:bg-zinc-900 rounded-md">
-              <InputLabel id="category-select-label" className="-top-[2px]">Category</InputLabel>
+              <InputLabel id="category-select-label" className="-top-[2px]">
+                Category
+              </InputLabel>
               <Select
                 labelId="category-select-label"
                 id="category-select"
@@ -120,12 +126,14 @@ const BlogPage = () => {
           {filteredPosts?.map((post) => (
             <Link key={post?.slug} href={`/blog/${post?.slug}`}>
               <span className="group dark:focus:outline-none">
-                <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
+                <div className="  rounded-xl overflow-hidden">
                   <Image
-                    className="w-full h-72 absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-md"
+                    className="top-0 w-full start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-md"
                     src={post?.imageUrl}
                     alt={post?.title}
-                    fill
+                    // fill
+                    width={300}
+                    height={200}
                     loading="lazy"
                   />
                 </div>

@@ -18,7 +18,7 @@ const ForgotPassword = () => {
   return (
     <>
       <Head>
-        <title>Forgot Password | Asgorise</title>
+        <title>Forgot Password - Asgofy</title>
       </Head>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
           alt="Your Company"
         /> */}
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
-            Forgot Password
+            Forgot Your Password?
           </h2>
         </div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
