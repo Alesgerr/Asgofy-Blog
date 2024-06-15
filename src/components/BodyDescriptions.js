@@ -4,10 +4,10 @@ import Image from "next/image";
 import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
-
+import { GoLinkExternal } from "react-icons/go";
 const BodyDescription = ({ body, title, table }) => {
   let previousHeading = "";
-  
+
   return (
     <div>
       {table && (
@@ -226,9 +226,29 @@ const BodyDescription = ({ body, title, table }) => {
             return (
               <div key={key} className="my-5">
                 {block.children.map((span, spanIndex) => {
-                  const isStrong = span?.marks?.some(mark => mark === 'strong')
+                  const isStrong = span?.marks?.some(
+                    (mark) => mark === "strong"
+                  );
+                  const linkMark = block?.markDefs?.find(
+                    (mark) => mark._type === "link"
+                  );
+                  if (linkMark) {
+                    return (
+                      <Link href={linkMark?.href} key={linkMark?._key}>
+                        <div className="underline text-indigo-600 tracking-wide flex items-center">
+                          {span?.text}
+                          <span className="mx-2">
+                            <GoLinkExternal />
+                          </span>
+                        </div>
+                      </Link>
+                    );
+                  }
                   return (
-                    <span className={`tracking-wide ${isStrong ? "font-bold" : ""}`} key={`${key}-${spanIndex}`}>
+                    <span
+                      className={`tracking-wide ${isStrong ? "font-bold" : ""}`}
+                      key={`${key}-${spanIndex}`}
+                    >
                       {span?.text}
                     </span>
                   );
