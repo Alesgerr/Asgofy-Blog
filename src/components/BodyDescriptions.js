@@ -7,7 +7,6 @@ import Link from "next/link";
 import { GoLinkExternal } from "react-icons/go";
 const BodyDescription = ({ body, title, table }) => {
   let previousHeading = "";
-
   return (
     <div>
       {table && (
@@ -100,7 +99,7 @@ const BodyDescription = ({ body, title, table }) => {
               <div key={key} className="my-5">
                 <h4 className="font-semibold text-md mb-2">
                   {block?.children?.map((item, i) => (
-                    <span className="font-medium tracking-wide" key={i}>
+                    <span className="font-semibold tracking-wide" key={i}>
                       {item?.text}
                     </span>
                   ))}
@@ -166,37 +165,55 @@ const BodyDescription = ({ body, title, table }) => {
                 }
               });
             }
-          } else if (block.style === "h4") {
-            return (
-              <div key={key} className="my-5">
-                <h3 className="font-semibold text-md mb-2">
-                  {block.children[0].text}
-                </h3>
-              </div>
-            );
           }
           // Eğer blok bir sıralı liste (list item) ise
           else if (block.listItem === "bullet") {
+            const level = block.level;
             return (
-              <div key={key} className="my-5">
-                <ul
-                  className="pl-5 body-content flex flex-wrap"
-                  // style={{ display: "flex", flexWrap: "wrap" }}
-                >
-                  <li>
-                    {block.children.map((listItem, listItemIndex) => {
-                      return (
-                        <span
-                          key={listItemIndex}
-                          className={`list-disc-first tracking-wide ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
-                        >
-                          {listItem.text}
-                        </span>
-                      );
-                    })}
-                  </li>
-                </ul>
-              </div>
+              <>
+                {level === 1 ? (
+                  <div key={key} className="my-5">
+                    <ul
+                      className="pl-5 body-content marker:text-indigo-600 flex flex-wrap"
+                      // style={{ display: "flex", flexWrap: "wrap" }}
+                    >
+                      <li>
+                        {block.children.map((listItem, listItemIndex) => {
+                          return (
+                            <span
+                              key={listItemIndex}
+                              className={`list-disc-first tracking-wide ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
+                            >
+                              {listItem.text}
+                            </span>
+                          );
+                        })}
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <div key={key} className="my-5">
+                    <ul
+                      className="pl-5 ml-3 second_ul marker:text-red-600 flex flex-wrap"
+                      // style={{ display: "flex", flexWrap: "wrap" }}
+                    >
+                      <li>
+                        {block.children.map((listItem, listItemIndex) => {
+                          console.log(level);
+                          return (
+                            <span
+                              key={listItemIndex}
+                              className={`tracking-wide ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
+                            >
+                              {listItem.text}
+                            </span>
+                          );
+                        })}
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </>
             );
           } else if (block.listItem === "number") {
             return (
