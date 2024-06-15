@@ -57,7 +57,7 @@ export const PostProvider = ({ children }) => {
     const res = await getCategories();
     setCategories(res);
   };
-   const fetchCatPostCount = async () => {
+  const fetchCatPostCount = async () => {
     try {
       setLoadingCatCount(false);
       const res = await getCatWithPostCount();
@@ -66,26 +66,26 @@ export const PostProvider = ({ children }) => {
       setLoadingCatCount(true);
       console.error("Error fetching catPostCount:", error);
     }
-   };
-   const fetchTagPostCount = async () => {
-     try {
-       setLoadingTagCount(false);
-       const res = await getTagsWithPostCount();
-       setTagPostCount(res);
-     } catch (error) {
-       setLoadingTagCount(true);
-       console.error("Error fetching catPostCount:", error);
-     }
-   };
-   
+  };
+  const fetchTagPostCount = async () => {
+    try {
+      setLoadingTagCount(false);
+      const res = await getTagsWithPostCount();
+      setTagPostCount(res);
+    } catch (error) {
+      setLoadingTagCount(true);
+      console.error("Error fetching catPostCount:", error);
+    }
+  };
+
   useEffect(() => {
     fetchFeaturedPosts();
     fetchPosts();
     fetchCategories();
-    fetchCatPostCount()
-    fetchTagPostCount()
+    fetchCatPostCount();
+    fetchTagPostCount();
   }, []);
- 
+
   const value = {
     featuredProducts,
     latestProducts,
@@ -95,7 +95,7 @@ export const PostProvider = ({ children }) => {
     loading,
     loadingGetPosts,
     loadingCatCount,
-    loadingTagCount
+    loadingTagCount,
   };
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 };

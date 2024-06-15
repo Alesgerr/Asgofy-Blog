@@ -6,6 +6,7 @@ import { Skeleton } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import PostPublishedDate from "../PostPublishedDate";
 const LatestBlogPosts = ({ latestProducts }) => {
   const { loadingGetPosts } = usePostContext();
   const [page, setPage] = useState(1); // Başlangıçta varsayılan olarak ilk sayfa
@@ -87,21 +88,25 @@ const LatestBlogPosts = ({ latestProducts }) => {
                 <div className="md:order-1 flex-1">
                   <Link href={`/blog/${item.slug}`}>
                     <div className="mb-3">
-                      <span className="text-sm">
-                        {/* <PostPublishedDate
-                                  publishedAt={item?.publishedAt}
-                                /> */}
-                      </span>
-                      {/* <span className="pr-1">,</span> */}
                       {loadingGetPosts ? (
                         <Skeleton
                           variant="rectangular"
-                          width={100}
+                          width={130}
                           height={30}
                           className="dark:bg-gray-800 rounded-md"
                         />
                       ) : (
-                        <span className="text-sm">{item?.timeAgo}</span>
+                        <div>
+                          <span className="text-sm font-semibold">
+                            {item?.timeAgo}
+                          </span>
+                          <span className="pr-1">,</span>
+                          <span className="text-sm">
+                            <PostPublishedDate
+                              publishedAt={item?.publishedAt}
+                            />
+                          </span>
+                        </div>
                       )}
                     </div>
                     {loadingGetPosts ? (
@@ -118,13 +123,6 @@ const LatestBlogPosts = ({ latestProducts }) => {
                     )}
 
                     <div className="mb-4 mt-4">
-                      {/* <Link
-                              href={`/categories/${item?.categories[0]?.slug?.current}`}
-                            >
-                              <span className="bg-gray-200 dark:bg-white rounded-md p-2 px-3 text-black">
-                                {item?.categories[0]?.title}
-                              </span>
-                            </Link> */}
                       {loadingGetPosts ? (
                         <Skeleton
                           variant="rectangular"
@@ -140,11 +138,6 @@ const LatestBlogPosts = ({ latestProducts }) => {
                       )}
                     </div>
                   </Link>
-                  {/* <p className="text-sm mb-5">
-                          {item?.description.length > 100
-                            ? item?.description.slice(0, 120) + "..."
-                            : item?.description}
-                        </p> */}
                 </div>
               </div>
             ))}
