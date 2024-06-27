@@ -5,6 +5,7 @@ import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
 import { GoLinkExternal } from "react-icons/go";
+
 const BodyDescription = ({ body, title, table }) => {
   let previousHeading = "";
   return (

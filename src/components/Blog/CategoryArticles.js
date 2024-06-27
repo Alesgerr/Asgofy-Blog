@@ -20,6 +20,7 @@ import LatestBlogPosts from "./LatestBlogPosts";
 import PopularCategories from "./PopularCategories";
 import PopularTags from "./PopularTags";
 import dynamic from "next/dynamic";
+import AdBanner from "../Ads/AdBanner";
 // const LatestBlogPosts = dynamic(
 //   () => import("@/components/Blog/LatestBlogPosts"),
 //   {
@@ -81,6 +82,7 @@ export default function CategoryArticles({
           >
             <PopularTags tagPostCount={tagPostCount} />
           </AnimationWrapper>
+          <AdBanner />
         </div>
       </div>
     </>

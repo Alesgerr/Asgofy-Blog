@@ -15,6 +15,7 @@ import {
   TwitterIcon,
 } from "next-share";
 import dynamic from "next/dynamic";
+import AdBanner from "../Ads/AdBanner";
 // import ShareGroup from "@/components/ShareGroup";
 // import CommentForm from "@/components/CommentForm";
 // import AnimationWrapper from "@/components/AnimationWrapper";
@@ -116,6 +117,7 @@ const PostDetail = ({ post, relatedProducts }) => {
                   <h1 className="text-lg mt-5 sm:text-2xl font-bold">
                     {post?.title}
                   </h1>
+                  <AdBanner />
                   <div>
                     <Image
                       src={post?.postImage}
@@ -246,6 +248,7 @@ const PostDetail = ({ post, relatedProducts }) => {
                     </div>
                   </div>
                 </div>
+                <AdBanner />
               </div>
             </div>
           </div>

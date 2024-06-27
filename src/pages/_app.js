@@ -7,17 +7,17 @@ import { AuthContextProvider } from "@/context/authContext";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
-import { Ubuntu } from "next/font/google";
-// import PageLoader from "@/components/PageLoader";
+import { Inter } from "next/font/google";
+import PageLoader from "@/components/PageLoader";
 import Header from "@/components/Header";
 import dynamic from "next/dynamic";
 // const Header = dynamic(() => import("@/components/Header"), {
 //   ssr: false,
 // });
-const PageLoader = dynamic(() => import("@/components/PageLoader"), {
-  ssr: false,
-});
-const inter = Ubuntu({ weight: "400", subsets: ["latin"] });
+// const PageLoader = dynamic(() => import("@/components/PageLoader"), {
+//   ssr: false,
+// });
+const inter = Inter({ weight: "400", subsets: ["latin"] });
 
 function MyApp({ Component, pageProps }) {
   return (
