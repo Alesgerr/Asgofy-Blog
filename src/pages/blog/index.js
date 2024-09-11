@@ -14,16 +14,39 @@ import {
   TextField,
 } from "@mui/material";
 import AnimationWrapper from "@/components/AnimationWrapper";
+import { getCategories, getPosts } from "../../../sanity/lib/client";
+import { urlForImage } from "../../../sanity/lib/image";
+import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 
-const BlogPage = () => {
-  const { latestProducts, categories, loading } = usePostContext();
+export async function getServerSideProps() {
+  const latestProducts = await getPosts();
+  const categories = await getCategories()
+  const posts = latestProducts.map((product) => ({
+    ...product,
+    timeAgo: calculateTimeAgo(product?.publishedAt),
+    postImage: urlForImage(product?.mainImage?.asset?._ref), 
+  }));
+
+  return {
+    props: {
+      posts,
+      categories,
+    },
+  };
+}
+
+
+const BlogPage = ({ posts, categories }) => {
+  console.log(posts);
+
+  const {loading } = usePostContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
   useEffect(() => {
-    // selectedCategory, searchTerm veya latestProducts değiştiğinde filtreleme işlemini yeniden yap
+    // selectedCategory, searchTerm veya posts değiştiğinde filtreleme işlemini yeniden yap
     setFilteredPosts(
-      latestProducts.filter((post) => {
+      posts.filter((post) => {
         // Arama terimine göre filtreleme
         if (
           searchTerm &&
@@ -45,7 +68,7 @@ const BlogPage = () => {
         return true;
       })
     );
-  }, [selectedCategory, searchTerm, latestProducts]);
+  }, [selectedCategory, searchTerm, posts]);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -126,10 +149,10 @@ const BlogPage = () => {
           {filteredPosts?.map((post) => (
             <Link key={post?.slug} href={`/blog/${post?.slug}`}>
               <span className="group dark:focus:outline-none">
-                <div className="  rounded-xl overflow-hidden">
+                <div className="rounded-xl overflow-hidden">
                   <Image
-                    className="top-0 w-full start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-md"
-                    src={post?.imageUrl}
+                    className="top-0 w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-md"
+                    src={post?.postImage}
                     alt={post?.title}
                     // fill
                     width={300}

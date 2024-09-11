@@ -176,7 +176,7 @@ const ProfilePage = () => {
   }, [currentUser, userCheckLoading, history]);
 
   return (
-    <div className="user-profile mx-auto max-w-7xl">
+    <div className="user-profile mx-auto max-w-7xl py-20">
       {/* Kullanıcı yükleniyor durumundayken gösterilecek içerik */}
       {userCheckLoading ? (
         <LoadingCard />
@@ -222,12 +222,12 @@ const ProfilePage = () => {
           </div>
           {/* Diğer profil bilgileri ve işlemleri buraya eklenecek */}
           <div className="sm:w-8/12 md:w-7/12 lg:w-8/12 w-full">
-            <div className="reset-password bg-white p-3  dark:bg-black rounded-md border dark:border-gray-800">
+            <div className="reset-password bg-white p-3 mb-3 dark:bg-black rounded-md border dark:border-gray-800">
               <div className="flex items-center justify-between">
                 <h2 className="font-bold">Reset Password:</h2>
                 <Button
                   onPress={onOpenResetPassword}
-                  className="bg-zinc-900 text-white dark:text-black dark:bg-white font-bold py-2 px-4 rounded"
+                  className="bg-zinc-900 text-white dark:text-black dark:bg-white text-sm py-2 px-4 rounded"
                 >
                   Reset Password
                 </Button>
@@ -291,12 +291,12 @@ const ProfilePage = () => {
                 </ModalContent>
               </Modal>
             </div>
-            <div className="change-username bg-white p-3 border dark:bg-black rounded-md dark:border-gray-800">
+            <div className="change-username bg-white p-3 mb-3 border dark:bg-black rounded-md dark:border-gray-800">
               <div className="flex items-center justify-between">
                 <h2 className="font-bold">Change User Name:</h2>
                 <Button
                   onPress={onOpenChangeUsername}
-                  className="bg-zinc-900 text-white dark:text-black dark:bg-white font-bold py-2 px-4 rounded"
+                  className="bg-zinc-900 text-white dark:text-black dark:bg-white text-sm py-2 px-4 rounded"
                 >
                   Change Username
                 </Button>
@@ -358,7 +358,7 @@ const ProfilePage = () => {
                 <h2 className="font-bold">Logout:</h2>
                 <Button
                   onPress={onOpenLogout}
-                  className="bg-red-500 text-white font-bold py-2 px-4 rounded"
+                  className="bg-red-500 text-white text-sm py-2 px-4 rounded"
                 >
                   Logout
                 </Button>
