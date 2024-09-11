@@ -37,7 +37,6 @@ export async function getServerSideProps() {
 
 
 const BlogPage = ({ posts, categories }) => {
-  console.log(posts);
 
   const {loading } = usePostContext();
   const [searchTerm, setSearchTerm] = useState("");
