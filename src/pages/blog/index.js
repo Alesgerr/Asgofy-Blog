@@ -52,7 +52,7 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl items-center px-5 md:px-14">
+    <div className="mx-auto max-w-7xl items-center px-5 md:px-14 py-20">
       <Head>
         <title>All Blog Posts - Asgofy</title>
         <meta name="description" content="All posts on the blog." />

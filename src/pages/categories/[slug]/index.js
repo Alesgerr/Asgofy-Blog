@@ -21,7 +21,7 @@ const CategoryDetailPage = ({ products, slug }) => {
       </Head>
       <AnimationWrapper>
         <section>
-          <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-14">
+          <div className="mx-auto w-full max-w-7xl px-5 py-10 pt-20 md:px-14">
             <div className="flex flex-col items-center">
               <h1 className="max-w-3xl text-center text-2xl mb-12 mt-4 font-bold">
                 {prodTitle}

@@ -7,7 +7,7 @@ import AnimationWrapper from "@/components/AnimationWrapper";
 
 const TagsPage = ({ tags }) => {
   return (
-    <div className="max-w-7xl mx-auto py-5 px-5 md:px-14 overflow-hidden">
+    <div className="max-w-7xl mx-auto py-5 pt-20 px-5 md:px-14 overflow-hidden">
       <Head>
         <title>All Tags - Asgofy</title>
         <meta
@@ -30,7 +30,7 @@ const TagsPage = ({ tags }) => {
         />
       </Head>
       <AnimationWrapper>
-        <h1 className="text-2xl font-bold mb-4">Tags</h1>
+        <h1 className="text-2xl font-bold mb-4 mt-5">Tags</h1>
         <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {tags.map((tag) => (
             <li

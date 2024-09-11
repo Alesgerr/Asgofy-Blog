@@ -11,7 +11,7 @@ const TagProductsPage = ({ products, slug }) => {
   const router = useRouter();
 
   return (
-    <div className="py-5 px-5 md:px-14 max-w-7xl mx-auto">
+    <div className="py-24 px-5 md:px-14 max-w-7xl mx-auto">
       <Head>
         <title>{slug} - Asgofy</title>
         <meta name="description" content={`Posts about ${slug} tag in blog.`} />

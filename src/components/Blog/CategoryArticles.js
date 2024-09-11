@@ -56,7 +56,7 @@ export default function CategoryArticles({
   // } = usePostContext();
   return (
     <>
-      <div className="home_article px-5 max-w-7xl py-10 md:px-14 lg:py-14 overflow-hidden mx-auto flex justify-between flex-wrap">
+      <div className="home_article px-5 max-w-7xl py-10 md:px-14 lg:py-8 overflow-hidden mx-auto flex justify-between flex-wrap">
         <div className="w-full lg:w-9/12 pb-2 lg:pr-4">
           <AnimationWrapper
             initial={{ opacity: 0, y: 100 }}

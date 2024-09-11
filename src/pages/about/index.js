@@ -20,7 +20,7 @@ const AboutPage = () => {
         <section>
           {" "}
           {/* Container */}{" "}
-          <div className="max-w-7xl mx-auto w-full px-5 py-12 md:px-14 md:py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto w-full px-5 py-24 md:px-14 md:py-24 lg:py-24">
             {" "}
             {/* Component */}{" "}
             <div className="grid gap-12 sm:gap-20 lg:grid-cols-2">

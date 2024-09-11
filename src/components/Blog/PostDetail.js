@@ -58,7 +58,7 @@ const PostDetail = ({ post, relatedProducts }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-5 px-5 md:px-14">
+      <div className="justify-between relative mx-auto max-w-7xl overflow-hidden py-24 px-5 md:px-14">
         {/* <!-- Blog Article --> */}
         <Breadcrumb />
         <div className="blog-article">

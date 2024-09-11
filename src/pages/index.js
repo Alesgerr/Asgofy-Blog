@@ -42,7 +42,7 @@ const Home = ({
   // featuredProducts,
 }) => {
   return (
-    <div>
+    <div className="pt-20">
       <Hero />
       <CategoryArticles
         latestProducts={latestProducts}

@@ -4,7 +4,7 @@ import Head from "next/head";
 
 const PrivacyPolicy = () => {
   return (
-    <>
+    <div className='py-16'>
       <Head>
         <title>Privacy Policy | Asgofy</title>
         <meta
@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
           content={`Privacy Policy for ${process?.env?.NEXT_PUBLIC_BASE_URL}`}
         />
       </Head>
-      <div className="max-w-2xl mx-auto mt-8 p-8 rounded shadow-md">
+      <div className="max-w-2xl mx-auto mt-8 p-8 rounded shadow-sm">
         <h1 className="text-xl font-bold mb-4">Privacy Policy</h1>
         <p className="mb-4">
           This website does not store personal data of visitors and collects and
@@ -45,7 +45,7 @@ const PrivacyPolicy = () => {
           <a href="mailto:asgofy@gmail.com">asgofy@gmail.com</a>.
         </p>
       </div>
-    </>
+    </div>
   );
 }
 

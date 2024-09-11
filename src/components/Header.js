@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useAuth } from "@/context/authContext";
 import { logout } from "@/utils/firebase/auth";
@@ -21,9 +21,27 @@ const SearchMenu = dynamic(() => import("@/components/SearchMenu"), {
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const { currentUser } = useAuth();
   const profileRef = useRef();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Scroll Header 
+  useEffect(() => {
+    const handleScroll = () => {
+      if(window.scrollY > lastScrollY){
+        setIsHeaderVisible(false)
+      }else {
+        setIsHeaderVisible(true)
+      }
+      setLastScrollY(window.scrollY)
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () =>{
+      window.removeEventListener('scroll', handleScroll) //Cleanup
+    }
+  },[lastScrollY])
 
   const open = Boolean(anchorEl);
   const toggleMenu = () => {
@@ -60,9 +78,11 @@ const Header = () => {
   ];
   return (
     <>
-      <header className="header">
+      <header
+        className={`header ${isHeaderVisible ? "visible" : "hidden"}`}
+      >
         <nav
-          className="mx-auto flex max-w-7xl items-center justify-between px-5 w-full md:px-14 p-5"
+          className="mx-auto flex max-w-7xl fixed top-0 left-0 right-0 h-20 shadow-sm z-50 bg-white dark:bg-black  items-center justify-between px-5 w-full md:px-14 p-5"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">

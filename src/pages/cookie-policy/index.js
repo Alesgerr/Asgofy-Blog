@@ -2,12 +2,15 @@ import Head from "next/head";
 
 const CookiesPage = () => {
   return (
-    <div>
+    <div className="py-16">
       <Head>
         <title>Cookie Policy | Asgofy</title>
-        <meta name="description" content={`Cookie Policy for ${process.env.NEXT_PUBLIC_BASE_URL}`} />
+        <meta
+          name="description"
+          content={`Cookie Policy for ${process.env.NEXT_PUBLIC_BASE_URL}`}
+        />
       </Head>
-      <div className="max-w-2xl mx-auto mt-8 p-8 rounded shadow-md">
+      <div className="max-w-2xl mx-auto mt-8 p-8 rounded shadow-sm">
         <h1 className="text-2xl font-bold mb-4">Cookie Policy</h1>
         <p className="mb-4">
           Our website uses cookies to ensure you get the best experience on our
