@@ -12,6 +12,8 @@ export const Footer = () => {
     { title: "Contact", path: "/contact" },
     { title: "About", path: "/about" },
   ];
+  console.log("test");
+  
   return (
     <>
       <footer className="">
