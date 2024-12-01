@@ -11,6 +11,8 @@ import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
 import CategoryArticles from "@/components/Blog/CategoryArticles";
 import Hero from "@/components/Hero";
+import FeaturedPosts from "@/components/Blog/FeaturedBlogPosts";
+import Newsletter from "@/components/Newsletter";
 // import CategoryArticles from "@/components/Blog/CategoryArticles";
 // import AnimationWrapper from "@/components/AnimationWrapper";
 // import PopularCategories from "@/components/Blog/PopularCategories";
@@ -39,11 +41,14 @@ const Home = ({
   latestProducts,
   catPostCount,
   tagPostCount,
-  // featuredProducts,
+  featuredProducts,
 }) => {
   return (
     <div className="pt-20">
-      <Hero />
+      {/* <Hero /> */}
+      <div className="md:order-2">
+        <FeaturedPosts featuredProducts={featuredProducts} />
+      </div>
       <CategoryArticles
         latestProducts={latestProducts}
         catPostCount={catPostCount}
@@ -78,11 +83,8 @@ const Home = ({
           </AnimationWrapper>
         </div>
       </div> */}
-      {/* <div className="md:order-2">
-        <FeaturedBlogPosts featuredProducts={featuredProducts} />
-      </div> */}
 
-      {/* <Newsletter /> */}
+      <Newsletter />
     </div>
   );
 };
@@ -92,7 +94,7 @@ export async function getStaticProps() {
     getPosts(),
     getCatWithPostCount(),
     getTagsWithPostCount(),
-    // getFeaturedProducts(),
+    getFeaturedProducts(),
   ]);
 
   const processedData = posts?.map((product) => ({
@@ -101,16 +103,16 @@ export async function getStaticProps() {
     timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
   }));
 
-  // const processedFeaturedData = featuredPosts?.map((product) => ({
-  //   ...product,
-  //   imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Resim URL'lerini oluştur
-  //   timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
-  // }));
+  const processedFeaturedData = featuredPosts?.map((product) => ({
+    ...product,
+    imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Resim URL'lerini oluştur
+    timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
+  }));
 
   return {
     props: {
       latestProducts: processedData,
-      // featuredProducts: processedFeaturedData,
+      featuredProducts: processedFeaturedData,
       catPostCount,
       tagPostCount,
     },

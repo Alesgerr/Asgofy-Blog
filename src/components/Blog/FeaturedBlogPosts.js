@@ -5,17 +5,39 @@ import "../../assets/Blog.css";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
-import { usePostContext } from "@/context/PostContext";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import { Skeleton } from "@mui/material";
-const FeaturedPosts = ({ featuredProducts }) => {
-  const { loading } = usePostContext();
+import { urlForImage } from "../../../sanity/lib/image";
+import { calculateTimeAgo } from "../calculateTimeAgo";
+
+const FeaturedPosts = () => {
+  const [loading, setLoading] = useState(true); // Başlangıçta loading true
+  const [featuredProducts, setFeaturedProducts] = useState([]);
   const [swiperRef, setSwiperRef] = useState(null);
-  // useEffect(() => {
-  //   if (swiperRef) {
-  //     swiperRef.el.swiper.resize(); // Resize Swiper after data is loaded
-  //   }
-  // }, [featuredProducts]);
+
+  // Verileri fetch et
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      try {
+        setLoading(true); // Yükleme başlıyor
+        const response = await fetch("/api/featured-products");
+        const data = await response.json();
+        const processedFeaturedData = data?.map((product) => ({
+          ...product,
+          imageUrl: urlForImage(product?.mainImage?.asset?._ref), // Resim URL'lerini oluştur
+          timeAgo: calculateTimeAgo(product?.publishedAt), // Yayınlanma zamanını hesaplayıp ekliyoruz
+        }));
+        setFeaturedProducts(processedFeaturedData);
+      } catch (error) {
+        console.error("Veri yüklenirken hata oluştu:", error);
+      } finally {
+        setLoading(false); // Yükleme tamamlandı
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
+
   useEffect(() => {
     const swiper = new Swiper(".mySwiper", {
       slidesPerView: 2,
@@ -57,28 +79,23 @@ const FeaturedPosts = ({ featuredProducts }) => {
       swiper.destroy();
     };
   }, [featuredProducts]);
+
   return (
-    <section className="py-5 mx-auto max-w-7xl">
+    <section className="py-5 mx-auto max-w-7xl px-5 md:px-14">
       <div className="flex justify-center flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between gap-8 bg-white dark:bg-gray-950 shadow-md rounded-md p-5">
         <div className="w-full flex justify-between flex-col lg:w-2/5">
-          <div className="block lg:text-left text-center">
+          <div className="block lg:text-left text-center font2">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white leading-[3.25rem] mb-5">
               Our featured <span className=" text-indigo-600">blogs</span>
             </h2>
-
-            {/* <p className="text-gray-500 mb-10  max-lg:max-w-xl max-lg:mx-auto">
-              Welcome to our blog section, where knowledge meets inspiration.
-              Explore insightful articles, expert tips, and the latest trends in
-              our field.
-            </p> */}
             <Link
               href="/blog"
               className="cursor-pointer border border-gray-300 dark:bg-white shadow-sm rounded-full py-3.5 px-7 w-52 lg:mx-0 mx-auto flex justify-center text-gray-900 font-semibold transition-all duration-300 hover:bg-gray-100"
             >
               View All
             </Link>
+      
           </div>
-          {/* <!-- Slider controls --> */}
           <div className="flex items-center lg:justify-start justify-center lg:mt-0 mt-8 gap-8 mb-4">
             <button
               id="slider-button-left"
@@ -97,64 +114,43 @@ const FeaturedPosts = ({ featuredProducts }) => {
           </div>
         </div>
         <div className="w-full lg:w-3/5">
-          {/* <!--Slider wrapper--> */}
           <div className="swiper mySwiper">
             <div className="swiper-wrapper">
-              {featuredProducts?.map((post, index) => (
-                <div
-                  key={index}
-                  className="swiper-slide w-full max-lg:max-w-xl lg:w-1/2 group"
-                >
-                  <Link href={`/blog/${post?.slug}`}>
-                    <div className="flex items-center mb-9">
-                      {loading ? (
-                        <>
-                          <div className="md:hidden">
-                            <Skeleton
-                              variant="rectangular"
-                              width={130}
-                              height={118}
-                              className="dark:bg-gray-800"
-                            />
-                          </div>
-                         
-                        </>
-                      ) : (
+              {loading
+                ? Array.from({ length: 4 }).map((_, index) => (
+                    <div
+                      key={index}
+                      className="swiper-slide w-full max-lg:max-w-xl lg:w-1/2 group"
+                    >
+                      <Skeleton
+                        variant="rectangular"
+                        width="100%"
+                        height={200}
+                        className="rounded-2xl dark:bg-gray-800"
+                      />
+                    </div>
+                  ))
+                : featuredProducts?.map((post, index) => (
+                    <div
+                      key={index}
+                      className="swiper-slide w-full max-lg:max-w-xl lg:w-1/2 group font2"
+                    >
+                      <Link href={`/blog/${post?.slug}`}>
                         <Image
                           className="rounded-2xl w-full h-32 md:h-72 object-cover"
                           src={post?.imageUrl}
                           alt={post?.title}
-                          width={250}
+                          width={400}
                           height={100}
                         />
-                      )}
+                        <h3 className="text-[12px] mt-2 sm:text-lg text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
+                          {post?.title.length > 50
+                            ? post?.title.slice(0, 50) + "..."
+                            : post?.title}
+                        </h3>
+                      </Link>
                     </div>
-                    {loading ? (
-                      <Skeleton
-                        variant="rectangular"
-                        width={130}
-                        height={30}
-                        className="dark:bg-gray-800 mb-4"
-                      />
-                    ) : (
-                      <h3 className="text-[12px] sm:text-lg text-gray-900 dark:text-white font-medium sm:leading-8 mb-4 group-hover:text-indigo-600">
-                        {post?.title}
-                      </h3>
-                    )}
-
-                    {/* <p className="text-gray-500 leading-6 transition-all duration-500 mb-8">
-                          {post?.description.length > 100
-                          {post?.description?.length > 100
-                            ? post?.description?.slice(0, 100) + "..."
-                            : post?.description}
-                        </p> */}
-                    <div className="cursor-pointer flex items-center gap-2 text-sm sm:text-md text-indigo-700 font-semibold">
-                      Read more
-                      <FaLongArrowAltRight />
-                    </div>
-                  </Link>
-                </div>
-              ))}
+                  ))}
             </div>
           </div>
         </div>
