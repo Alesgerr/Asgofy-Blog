@@ -2,20 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Freeman", sans-serif;
+  /* font-family: "Freeman", 'Courier New';
   font-weight: 400;
   font-style: normal; */
   /* font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal; */
+  font-family: "Oswald", Georgia, 'Times New Roman', Times, serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Freeman&family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
+/* @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Freeman&family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.font1 {
+
+/* .font1 {
   font-family: "Freeman", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -25,19 +31,22 @@
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-}
+} */
 body {
   background-color: #fdfdfd;
 }
+
 .dark body {
   background-color: #000;
 }
+
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .loader {
   width: 48px;
   height: 48px;
@@ -50,18 +59,22 @@ body {
   margin: auto;
   animation: rotation 1s linear infinite;
 }
+
 .dark .latest_posts .MuiButtonBase-root {
   color: #fff !important;
 }
+
 .dark .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background-color: #fff;
   color: #000 !important;
   font-weight: 500;
 }
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -75,26 +88,33 @@ body {
   background-color: #000;
   border-radius: 5px;
 }
+
 .dark ::-webkit-scrollbar-thumb {
   background-color: #fff;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
 .dark #category-select-label,
 .dark .MuiInputBase-input {
   color: #fff !important;
 }
+
 .MuiSelect-select,
 .MuiInputBase-input {
   height: 10px !important;
 }
+
 .body-content li:first-child {
   list-style-type: disc !important;
 }
+
 .main-color {
   background-color: #181716;
 }
+
 .postMainImages {
   position: relative;
   width: 100%;
@@ -102,6 +122,7 @@ body {
   aspect-ratio: 40/40;
   margin: 2rem auto;
 }
+
 @media (min-width: 678px) {
   .postMainImages {
     position: relative;
@@ -111,12 +132,15 @@ body {
     margin: 2rem auto;
   }
 }
+
 .dark .MuiBreadcrumbs-separator {
   color: #a5a5a5;
 }
+
 .second_ul {
   list-style: square;
 }
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

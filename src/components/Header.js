@@ -82,7 +82,7 @@ const Header = () => {
         className={`header ${isHeaderVisible ? "visible" : "hidden"}`}
       >
         <nav
-          className="mx-auto flex max-w-7xl fixed top-0 left-0 right-0 h-20 shadow-sm z-50 bg-white dark:bg-black  items-center justify-between px-5 w-full md:px-14 p-5"
+          className="mx-auto flex max-w-7xl fixed top-0 left-0 right-0 h-20 shadow-sm z-50 bg-white dark:bg-black items-center justify-between px-5 w-full md:px-14 p-5"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">

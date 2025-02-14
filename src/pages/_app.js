@@ -53,17 +53,7 @@ function MyApp({ Component, pageProps }) {
           name="keywords"
           content="blog, article, post, guide, tip, update, content"
         /> */}
-        <script
-          src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
-          async
-        ></script>
-        <script
-          type="text/javascript"
-          charset="UTF-8"
-          src="//cdn.cookie-script.com/s/ab640e8d39ee02e1f1b3f60cf55c81dc.js"
-          async
-          defer
-        ></script>
+        
       </Head>
       <PostProvider>
         <AuthContextProvider>

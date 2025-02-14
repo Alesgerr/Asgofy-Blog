@@ -8,6 +8,7 @@ import { GoLinkExternal } from "react-icons/go";
 
 const BodyDescription = ({ body, title, table }) => {
   let previousHeading = "";
+
   return (
     <div>
       {table && (
@@ -45,6 +46,9 @@ const BodyDescription = ({ body, title, table }) => {
       )}
       {body?.map((block, index) => {
         let key = `${block._type}-${index}`;
+        {
+          /* const key = block ? `${block._type}-${index}` : index; */
+        }
         if (block._type === "block") {
           // Eğer blok bir başlık ise ve önceki başlık ile aynı değilse, ekrana yaz
           if (
@@ -183,7 +187,7 @@ const BodyDescription = ({ body, title, table }) => {
                           return (
                             <span
                               key={listItemIndex}
-                              className={`list-disc-first tracking-wide ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : ""}`}
+                              className={`list-disc-first tracking-wide ${listItemIndex !== 0 ? "" : ""} ${listItem?.marks[0] === "strong" ? "font-bold" : "dark:text-gray-400"}`}
                             >
                               {listItem.text}
                             </span>
