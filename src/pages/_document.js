@@ -6,15 +6,14 @@ import Script from "next/script";
 class MyDocument extends Document {
   render() {
     const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
-    
     return (
       <Html lang="en">
         <Head>
-          <Script
+          <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
-          ></Script>
-          <Script
+          ></script>
+          <script
             dangerouslySetInnerHTML={{
               __html: `
               window.dataLayer = window.dataLayer || [];
@@ -25,7 +24,7 @@ class MyDocument extends Document {
               });
               `,
             }}
-          ></Script>
+          ></script>
           {/* <script
             data-name="BMC-Widget"
             data-cfasync="false"
@@ -48,24 +47,11 @@ class MyDocument extends Document {
               gtag('config', 'G-JLL3BBVNRL');
             `}
           </Script> */}
-          <Script
+          <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4424970427520359"
             crossorigin="anonymous"
-          ></Script>
-          <Script
-            strategy="lazyOnload"
-            src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
-            // async
-          ></Script>
-          <Script
-            // type="text/javascript"
-            // charset="UTF-8"
-            strategy="lazyOnload"
-            src="//cdn.cookie-script.com/s/ab640e8d39ee02e1f1b3f60cf55c81dc.js"
-            // async
-            defer
-          ></Script>
+          ></script>
         </Head>
         <body>
           <Main />
