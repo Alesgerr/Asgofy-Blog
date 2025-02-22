@@ -9,8 +9,8 @@ import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 import { Inter } from "next/font/google";
 import PageLoader from "@/components/PageLoader";
-import Header from "@/components/Header";
 import dynamic from "next/dynamic";
+import Header from "@/components/Header/Header";
 // const Header = dynamic(() => import("@/components/Header"), {
 //   ssr: false,
 // });

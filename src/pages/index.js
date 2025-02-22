@@ -10,9 +10,10 @@ import { urlForImage } from "../../sanity/lib/image";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 import LatestBlogPosts from "@/components/Blog/LatestBlogPosts";
 import CategoryArticles from "@/components/Blog/CategoryArticles";
-import Hero from "@/components/Hero";
-import FeaturedPosts from "@/components/Blog/FeaturedBlogPosts";
+import Hero from "@/components/Hero/Hero";
 import Newsletter from "@/components/Newsletter";
+// import FeaturedPosts from "@/components/Blog/FeaturedPosts";
+import FeaturedPosts from "@/components/Blog/FeaturedBlogPosts";
 // import CategoryArticles from "@/components/Blog/CategoryArticles";
 // import AnimationWrapper from "@/components/AnimationWrapper";
 // import PopularCategories from "@/components/Blog/PopularCategories";
@@ -46,14 +47,15 @@ const Home = ({
   return (
     <div className="pt-20">
       {/* <Hero /> */}
-      <div className="md:order-2">
-        <FeaturedPosts featuredProducts={featuredProducts} />
-      </div>
       <CategoryArticles
         latestProducts={latestProducts}
         catPostCount={catPostCount}
         tagPostCount={tagPostCount}
       />
+      <div className="md:order-2">
+        {/* <FeaturedPosts featuredProducts={featuredProducts} /> */}
+        <FeaturedPosts featuredProducts={featuredProducts} />
+      </div>
       {/* <LatestBlogPosts latestProducts={latestProducts} /> */}
 
       {/* <div className="md:order-1 flex flex-wrap justify-between ">

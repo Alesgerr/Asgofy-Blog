@@ -8,7 +8,7 @@ import { IoMdClose } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 // import SearchMenu from "./SearchMenu";
 import dynamic from "next/dynamic";
-import MobileMenu from "./MobileMenu";
+import MobileMenu from "@/components/MobileMenu";
 const ThemeToggle = dynamic(() => import("@/components/ThemeToggle"), {
   ssr: false,
 });
@@ -27,21 +27,21 @@ const Header = () => {
   const { currentUser } = useAuth();
   const profileRef = useRef();
 
-  // Scroll Header 
+  // Scroll Header
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY > lastScrollY){
-        setIsHeaderVisible(false)
-      }else {
-        setIsHeaderVisible(true)
+      if (window.scrollY > lastScrollY) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
       }
-      setLastScrollY(window.scrollY)
-    }
+      setLastScrollY(window.scrollY);
+    };
     window.addEventListener("scroll", handleScroll);
-    return () =>{
-      window.removeEventListener('scroll', handleScroll) //Cleanup
-    }
-  },[lastScrollY])
+    return () => {
+      window.removeEventListener("scroll", handleScroll); //Cleanup
+    };
+  }, [lastScrollY]);
 
   const open = Boolean(anchorEl);
   const toggleMenu = () => {
@@ -78,9 +78,7 @@ const Header = () => {
   ];
   return (
     <>
-      <header
-        className={`header ${isHeaderVisible ? "visible" : "hidden"}`}
-      >
+      <header className={`header ${isHeaderVisible ? "visible" : "hidden"}`}>
         <nav
           className="mx-auto flex max-w-7xl fixed top-0 left-0 right-0 h-20 shadow-sm z-50 bg-white dark:bg-black items-center justify-between px-5 w-full md:px-14 p-5"
           aria-label="Global"
