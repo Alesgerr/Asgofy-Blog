@@ -1,18 +1,16 @@
-import React from "react";
-import { motion } from "framer-motion";
-const AnimationWrapper = ({
-  children,
-  initial = { opacity: 0 },
-  animate = {
-    opacity: 1,
-  },
-  transition = {duration: 1.5},
-}) => {
+import { useInView } from "react-intersection-observer";
+
+function AnimationWrapper({ children, ...props }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // İlk görünümde animasyon başlar
+    threshold: 0.1, // Ekranda %10 görünür olduğunda animasyon başlar
+  });
+
   return (
-    <motion.div initial={initial} animate={animate} transition={transition}>
+    <div ref={ref} className={inView ? "animate-visible" : "animate-hidden"}>
       {children}
-    </motion.div>
+    </div>
   );
-};
+}
 
 export default AnimationWrapper;

@@ -4,7 +4,8 @@ import Head from "next/head";
 import { getCatWithPostCount } from "../../../sanity/lib/client";
 import AnimationWrapper from "@/components/AnimationWrapper";
 
-const CategoryPage = ({categories}) => {
+const CategoryPage = ({ categories }) => {
+  
   // const [categories, setCategories] = useState();
   // useEffect(() => {
   //   const fetchCategories = async () => {
@@ -14,20 +15,20 @@ const CategoryPage = ({categories}) => {
   //   };
   //   fetchCategories();
   // }, []);
-
   return (
     <div className="max-w-7xl mx-auto py-5 pt-20 px-5 md:px-14">
       <Head>
         <title>Blog Categories - Asgofy</title>
         <meta name="description" content="Explore our blog categories" />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <h1 className="text-2xl font-bold mb-8 mt-5">Blog Categories</h1>
       <AnimationWrapper>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories?.map((category, i) => (
+          {categories?.map((category) => (
             <div
               className="dark:bg-white flex flex-col justify-center dark:text-black bg-zinc-900 font-bold text-white rounded-md py-4 px-6 text-center transition duration-300"
-              key={i}
+              key={category._id}
             >
               <Link
                 href={`/categories/${category?.slug?.current}`}
@@ -45,11 +46,11 @@ const CategoryPage = ({categories}) => {
   );
 };
 export const getServerSideProps = async () => {
-  const categories = await getCatWithPostCount()
+  const categories = await getCatWithPostCount();
   return {
     props: {
-      categories
-    }
-  }
+      categories,
+    },
+  };
 };
 export default CategoryPage;

@@ -7,17 +7,24 @@ import { getProductsByCategory } from "../../../../sanity/lib/client";
 import AnimationWrapper from "@/components/AnimationWrapper";
 import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 const CategoryDetailPage = ({ products, slug }) => {
+  
   const prodTitle =
     products?.length > 0 ? products[0]?.categories[0]?.title : slug;
-  const descriptions = products?.flatMap(
-    (item) => item?.categories?.map((category) => category?.description) || []
-  );
-  const combinedDescription = descriptions.join(" ");
+  const uniqueDescriptions = [
+    ...new Set(
+      products?.flatMap(
+        (item) => item?.categories?.map((c) => c?.description) || []
+      )
+    ),
+  ];
+  const combinedDescription = uniqueDescriptions.join(" ");
+  
   return (
     <div>
       <Head>
         <title>{prodTitle} - Asgofy</title>
         <meta name="description" content={combinedDescription} />
+        <meta name="robots" content="noindex, follow" />
       </Head>
       <AnimationWrapper>
         <section>

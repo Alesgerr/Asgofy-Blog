@@ -1,6 +1,7 @@
 import { createClient, groq } from "next-sanity";
 
 import { apiVersion, dataset, projectId, token, useCdn } from "../env";
+import { SanityClient } from "sanity";
 export const client = createClient({
   apiVersion,
   dataset,
@@ -154,6 +155,7 @@ export async function getProductsByCategory(slug) {
     return null;
   }
 }
+
 export const getCatWithPostCount = async () => {
   try {
     const query = `*[_type == 'category'] {
@@ -340,6 +342,7 @@ const fetchComments = async (postId) => {
     return [];
   }
 };
+
 // ! Post Views counter
 export async function incrementArticleViews(articleId) {
   // Makaleyi al

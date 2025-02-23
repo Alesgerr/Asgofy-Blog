@@ -14,6 +14,12 @@ import Hero from "@/components/Hero/Hero";
 import Newsletter from "@/components/Newsletter";
 // import FeaturedPosts from "@/components/Blog/FeaturedPosts";
 import FeaturedPosts from "@/components/Blog/FeaturedBlogPosts";
+import HomePage from "@/components/Blog/HomePage";
+import PopularTags from "@/components/Blog/PopularTags";
+import PopularCategories from "@/components/Blog/PopularCategories";
+import RecentPosts from "@/components/Blog/RecentPosts";
+import LatestPosts from "@/components/Blog/LatestPosts";
+import PopularPosts from "@/components/Blog/PopularPosts";
 // import CategoryArticles from "@/components/Blog/CategoryArticles";
 // import AnimationWrapper from "@/components/AnimationWrapper";
 // import PopularCategories from "@/components/Blog/PopularCategories";
@@ -46,18 +52,36 @@ const Home = ({
 }) => {
   return (
     <div className="pt-20">
+      <PopularPosts featuredProducts={featuredProducts} />
+      <div className="pt-20 px-6 lg:px-16">
+        <div className="flex flex-col lg:flex-row gap-10">
+          {/* Sol Tarafta En Son Yazılar */}
+
+          {/* Sağ Tarafta Popüler ve Yeni Yazılar */}
+          {/* <div className="lg:w-1/4 space-y-10">
+            <PopularPosts featuredProducts={featuredProducts} />
+            <RecentPosts latestProducts={latestProducts} />
+          </div> */}
+        </div>
+      </div>
+
       {/* <Hero /> */}
-      <CategoryArticles
+      {/* <HomePage
+        latestProducts={latestProducts}
+        featuredProducts={featuredProducts}
+        catPostCount={catPostCount}
+        tagPostCount={tagPostCount}
+      /> */}
+      {/* <CategoryArticles
         latestProducts={latestProducts}
         catPostCount={catPostCount}
         tagPostCount={tagPostCount}
-      />
+      /> */}
       <div className="md:order-2">
         {/* <FeaturedPosts featuredProducts={featuredProducts} /> */}
-        <FeaturedPosts featuredProducts={featuredProducts} />
+        {/* <FeaturedPosts featuredProducts={featuredProducts} /> */}
       </div>
       {/* <LatestBlogPosts latestProducts={latestProducts} /> */}
-
       {/* <div className="md:order-1 flex flex-wrap justify-between ">
         <div className="w-full lg:max-w-[73%] pb-2 ">
           <AnimationWrapper
@@ -85,7 +109,6 @@ const Home = ({
           </AnimationWrapper>
         </div>
       </div> */}
-
       <Newsletter />
     </div>
   );

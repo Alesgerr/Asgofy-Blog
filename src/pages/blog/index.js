@@ -5,7 +5,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import {
   Select,
   MenuItem,
@@ -20,11 +20,11 @@ import { calculateTimeAgo } from "@/components/calculateTimeAgo";
 
 export async function getServerSideProps() {
   const latestProducts = await getPosts();
-  const categories = await getCategories()
+  const categories = await getCategories();
   const posts = latestProducts.map((product) => ({
     ...product,
     timeAgo: calculateTimeAgo(product?.publishedAt),
-    postImage: urlForImage(product?.mainImage?.asset?._ref), 
+    postImage: urlForImage(product?.mainImage?.asset?._ref),
   }));
 
   return {
@@ -35,39 +35,28 @@ export async function getServerSideProps() {
   };
 }
 
-
 const BlogPage = ({ posts, categories }) => {
-
-  const {loading } = usePostContext();
+  const { loading } = usePostContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [filteredPosts, setFilteredPosts] = useState([]);
-  useEffect(() => {
-    // selectedCategory, searchTerm veya posts değiştiğinde filtreleme işlemini yeniden yap
-    setFilteredPosts(
-      posts.filter((post) => {
-        // Arama terimine göre filtreleme
-        if (
-          searchTerm &&
-          !post.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ) {
-          return false;
-        }
 
-        // Seçili kategoriye göre filtreleme
-        if (
-          selectedCategory &&
-          !post.categories
-            .map((category) => category._id)
-            .includes(selectedCategory)
-        ) {
-          return false;
-        }
-
-        return true;
-      })
-    );
-  }, [selectedCategory, searchTerm, posts]);
+  const filteredPosts = useMemo(() => {
+    return posts.filter((post) => {
+      if (
+        searchTerm &&
+        !post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        return false;
+      }
+      if (
+        selectedCategory &&
+        !post.categories.some((cat) => cat._id === selectedCategory)
+      ) {
+        return false;
+      }
+      return true;
+    });
+  }, [selectedCategory, searchTerm, posts]); // useMemo yalnızca bağımlılıklar değiştiğinde filtreleme yapar
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -78,15 +67,21 @@ const BlogPage = ({ posts, categories }) => {
       <Head>
         <title>All Blog Posts - Asgofy</title>
         <meta name="description" content="All posts on the blog." />
+
+        {/* Google’a bu sayfayı indekslememesini söyleyen meta etiketi */}
+        <meta name="robots" content="noindex, follow" />
+
         {/* Open Graph meta etiketleri */}
         <meta property="og:title" content="All Blog Posts - Asgofy" />
         <meta property="og:description" content="All posts on the blog." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://asgofy.com/blog" />
+
         {/* Twitter Cards meta etiketleri */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="All Blog Posts - Asgofy" />
         <meta name="twitter:description" content="All posts on the blog." />
+
         <link
           rel="alternate"
           type="application/rss+xml"
@@ -94,6 +89,7 @@ const BlogPage = ({ posts, categories }) => {
           href="https://asgofy.com/api/rss.xml"
         />
       </Head>
+
       {/* <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
         <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
           Insights

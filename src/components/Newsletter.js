@@ -11,7 +11,6 @@ const Newsletter = () => {
     formState: { errors },
   } = useForm();
   const [email, setEmail] = useState("");
-  console.log(email);
   const handleSubscribe = async (data, e) => {
     e.preventDefault();
     try {
