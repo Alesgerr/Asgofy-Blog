@@ -150,12 +150,13 @@ const BlogPage = ({ posts, categories }) => {
               <span className="group dark:focus:outline-none">
                 <div className="rounded-xl overflow-hidden">
                   <Image
-                    className="top-0 w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-md"
+                    // className="top-0 w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-md"
                     src={post?.postImage}
                     alt={post?.title}
                     // fill
-                    width={300}
-                    height={200}
+                    className="mb-6 shadow-md rounded-lg bg-slate-50 h-72 object-cover sm:mb-0 xl:mb-6 "
+                    width={500}
+                    height={500}
                     loading="lazy"
                   />
                 </div>

@@ -5,10 +5,12 @@ import {
   getRelatedPostByCategory,
 } from "../../../sanity/lib/client";
 import { urlForImage } from "../../../sanity/lib/image";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import dynamic from "next/dynamic";
 import PageLoader from "@/components/PageLoader";
 import { Skeleton } from "@mui/material";
+import { useRouter } from "next/router";
+import { logPageView } from "@/utils/analytics";
 // import PostDetail from "@/components/Blog/PostDetail";
 
 const PostDetail = dynamic(() => import("@/components/Blog/PostDetail"), {
@@ -19,6 +21,12 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
   //   return <LoadingCard />;
   // }
   // const { metaTitle, metaDescription } = post;
+  const router = useRouter();
+
+  useEffect(() => {
+    logPageView(router.asPath);
+    
+  }, [router.asPath]);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const postUrl = `${baseUrl}/blog/${post?.slug}`;
   const postImage = post?.postImage;
@@ -46,9 +54,7 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
         <meta name="twitter:description" content={post?.metaDescription} />
         <meta name="twitter:image" content={postImage} />
       </Head>
-      <Suspense
-        fallback={<LoadingCard />}
-      >
+      <Suspense fallback={<LoadingCard />}>
         <PostDetail post={post} relatedProducts={relatedProducts} />
       </Suspense>
     </>

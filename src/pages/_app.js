@@ -11,6 +11,9 @@ import { Inter } from "next/font/google";
 import PageLoader from "@/components/PageLoader";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header/Header";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { initGA, logPageView } from "@/utils/analytics";
 // const Header = dynamic(() => import("@/components/Header"), {
 //   ssr: false,
 // });
@@ -20,6 +23,19 @@ import Header from "@/components/Header/Header";
 const inter = Inter({ weight: "400", subsets: ["latin"] });
 
 function MyApp({ Component, pageProps }) {
+   const router = useRouter();
+
+   useEffect(() => {
+     initGA(); // Google Analytics başlat
+     logPageView(window.location.pathname);
+
+     // Sayfa değiştikçe görüntüleme event'ini kaydet
+     router.events.on("routeChangeComplete", logPageView);
+
+     return () => {
+       router.events.off("routeChangeComplete", logPageView);
+     };
+   }, [router.events]);
   return (
     <>
       <Head>

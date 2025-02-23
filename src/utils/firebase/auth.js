@@ -30,10 +30,10 @@ import {
   getDocs,
   getFirestore,
   setDoc,
+  updateDoc,
+  increment,
 } from "@firebase/firestore";
 import toast from "react-hot-toast";
-
-
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -43,7 +43,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-let app
+let app;
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
 } else {
@@ -166,6 +166,12 @@ export const reAuth = async (password) => {
   } catch (error) {
     toast.error(error.message);
   }
+};
+
+
+export const increaseViewCount = async (postId) => {
+  const postRef = doc(db, "posts", postId);
+  await updateDoc(postRef, { viewCount: increment(1) });
 };
 
 export default app;
