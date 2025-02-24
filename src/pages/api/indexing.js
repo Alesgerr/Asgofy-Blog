@@ -17,7 +17,6 @@ export default async function handler(req, res) {
         "utf-8"
       )
     );
-    console.log(credentials);
 
     // Google Auth Client oluşturuyoruz
     const auth = new google.auth.GoogleAuth({
@@ -33,7 +32,6 @@ export default async function handler(req, res) {
     });
 
     res.status(200).json({ success: true, data: response.data });
-    console.log("successfuly");
   } catch (error) {
     console.error(
       "Indexing API Hatası:",
