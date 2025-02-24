@@ -20,6 +20,8 @@ import PopularCategories from "@/components/Blog/PopularCategories";
 import RecentPosts from "@/components/Blog/RecentPosts";
 import LatestPosts from "@/components/Blog/LatestPosts";
 import PopularPosts from "@/components/Blog/PopularPosts";
+import PostList from "@/components/Blog/PostList";
+import Sidebar from "@/components/Sidebar";
 // import CategoryArticles from "@/components/Blog/CategoryArticles";
 // import AnimationWrapper from "@/components/AnimationWrapper";
 // import PopularCategories from "@/components/Blog/PopularCategories";
@@ -51,65 +53,18 @@ const Home = ({
   featuredProducts,
 }) => {
   return (
-    <div className="pt-20">
+    <div className="pt-20 max-w-7xl mx-auto px-5 md:px-14">
+      {/* Popüler Yazılar */}
       <PopularPosts featuredProducts={featuredProducts} />
-      <div className="pt-20 px-6 lg:px-16">
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Sol Tarafta En Son Yazılar */}
 
-          {/* Sağ Tarafta Popüler ve Yeni Yazılar */}
-          {/* <div className="lg:w-1/4 space-y-10">
-            <PopularPosts featuredProducts={featuredProducts} />
-            <RecentPosts latestProducts={latestProducts} />
-          </div> */}
-        </div>
+      {/* İçerik Alanı */}
+      <div className="flex flex-col lg:flex-row mt-10">
+        <PostList
+          latestPosts={latestProducts}
+          popularPosts={featuredProducts}
+        />
+        <Sidebar categories={catPostCount} />
       </div>
-
-      {/* <Hero /> */}
-      {/* <HomePage
-        latestProducts={latestProducts}
-        featuredProducts={featuredProducts}
-        catPostCount={catPostCount}
-        tagPostCount={tagPostCount}
-      /> */}
-      {/* <CategoryArticles
-        latestProducts={latestProducts}
-        catPostCount={catPostCount}
-        tagPostCount={tagPostCount}
-      /> */}
-      <div className="md:order-2">
-        {/* <FeaturedPosts featuredProducts={featuredProducts} /> */}
-        {/* <FeaturedPosts featuredProducts={featuredProducts} /> */}
-      </div>
-      {/* <LatestBlogPosts latestProducts={latestProducts} /> */}
-      {/* <div className="md:order-1 flex flex-wrap justify-between ">
-        <div className="w-full lg:max-w-[73%] pb-2 ">
-          <AnimationWrapper
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <LatestBlogPosts latestProducts={latestProducts} />
-          </AnimationWrapper>
-        </div>
-        <div className="w-full lg:w-3/12">
-          <AnimationWrapper
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2 }}
-          >
-            <PopularCategory catPostCount={catPostCount} />
-          </AnimationWrapper>
-          <AnimationWrapper
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.5 }}
-          >
-            <PopularTag tagPostCount={tagPostCount} />
-          </AnimationWrapper>
-        </div>
-      </div> */}
-      <Newsletter />
     </div>
   );
 };

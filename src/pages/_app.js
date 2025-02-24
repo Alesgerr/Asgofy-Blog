@@ -14,6 +14,8 @@ import Header from "@/components/Header/Header";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { initGA, logPageView } from "@/utils/analytics";
+import MainLayout from "@/Layout/MainLayout";
+import DashboardLayout from "@/Layout/DashboardLayout";
 // const Header = dynamic(() => import("@/components/Header"), {
 //   ssr: false,
 // });
@@ -23,26 +25,27 @@ import { initGA, logPageView } from "@/utils/analytics";
 const inter = Inter({ weight: "400", subsets: ["latin"] });
 
 function MyApp({ Component, pageProps }) {
-   const router = useRouter();
+  const router = useRouter();
+  const isDashboard = router.pathname.startsWith("/dashboard");
+  const Layout = isDashboard ? DashboardLayout : MainLayout;
+  useEffect(() => {
+    initGA(); // Google Analytics başlat
+    logPageView(window.location.pathname);
 
-   useEffect(() => {
-     initGA(); // Google Analytics başlat
-     logPageView(window.location.pathname);
+    // Sayfa değiştikçe görüntüleme event'ini kaydet
+    router.events.on("routeChangeComplete", logPageView);
 
-     // Sayfa değiştikçe görüntüleme event'ini kaydet
-     router.events.on("routeChangeComplete", logPageView);
-
-     return () => {
-       router.events.off("routeChangeComplete", logPageView);
-     };
-   }, [router.events]);
+    return () => {
+      router.events.off("routeChangeComplete", logPageView);
+    };
+  }, [router.events]);
   return (
     <>
       <Head>
-        <title>Latest Blog Posts and Articles - Asgofy</title>
+        <title>Asgofy Blog - Latest Guides, Tips & Articles</title>
         <meta
           name="description"
-          content="Asgofy offers guides, tips and updates on the latest blog posts and articles."
+          content="Discover the latest blog posts, expert guides, and insightful tips on Asgofy. Stay updated with digital trends, tech news, and valuable content."
         />
 
         <link rel="icon" href="/favicon.ico" />
@@ -84,11 +87,11 @@ function MyApp({ Component, pageProps }) {
       <PostProvider>
         <AuthContextProvider>
           <ThemeProvider enableSystem={true} attribute="class">
-            <Header />
             <PageLoader />
-            <main className={inter.className}>
+            <Layout>
               <Component {...pageProps} />
-            </main>
+            </Layout>
+
             <Toaster
               position="bottom-right"
               containerClassName="Toaster"
@@ -111,7 +114,6 @@ function MyApp({ Component, pageProps }) {
                 },
               }}
             />
-            <Footer />
           </ThemeProvider>
         </AuthContextProvider>
       </PostProvider>

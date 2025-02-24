@@ -1,5 +1,4 @@
 import { google } from "googleapis";
-import fs from "fs";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -7,28 +6,33 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Google Auth için kimlik doğrulama
+    const { url, type } = req.body;
+    if (!url || !type) {
+      return res.status(400).json({ error: "URL ve type zorunludur." });
+    }
+
     const auth = new google.auth.GoogleAuth({
-      keyFile: "indexing-api-key.json", // JSON dosyanız
+      credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
       scopes: ["https://www.googleapis.com/auth/indexing"],
     });
 
     const client = await auth.getClient();
     const indexing = google.indexing({ version: "v3", auth: client });
 
-    const { url, type } = req.body;
-
-    // Google'a URL bildirimi gönder
     const response = await indexing.urlNotifications.publish({
-      requestBody: {
-        url,
-        type, // "URL_UPDATED" veya "URL_DELETED"
-      },
+      requestBody: { url, type },
     });
 
     res.status(200).json({ success: true, data: response.data });
+    
   } catch (error) {
-    console.error("Indexing API Hatası:", error);
-    res.status(500).json({ error: "Indexing API isteği başarısız oldu." });
+    console.error(
+      "Indexing API Hatası:",
+      error?.response?.data || error.message
+    );
+    res.status(500).json({
+      error: "Indexing API isteği başarısız oldu.",
+      details: error.message,
+    });
   }
 }

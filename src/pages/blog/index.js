@@ -65,8 +65,11 @@ const BlogPage = ({ posts, categories }) => {
   return (
     <div className="mx-auto max-w-7xl items-center px-5 md:px-14 py-20">
       <Head>
-        <title>All Blog Posts - Asgofy</title>
-        <meta name="description" content="All posts on the blog." />
+        <title>Asgofy Blog - Explore All Posts & Latest Updates</title>
+        <meta
+          name="description"
+          content="Browse all blog posts on Asgofy. Explore insightful articles, expert guides, and the latest updates on various topics."
+        />
 
         {/* Google’a bu sayfayı indekslememesini söyleyen meta etiketi */}
         <meta name="robots" content="noindex, follow" />

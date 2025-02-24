@@ -18,7 +18,7 @@ const NotifyOnPublish = ({ url, type }) => {
             }),
           });
           setNotified(true); // Bildirim gönderildi, artık tekrar etmesin
-          console.log("Google'a bildirim gönderildi.");
+          // console.log("Google'a bildirim gönderildi.");
         } catch (error) {
           console.error("Bildirim gönderilirken hata oluştu:", error);
         }
