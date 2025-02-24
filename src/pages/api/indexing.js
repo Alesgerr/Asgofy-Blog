@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   try {
     const { url, type } = req.body;
     if (!url || !type) {
-      return res.status(400).json({ error: "URL ve type zorunludur." });
+      return res.status(400).json({ error: "URL ve type zorunludur!" });
     }
     const credentials = JSON.parse(
       Buffer.from(
@@ -29,6 +29,7 @@ export default async function handler(req, res) {
     });
 
     res.status(200).json({ success: true, data: response.data });
+    
   } catch (error) {
     console.error(
       "Indexing API Hatası:",
