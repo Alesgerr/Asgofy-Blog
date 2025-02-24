@@ -8,6 +8,7 @@ function Hero() {
         <h3 class="text-orange-500 text-sm font-bold uppercase text-center">
           Our Blog
         </h3>
+        {/* <div>test</div> */}
         <h1 class="text-4xl font-bold text-center mt-2 mb-6">
           News & <span class="italic">Articles</span>
         </h1>
