@@ -15,8 +15,17 @@ export default function BlogDetailsPage({ post, relatedProducts }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.isReady) logPageView(router.asPath);
-  }, [router.isReady]);
+    const handleRouteChange = (url) => logPageView(url);
+
+    if (router.isReady) {
+      logPageView(router.asPath);
+      router.events.on("routeChangeComplete", handleRouteChange);
+    }
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.isReady, router.asPath, router.events]);
 
   const postUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${post?.slug}`;
   const postImage = post?.postImage;

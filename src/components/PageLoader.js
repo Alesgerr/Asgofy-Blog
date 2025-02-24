@@ -19,7 +19,7 @@ const PageLoader = () => {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
     };
-  }, []);
+  }, [router.events]);
 
   return (
     <>

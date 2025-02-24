@@ -204,7 +204,6 @@ const BodyDescription = ({ body, title, table }) => {
                     >
                       <li>
                         {block.children.map((listItem, listItemIndex) => {
-                          console.log(level);
                           return (
                             <span
                               key={listItemIndex}

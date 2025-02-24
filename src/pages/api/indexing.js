@@ -10,14 +10,18 @@ export default async function handler(req, res) {
     if (!url || !type) {
       return res.status(400).json({ error: "URL ve type zorunludur!" });
     }
+
+    // Base64 formatındaki JSON'u çözüyoruz
     const credentials = JSON.parse(
-      Buffer.from(
-        process.env.GOOGLE_SERVICE_ACCOUNT_BASE64,
-        "base64"
-      ).toString()
+      Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_BASE64, "base64").toString(
+        "utf-8"
+      )
     );
+    console.log(credentials);
+
+    // Google Auth Client oluşturuyoruz
     const auth = new google.auth.GoogleAuth({
-      credentials: credentials,
+      credentials, // Base64 çözülen JSON nesnesi burada kullanılmalı!
       scopes: ["https://www.googleapis.com/auth/indexing"],
     });
 
@@ -29,7 +33,7 @@ export default async function handler(req, res) {
     });
 
     res.status(200).json({ success: true, data: response.data });
-    
+    console.log("successfuly");
   } catch (error) {
     console.error(
       "Indexing API Hatası:",

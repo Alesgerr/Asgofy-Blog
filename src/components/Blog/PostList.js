@@ -41,11 +41,9 @@ export default function PostList({ latestPosts, popularPosts }) {
       {/* Gönderiler veya Skeleton */}
       <div className="space-y-4">
         {displayedPosts?.length > 0
-          ? // Eğer veri varsa, normal gönderileri göster
-
-            displayedPosts.slice(0, 15).map((post) => (
+          ? displayedPosts.slice(0, 15).map((post, index) => (
               <div
-                key={post?.id}
+                key={post?._id || index}
                 className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow"
               >
                 <Link href={`/blog/${post?.slug}`}>
