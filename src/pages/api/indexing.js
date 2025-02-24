@@ -10,9 +10,14 @@ export default async function handler(req, res) {
     if (!url || !type) {
       return res.status(400).json({ error: "URL ve type zorunludur." });
     }
-
+    const credentials = JSON.parse(
+      Buffer.from(
+        process.env.GOOGLE_SERVICE_ACCOUNT_BASE64,
+        "base64"
+      ).toString()
+    );
     const auth = new google.auth.GoogleAuth({
-      credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
+      credentials: credentials,
       scopes: ["https://www.googleapis.com/auth/indexing"],
     });
 
@@ -24,7 +29,6 @@ export default async function handler(req, res) {
     });
 
     res.status(200).json({ success: true, data: response.data });
-    
   } catch (error) {
     console.error(
       "Indexing API Hatası:",
