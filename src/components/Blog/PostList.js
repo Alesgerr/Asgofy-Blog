@@ -10,7 +10,7 @@ export default function PostList({ latestPosts, popularPosts }) {
   const router = useRouter();
 
   const displayedPosts = activeTab === "latest" ? latestPosts : popularPosts;
-
+  
   return (
     <div className="xl:w-2/3 w-full border border-gray-200 dark:border-gray-700 p-3 rounded-lg">
       {/* Butonlar */}
@@ -40,7 +40,7 @@ export default function PostList({ latestPosts, popularPosts }) {
 
       {/* Gönderiler veya Skeleton */}
       <div className="space-y-4">
-        {displayedPosts?.length > 0
+        {displayedPosts && displayedPosts?.length > 0
           ? displayedPosts.slice(0, 15).map((post, index) => (
               <div
                 key={post?._id || index}

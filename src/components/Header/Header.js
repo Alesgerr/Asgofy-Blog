@@ -46,6 +46,7 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev); // Previous state'e göre yeni state
+    setIsMenuOpen((prev) => !prev)
   };
 
   const handleModalOpen = () => setIsModalOpen(true);
