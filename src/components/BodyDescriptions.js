@@ -8,7 +8,7 @@ import { GoLinkExternal } from "react-icons/go";
 
 const BodyDescription = ({ body, title, table }) => {
   let previousHeading = "";
-
+  
   return (
     <div>
       {table && (
@@ -58,25 +58,23 @@ const BodyDescription = ({ body, title, table }) => {
             previousHeading = block.children[0].text; // Önceki başlığı güncelle
             return (
               <div key={key} className="my-5">
-                <h2 className="font-semibold text-xl flex dark:text-white">
+                <h2 className="font-bold text-xl dark:text-white">
                   {block?.children?.map((item, index) => {
                     const linkMark = block?.markDefs?.find(
                       (mark) => mark._type === "link"
                     );
                     const link = linkMark ? linkMark.href : null;
+
                     return link ? (
-                      <a key={index} href={link}>
-                        <span className="font-bold underline">
-                          {item?.text}
-                        </span>
-                      </a>
-                    ) : (
-                      <span
+                      <Link
                         key={index}
-                        className="font-bold tracking-wide text-xl flex"
+                        href={link}
+                        className="font-bold underline"
                       >
-                        {item.text}
-                      </span>
+                        {item?.text}
+                      </Link>
+                    ) : (
+                      <React.Fragment key={index}>{item.text}</React.Fragment>
                     );
                   })}
                 </h2>
@@ -154,23 +152,24 @@ const BodyDescription = ({ body, title, table }) => {
                 })}
               </>
             );
-          } else if (block._type == "link") {
-            {
-              block?.children?.map((span) => {
-                const markDefs = span?.markDefs;
-                if (markDefs?.some((mark) => mark._type === "link")) {
-                  const link = span.marks.find(
-                    (mark) => mark._type === "link"
-                  ).href;
-                  return (
-                    <a key={`${key}-${spanIndex}`} href={link}>
-                      {span?.text}
-                    </a>
-                  );
-                }
-              });
-            }
+          } else if (block._type === "link") {
+            return block?.children?.map((span, spanIndex) => {
+              
+              const markDefs = span?.markDefs;
+              if (markDefs?.some((mark) => mark._type === "link")) {
+                const link = span.marks.find(
+                  (mark) => mark._type === "link"
+                ).href;
+                return (
+                  <Link key={`${key}-${spanIndex}`} href={link}>
+                    {span?.text}
+                  </Link>
+                );
+              }
+              return null; // Eğer link yoksa, null döndürüyoruz
+            });
           }
+
           // Eğer blok bir sıralı liste (list item) ise
           else if (block.listItem === "bullet") {
             const level = block.level;
@@ -250,13 +249,15 @@ const BodyDescription = ({ body, title, table }) => {
                   const isStrong = span?.marks?.some(
                     (mark) => mark === "strong"
                   );
+
+                  // block içindeki markDefs'lerde link olup olmadığını kontrol et
                   const linkMark = block?.markDefs?.find(
                     (mark) => mark._type === "link"
                   );
-                  if (linkMark) {
+                  if (linkMark && span.marks.includes(linkMark._key)) {
                     return (
-                      <Link href={linkMark?.href} key={linkMark?._key}>
-                        <div className="underline text-indigo-600 tracking-wide flex items-center">
+                      <Link href={linkMark?.href} key={`${key}-${spanIndex}`}>
+                        <div className="underline text-indigo-600 tracking-wide inline-flex items-center">
                           {span?.text}
                           <span className="mx-2">
                             <GoLinkExternal />
@@ -265,6 +266,7 @@ const BodyDescription = ({ body, title, table }) => {
                       </Link>
                     );
                   }
+
                   return (
                     <span
                       className={`tracking-wide ${isStrong ? "font-bold" : ""}`}
