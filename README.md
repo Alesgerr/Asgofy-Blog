@@ -11,7 +11,7 @@ Asgofy şəxsi blog platformamdır. Burada texnologiya, proqramlaşdırma və ş
 - **Vercel** – Deploy üçün
 
 ## 📸 Görüntü:
-![asgofy](https://github.com/Alesgerr/asgofy/blob/main/public/screenshot.png)
+![asgofy](https://github.com/Alesgerr/Asgofy-Blog/blob/master/public/Asgofy.png)
 
 ## 🔗 Canlı link:
 👉 (https://asgofy-blog.vercel.app)
