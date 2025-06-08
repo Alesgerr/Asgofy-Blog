@@ -117,7 +117,7 @@ const PostDetail = ({ post, relatedProducts }) => {
                   <h1 className="text-lg mt-5 sm:text-2xl font-bold">
                     {post?.title}
                   </h1>
-                  <AdBanner />
+                  {/* <AdBanner /> */}
                   <div>
                     <Image
                       src={post?.postImage}

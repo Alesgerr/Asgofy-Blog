@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import "../assets/Loader.css";
 const PageLoader = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleStart = () => setLoading(true);
@@ -29,7 +29,7 @@ const PageLoader = () => {
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-400"></div>
         </div> */}
 
-          <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-zinc-900 bg-opacity-30 z-50">
+          <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-zinc-900 bg-opacity-30 z-[10000]">
             <div className="page_loader">
               <span className="bar"></span>
               <span className="bar"></span>

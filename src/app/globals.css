@@ -32,9 +32,6 @@
   font-weight: 500;
   font-style: normal;
 } */
-body {
-  background-color: #fdfdfd;
-}
 
 .dark body {
   background-color: #000;

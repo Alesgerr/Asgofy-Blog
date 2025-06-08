@@ -13,7 +13,7 @@ export default function Sidebar({ categories }) {
         <ul className="space-y-2">
           {categories?.map((cat, i) => (
             <Link key={i} href={`/categories/${cat?.slug?.current}`}>
-              <li className="pb-2 hover:opacity-50 hover:text-gray-200 transition duration-300">
+              <li className="pb-2 hover:opacity-50 dark:hover:text-gray-200 transition duration-300">
                 📌 {cat?.title}
               </li>
             </Link>
