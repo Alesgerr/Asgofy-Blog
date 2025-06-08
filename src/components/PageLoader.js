@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import "../assets/Loader.css";
 const PageLoader = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const handleStart = () => setLoading(true);
